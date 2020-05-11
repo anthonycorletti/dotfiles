@@ -9,8 +9,8 @@
 # ...to autocomplete on all of your projects in the directories specified in
 # `functions/_c`. Typically I'm using it like:
 #
-#    c holm<tab>/bo<tab>
+#    c anth<tab>/do<tab>
 #
-# ...to quickly jump into holman/boom, for example.
+# ...to quickly jump into anthcor/dotfiles, for example.
 
 cd "$PROJECTS/$1"

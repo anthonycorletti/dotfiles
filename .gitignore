@@ -1,5 +1,8 @@
 git/gitconfig.local.symlink
 
-/.atom/blob-store/
-/.atom/compile-cache/
-/.atom/storage/
+.atom-socket*
+atom.symlink/.apm/
+atom.symlink/recovery/
+atom.symlink/blob-store/
+atom.symlink/compile-cache/
+atom.symlink/storage/
