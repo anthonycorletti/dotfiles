@@ -1,0 +1,53 @@
+" Pathogen -----------------------------------
+" TODO: install and setup pathogen packages
+" https://github.com/tpope/vim-pathogen
+" execute pathogen#infect()
+" nerdtree, git helpers, editorconfig, gundo, etc
+
+" Leader Shortcuts ---------------------------
+" leader is comma
+let mapleader=","
+
+" Colors -------------------------------------
+syntax enable
+
+" Misc ---------------------------------------
+set encoding=utf-8
+" Enable plugins
+filetype indent plugin on
+
+" UI Layout ----------------------------------
+set ruler
+set rulerformat=%l\:%c
+set number
+set showcmd
+set cursorline
+set wildmenu
+set lazyredraw
+set showmatch
+
+" Searching ----------------------------------
+set incsearch
+set hlsearch
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+" Folding ------------------------------------
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+nnoremap <space> za
+" fold based on indent level
+set foldmethod=indent
+
+" Line Shortcuts -----------------------------
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" Backups ------------------------------------
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
