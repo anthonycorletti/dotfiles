@@ -6,3 +6,5 @@ atom.symlink/recovery/
 atom.symlink/blob-store/
 atom.symlink/compile-cache/
 atom.symlink/storage/
+atom.symlink/.node-gyp
+atom.symlink/packages
