@@ -1,7 +1,6 @@
-if test ! $GVM_ROOT; then
-    source "$HOME/.gvm/scripts/gvm"
+export GOPATH="${HOME}/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
-    # set go version
-    GOVERSION=go1.14.1
-    gvm use $GOVERSION &> /dev/null
-fi
+test -d "${GOPATH}" || mkdir "${GOPATH}"
+test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
