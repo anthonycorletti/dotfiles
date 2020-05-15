@@ -6,8 +6,13 @@ then
     fi
 fi
 
-if test ! $(which nvm)
+if test ! $(which n)
 then
-    echo "  Installing nvm for you."
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    echo "  Installing n for you via brew."
+    brew install n
+    # make cache folder (if missing) and take ownership
+    sudo mkdir -p /usr/local/n
+    sudo chown -R $(whoami) /usr/local/n
+    # take ownership of node install destination folders
+    sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
 fi
