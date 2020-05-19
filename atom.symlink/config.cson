@@ -43,6 +43,18 @@
     audioBeep: false
     closeDeletedFileTabs: true
     excludeVcsIgnoredPaths: false
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+      "tmp"
+      "htmlcov"
+      "env"
+    ]
     packagesWithKeymapsDisabled: [
       "python-autopep8"
     ]
