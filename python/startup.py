@@ -24,7 +24,6 @@ import pendulum
 import pydantic
 import pytz
 import requests
-import scipy as sp
 import xmltodict as xd
 from lxml import etree
 from pydantic import BaseModel
