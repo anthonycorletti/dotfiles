@@ -90,6 +90,8 @@
           ".eggs"
           "*.egg"
           "tmp"
+          "env"
+          "atom.symlink"
         ]
       mccabe:
         enabled: false

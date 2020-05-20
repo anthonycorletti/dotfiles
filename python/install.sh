@@ -1,8 +1,7 @@
-#!/bin/sh
 # pyenv is great, use it
 
-if test ! $commands[pyenv]
+if test ! $(which pyenv)
 then
-  echo "  Installing pyenv for you."
-  brew install pyenv
+    echo "  Installing pyenv for you."
+    brew install pyenv
 fi

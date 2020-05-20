@@ -1,4 +1,7 @@
 # packages that are great to immediately have in a python repl
+# install these packages and more by running
+# python -m pip install -r ~/.dotfiles/python/requirements.txt
+
 import base64
 import collections
 import datetime
