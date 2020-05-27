@@ -42,6 +42,9 @@
   core:
     audioBeep: false
     closeDeletedFileTabs: true
+    disabledPackages: [
+      "whitespace"
+    ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
       ".git"
