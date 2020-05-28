@@ -21,6 +21,7 @@
     python:
       beautify_on_save: true
       default_beautifier: "yapf"
+      sort_imports: true
     ruby:
       beautify_on_save: true
     sql: {}

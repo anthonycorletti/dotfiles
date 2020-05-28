@@ -20,7 +20,6 @@ language-terraform
 language-viml
 language-vue
 pretty-json
-python-isort
 react
 set-syntax
 sort-lines
