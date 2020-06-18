@@ -1,6 +1,2 @@
-export GOPATH="${HOME}/.go"
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+[[ -s "/Users/anthcor/.gvm/scripts/gvm" ]] && source "/Users/anthcor/.gvm/scripts/gvm"
+gvm use go1.14.4 > /dev/null
