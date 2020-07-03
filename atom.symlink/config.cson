@@ -1,4 +1,7 @@
 "*":
+  _dart:
+    _firstRun: true
+    _version: "1.0.1"
   "atom-beautify":
     bash:
       beautify_on_save: true
@@ -40,6 +43,8 @@
     use: {}
   "atom-isort":
     sortOnSave: true
+  "atom-toolbar":
+    visible: false
   "autocomplete-plus":
     autoActivationDelay: 500
   core:
@@ -47,6 +52,7 @@
     closeDeletedFileTabs: true
     disabledPackages: [
       "whitespace"
+      "linter"
     ]
     editor:
       multiCursorOnClick: true
@@ -70,6 +76,8 @@
     projectHome: "/Users/anthcor/"
     telemetryConsent: "limited"
     titleBar: "custom"
+  dart:
+    sdkLocation: "/Users/anthcor/flutter"
   editor: {}
   "exception-reporting":
     userId: "bd728772-63cc-44e9-9bb3-d54b77631db6"

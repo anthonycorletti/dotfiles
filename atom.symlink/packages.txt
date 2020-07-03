@@ -1,6 +1,9 @@
+Sublime-Style-Column-Selection
 advanced-open-file
 atom-beautify
 atom-ide-ui
+atom-toolbar
+dart
 editorconfig
 file-icons
 git-blame
@@ -19,9 +22,9 @@ language-rust
 language-terraform
 language-viml
 language-vue
+linter
 pretty-json
 react
 set-syntax
 sort-lines
-Sublime-Style-Column-Selection
 terraform-fmt
