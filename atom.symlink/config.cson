@@ -40,13 +40,18 @@
     use: {}
   "atom-isort":
     sortOnSave: true
+  "autocomplete-plus":
+    autoActivationDelay: 500
   core:
     audioBeep: false
     closeDeletedFileTabs: true
     disabledPackages: [
       "whitespace"
     ]
+    editor:
+      multiCursorOnClick: true
     excludeVcsIgnoredPaths: false
+    followSymlinks: false
     ignoredNames: [
       ".git"
       ".hg"
@@ -65,8 +70,6 @@
     projectHome: "/Users/anthcor/"
     telemetryConsent: "limited"
     titleBar: "custom"
-    editor:
-        multiCursorOnClick: true
   editor: {}
   "exception-reporting":
     userId: "bd728772-63cc-44e9-9bb3-d54b77631db6"

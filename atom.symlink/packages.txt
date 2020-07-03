@@ -1,4 +1,3 @@
-Sublime-Style-Column-Selection
 advanced-open-file
 atom-beautify
 atom-ide-ui
@@ -24,4 +23,5 @@ pretty-json
 react
 set-syntax
 sort-lines
+Sublime-Style-Column-Selection
 terraform-fmt
