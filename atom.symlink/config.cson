@@ -52,7 +52,6 @@
     closeDeletedFileTabs: true
     disabledPackages: [
       "whitespace"
-      "linter"
     ]
     editor:
       multiCursorOnClick: true
@@ -78,6 +77,7 @@
     titleBar: "custom"
   dart:
     sdkLocation: "/Users/anthcor/flutter"
+    showOutlineView: false
   editor: {}
   "exception-reporting":
     userId: "bd728772-63cc-44e9-9bb3-d54b77631db6"
