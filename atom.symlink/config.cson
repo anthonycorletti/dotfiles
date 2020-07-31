@@ -52,6 +52,7 @@
     closeDeletedFileTabs: true
     disabledPackages: [
       "whitespace"
+      "wrap-guide"
     ]
     editor:
       multiCursorOnClick: true
