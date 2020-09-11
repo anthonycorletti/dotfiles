@@ -69,6 +69,7 @@
       "tmp"
       "htmlcov"
       "env"
+      "node_modules"
     ]
     packagesWithKeymapsDisabled: [
       "python-autopep8"
