@@ -1,2 +1,1 @@
-export EDITOR='atom'
-export GIT_EDITOR="atom -n -w"
+export EDITOR='code'

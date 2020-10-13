@@ -1,0 +1,11 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "alt+cmd+o",
+        "command": "extension.advancedOpenFile"
+    },
+    {
+        "key": "ctrl+x ctrl+f",
+        "command": "-extension.advancedOpenFile"
+    }
+]

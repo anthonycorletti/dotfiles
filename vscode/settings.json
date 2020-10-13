@@ -1,0 +1,19 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "window.zoomLevel": 0,
+    "editor.fontSize": 16,
+    "editor.fontWeight": "normal",
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "files.enableTrash": false,
+    "files.exclude": {
+        "htmlcov": true,
+        "tmp": true,
+        "env": true,
+        "node_modules": true
+    },
+    "editor.renderIndentGuides": false,
+    "python.linting.flake8Enabled": true,
+    "editor.renderLineHighlight": "none",
+    "workbench.activityBar.visible": false
+}

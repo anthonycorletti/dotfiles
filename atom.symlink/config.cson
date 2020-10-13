@@ -31,6 +31,10 @@
     terraform:
       beautify_on_save: true
       disabled: true
+    tsx:
+      beautify_on_save: true
+    typescript:
+      beautify_on_save: true
     yaml: {}
   "atom-ide-ui":
     "atom-ide-code-format":
