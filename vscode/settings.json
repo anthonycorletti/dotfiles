@@ -7,10 +7,7 @@
     "editor.minimap.enabled": false,
     "files.enableTrash": false,
     "files.exclude": {
-        "htmlcov": true,
-        "tmp": true,
-        "env": true,
-        "node_modules": true
+        "**/.DS_Store": true
     },
     "editor.renderIndentGuides": false,
     "python.linting.flake8Enabled": true,
