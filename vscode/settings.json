@@ -13,5 +13,8 @@
     "python.linting.flake8Enabled": true,
     "editor.renderLineHighlight": "none",
     "workbench.activityBar.visible": false,
-    "window.newWindowDimensions": "inherit"
+    "window.newWindowDimensions": "inherit",
+    "atomKeymap.promptV3Features": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": true
 }
