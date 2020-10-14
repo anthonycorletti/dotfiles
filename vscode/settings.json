@@ -16,5 +16,6 @@
     "window.newWindowDimensions": "inherit",
     "atomKeymap.promptV3Features": true,
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "workbench.colorTheme": "One Dark Pro"
 }
