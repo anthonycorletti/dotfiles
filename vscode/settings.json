@@ -12,10 +12,15 @@
     "editor.renderIndentGuides": false,
     "python.linting.flake8Enabled": true,
     "editor.renderLineHighlight": "none",
-    "workbench.activityBar.visible": false,
+    "workbench.activityBar.visible": true,
     "window.newWindowDimensions": "inherit",
     "atomKeymap.promptV3Features": true,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": true,
-    "workbench.colorTheme": "One Dark Pro"
+    "workbench.colorTheme": "One Dark Pro",
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    }
 }
