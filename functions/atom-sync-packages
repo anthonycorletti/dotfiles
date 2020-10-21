@@ -1,5 +1,0 @@
-#!/bin/bash
-
-atom-sync-packages() {
-    ls -l $HOME/.atom/packages | awk 'NR>1 {print $9}' | tr -d '/' | perl -pe 's/\x1b\[[0-9;]*[mG]//g' > $HOME/.dotfiles/atom.symlink/packages.txt
-}
