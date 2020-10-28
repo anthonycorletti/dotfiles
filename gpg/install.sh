@@ -1,3 +1,6 @@
+# this will likely fail on the first install of a fresh machine
+# install gpgsuite from https://gpgtools.org
+
 if ! type pinentry-mac > /dev/null;
 then
     echo "Checking if gpg agent is running"

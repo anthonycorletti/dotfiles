@@ -1,1 +1,2 @@
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+# disabling – direct downloads from source https://cloud.google.com/sdk/docs/quickstart
+# are cleaner than through homebrew
