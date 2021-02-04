@@ -6,7 +6,6 @@ pandas
 pendulum
 pydantic
 python-dateutil
-python-language-server[all]==0.29.0
 pytz
 pyyaml
 requests
