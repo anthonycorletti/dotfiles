@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# use gvm, it is nice
+# use g, it is nice
 #
 
-if test ! $(which gvm)
+if test ! $(which g)
 then
-    echo "  Installing gvm for you."
-    zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+    echo "  Installing g for you."
+    curl -sSL https://git.io/g-install | sh -s -- zsh
 fi
