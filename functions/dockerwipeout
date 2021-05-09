@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# dockerwipeout
+#
+# Removes all images whether you like it or not.
+
+dockerwipeout () {
+    docker rmi -f $(docker images -a -q);
+}
