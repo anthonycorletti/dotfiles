@@ -10,7 +10,8 @@ alias gco='git checkout'
 alias gcom='git checkout main'
 alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r' # Remove `+` and `-` from start of diff lines; just rely upon color.
 alias ge='git-edit-new'
-alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(bold white)%s%C(reset) %C(white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gl="git log --pretty=oneline -n 23 --graph"
+alias gll="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(bold white)%s%C(reset) %C(white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias gp='git push'
 alias gpl='git pull'
 alias gplom='git pull origin main'
