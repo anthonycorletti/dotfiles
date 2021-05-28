@@ -46,10 +46,6 @@ $ZSH/macos/set-defaults.sh
 # Install homebrew
 $ZSH/brew/install.sh 2>&1
 
-# Install bundle
-echo "› brew bundle"
-brew bundle --file $ZSH/brew/Brewfile
-
 # Upgrade homebrew
 echo "› brew update"
 brew update

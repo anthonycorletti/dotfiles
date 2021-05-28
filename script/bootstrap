@@ -145,6 +145,9 @@ if [ "$(uname -s)" == "Darwin" ]
 then
   info "installing dependencies"
   if source bin/dot | while read -r data; do info "$data"; done
+  into "installing brew bundle"
+  # Install bundle
+  brew bundle --file $ZSH/brew/Brewfile
   then
     success "dependencies installed"
   else
