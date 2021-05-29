@@ -2,5 +2,5 @@
 #
 # quickly generate a new password of n chars
 
-((test -n "$1" && test "$1" -ge 0) && gpg --gen-random --armor 1 $1 2>&-;
+(test -n "$1" && test "$1" -ge 0) && gpg --gen-random --armor 1 $1
 
