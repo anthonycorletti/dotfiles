@@ -59,7 +59,6 @@ brew "xz"
 brew "zlib"
 
 cask "docker"
-cask "iterm2"
 cask "osxfuse"
 cask "slack"
 cask "zoom"
