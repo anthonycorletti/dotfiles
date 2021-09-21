@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Nukes a branch locally and on the origin remote.
+# Nukes a branch locally and on the origin remote. Also prunes the origin.
 #
 # $1 - Branch name.
 #
@@ -10,3 +10,4 @@
 
 git branch -D $1
 git push origin :$1
+git remote prune origin

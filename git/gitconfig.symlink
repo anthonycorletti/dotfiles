@@ -31,9 +31,6 @@
         helper = osxkeychain
 [init]
         defaultBranch = main
-[branch "master"]
-        remote = origin
-        merge = refs/heads/master
 [branch "main"]
         remote = origin
         merge = refs/heads/main
