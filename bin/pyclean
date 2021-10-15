@@ -15,3 +15,4 @@ find . -type d -name .mypy_cache -execdir rm -rf {} +
 find . -type d -name .pytest_cache -execdir rm -rf {} +
 find . -type d -name htmlcov -execdir rm -rf {} +
 find . -type d -name '*.egg-info' -execdir rm -rf {} +
+find . -type d -name lightning_logs -execdir rm -rf {} +
