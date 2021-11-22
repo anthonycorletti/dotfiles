@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Runs an alpine container in a specified namespace and defaults to default.
+
+kubectl run -i --tty --rm alpine --image=alpine --restart=Never ${@} -- sh
