@@ -20,3 +20,4 @@ alias gpo='git push origin'
 alias gpom='git push origin $(gbm)'
 alias gs='git status -sb -u' # upgrade your git if -sb breaks for you. it's fun.
 alias gwtf='git-wtf'
+alias gf='git fetch'
