@@ -10,4 +10,4 @@
 #   git credit "Anthony Corletti" anthony@example.com
 #
 
-git commit --amend --author "$1 <$2>" -C HEAD
+git commit -S --amend --author "$1 <$2>" -C HEAD

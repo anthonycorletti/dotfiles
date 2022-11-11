@@ -1,16 +1,17 @@
 #!/bin/sh
 #
-#   Get the latest version of a package from PyPI.
+#   Get the latest version of a package from PyPI and copies the response to your clipboard
 #
 #   Usage: pypi-latest <package>
 #
 #   Requires: curl, jq
 #
-#   Example: pypi-latest django
-#
+#   Example: pypi-latest fastapi
+
 package=$1
 if [ -z "$package" ]; then
     echo "Usage: pypi-latest <package>"
     exit 1
 fi
-curl -s https://pypi.org/pypi/$1/json | echo "$1 >=$(jq -r .info.version)"
+
+curl -s https://pypi.org/pypi/$package/json | echo "$package >=$(jq -r .info.version)" | tr -d '\n' | pbcopy

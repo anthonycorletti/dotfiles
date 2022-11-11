@@ -1,5 +1,5 @@
 #!/bin/sh
 #
-# Runs an alpine container in a specified namespace and defaults to default.
+# Runs an alpine container shell in the default namespace, which can be overridden with the --namespace option.
 
 kubectl run -i --tty --rm alpine --image=alpine --restart=Never ${@} -- sh

@@ -4,6 +4,7 @@
 
 import base64
 import collections
+import dataclasses
 import datetime
 import hashlib
 import itertools

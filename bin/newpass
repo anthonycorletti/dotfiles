@@ -1,6 +1,12 @@
 #!/bin/sh
 #
-# quickly generate a new password of n chars
+# quickly generate a new password of n chars and copy it to your clipboard
 
-LC_ALL=C tr -dc 'A-Za-z0-9!#$' </dev/urandom | head -c $1; echo
+if [ -z "$1" ]; then
+    NUM_CHARS=23
+else
+    NUM_CHARS=$1
+fi
+
+LC_ALL=C tr -dc 'A-Za-z0-9!#$' </dev/urandom | head -c $NUM_CHARS | tr -d '\n' | pbcopy
 

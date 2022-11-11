@@ -1,5 +1,5 @@
 # this is a workaround to have brew play nice with pyenv
-# https://github.com/pyenv/pyenv/issues/106#issuecomment-625419036
+# https://github.com/pyenv/pyenv#homebrew-in-macos
 
 if [ $commands[pyenv] ];
 then
