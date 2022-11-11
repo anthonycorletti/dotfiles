@@ -6,5 +6,5 @@
 if test ! $(which g)
 then
     echo "  Installing g for you."
-    curl -sSL https://git.io/g-install | sh -s -- zsh
+    curl -sSL https://git.io/g-install | sh -s -- -y
 fi

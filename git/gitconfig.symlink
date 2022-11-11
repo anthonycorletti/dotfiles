@@ -27,6 +27,10 @@
         default = simple
 [pull]
         rebase = false
+[gpg]
+	program = gpg
+[commit]
+	gpgSign = true
 [credential]
         helper = osxkeychain
 [init]
@@ -34,3 +38,7 @@
 [branch "main"]
         remote = origin
         merge = refs/heads/main
+[user]
+	email = anthcor@gmail.com
+[tag]
+	gpgSign = true
