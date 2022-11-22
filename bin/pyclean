@@ -10,9 +10,9 @@ find . -type f -name 'coverage.xml' -delete
 find . -type f -name '.coverage.*' -delete
 
 # directories
-find . -type d -name __pycache__ -execdir rm -rf {} +
-find . -type d -name .mypy_cache -execdir rm -rf {} +
-find . -type d -name .pytest_cache -execdir rm -rf {} +
-find . -type d -name htmlcov -execdir rm -rf {} +
-find . -type d -name '*.egg-info' -execdir rm -rf {} +
-find . -type d -name lightning_logs -execdir rm -rf {} +
+find . -type d -name .venv -prune -o -name __pycache__ -exec rm -r "{}" \;
+find . -type d -name .venv -prune -o -name .mypy_cache -exec rm -r "{}" \;
+find . -type d -name .venv -prune -o -name .pytest_cache -exec rm -r "{}" \;
+find . -type d -name .venv -prune -o -name htmlcov -exec rm -r "{}" \;
+find . -type d -name .venv -prune -o -name '*.egg-info' -exec rm -r "{}" \;
+find . -type d -name .venv -prune -o -name lightning_logs -exec rm -r "{}" \;
