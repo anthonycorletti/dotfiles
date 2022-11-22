@@ -13,7 +13,8 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 alias internalip="ipconfig getifaddr en0"
 alias externalip="curl ipecho.net/plain; echo"
 
-GRC="$(which grc)"
+GRC="/opt/homebrew/bin/grc"
+
 if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
     alias colourify="$GRC -es --colour=auto"
     alias blkid='colourify blkid'
@@ -36,7 +37,7 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
     alias as='colourify as'
     alias gas='colourify gas'
     alias ld='colourify ld'
-    #alias ls='colourify ls'
+    alias ls='colourify ls'
     alias lsof='colourify lsof'
     alias lsblk='colourify lsblk'
     alias lspci='colourify lspci'
