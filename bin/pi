@@ -49,7 +49,7 @@ def _install_upgrade_pip() -> None:
 
 
 def _install_package(package: str) -> None:
-    os.system(f"python -m pip install {package} > /dev/null")
+    os.system(f"python -m pip install '{package}' > /dev/null")
 
 
 def _get_package_version(package: str) -> str:
