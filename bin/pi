@@ -1,0 +1,160 @@
+#!/usr/bin/env python
+
+import argparse
+import json
+import os
+from typing import Optional
+from urllib.request import urlopen
+
+PYPROJECTTOML = "pyproject.toml"
+VERSION_SEPARATORS = [">=", "<=", "==", ">", "<"]
+
+parser = argparse.ArgumentParser(
+    prog="pi",
+    formatter_class=argparse.RawTextHelpFormatter,
+    description=(
+        "π\n\nInstall python packages to the current virtual environment and update \n"
+        "pyproject.toml with the installed packages version.\n\n"
+        "Supports setuptools build tooling, and optional dependency groups."
+    ),
+)
+
+parser.add_argument(
+    "-n",
+    "--dependency-group-name",
+    type=str,
+    default=None,
+    help=(
+        "Installs to project.dependencies by default, \n"
+        "or the project.optional-dependencies group name you specify. \n"
+        "Defaults to None."
+    ),
+)
+
+parser.add_argument(
+    "packages",
+    nargs="*",
+    type=str,
+    help=(
+        "Packages to install. Can be formatted with extras, without extras, "
+        "or only the package name.\nFor example: "
+        '"package_name[extra]>=semver", "package_name>=semver", "package_name".\n'
+        "Install multiple packages by separating them with a space."
+    ),
+)
+
+
+def _install_upgrade_pip() -> None:
+    os.system("python -m pip install --upgrade pip > /dev/null")
+
+
+def _install_package(package: str) -> None:
+    os.system(f"python -m pip install {package} > /dev/null")
+
+
+def _get_package_version(package: str) -> str:
+    with urlopen(f"https://pypi.org/pypi/{package}/json") as response:
+        package_data = json.load(response)
+        return package_data["info"]["version"]
+
+
+def _set_full_package_name(package: str) -> str:
+    _split_package = package.split("[")
+    if len(_split_package) > 1:
+        package_name, extras = (
+            _split_package[0],
+            f'[{_split_package[1].replace("]", "")}]',
+        )
+    else:
+        package_name, extras = _split_package[0], ""
+    package_version, package_sep = None, None
+    for sep in VERSION_SEPARATORS:
+        if sep in package:
+            package_name, package_version = package.split(sep)
+            package_sep = sep
+            break
+    if not package_version:
+        package_version = _get_package_version(package_name)
+        package_sep = ">="
+    return f"{package_name}{extras}{package_sep}{package_version}"
+
+
+def _get_deps_from_pyproject_toml(
+    pyprojecttoml: dict,
+    dependency_group_name: Optional[str] = None,
+) -> list:
+    if dependency_group_name:
+        return pyprojecttoml["project"]["optional-dependencies"][dependency_group_name]
+    return pyprojecttoml["project"]["dependencies"]
+
+
+def _install_packages(packages: list, deps: list) -> list:
+    for package in packages:
+        full_package_name = _set_full_package_name(package=package)
+        print(f"Installing {full_package_name}...")
+        _install_package(package=full_package_name)
+        deps.append(full_package_name)
+    return sorted(list(set(deps)))
+
+
+def _update_pyproject_toml(
+    pyprojecttoml: dict,
+    dependency_group_name: Optional[str] = None,
+) -> None:
+    deps = _get_deps_from_pyproject_toml(
+        pyprojecttoml=pyprojecttoml,
+        dependency_group_name=dependency_group_name,
+    )
+    installed_deps = _install_packages(packages=packages, deps=deps)
+    if dependency_group_name is not None:
+        pyprojecttoml["project"]["optional-dependencies"][
+            dependency_group_name
+        ] = installed_deps
+    else:
+        pyprojecttoml["project"]["dependencies"] = installed_deps
+    with open(PYPROJECTTOML, "w") as f:
+        toml.dump(pyprojecttoml, f)
+
+
+#
+#   install toml package
+#
+_install_upgrade_pip()
+_install_package(package="toml")
+
+import toml  # noqa
+
+
+#
+#   load toml data from pyproject.toml
+#
+def _load_toml_data() -> dict:
+    with open(PYPROJECTTOML) as f:
+        toml_data = toml.load(f)
+        return toml_data
+
+
+args = parser.parse_intermixed_args()
+dependency_group_name = args.dependency_group_name
+packages = args.packages
+
+if not packages or packages == []:
+    parser.print_help()
+    exit()
+
+try:
+    pyprojecttoml = _load_toml_data()
+except FileNotFoundError:
+    print(
+        "pyproject.toml not found. "
+        "Try using pi in a python project that has a pyproject.toml file."
+    )
+    exit(1)
+
+
+_update_pyproject_toml(
+    pyprojecttoml=pyprojecttoml,
+    dependency_group_name=dependency_group_name,
+)
+
+print("Done!")
