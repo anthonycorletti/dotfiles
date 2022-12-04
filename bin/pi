@@ -13,8 +13,8 @@ parser = argparse.ArgumentParser(
     prog="pi",
     formatter_class=argparse.RawTextHelpFormatter,
     description=(
-        "π\n\nInstall python packages to the current virtual environment and update \n"
-        "pyproject.toml with the installed packages version.\n\n"
+        "π\n\nInstall python packages to the current virtual environment \n"
+        "and update pyproject.toml with the installed packages version.\n\n"
         "Supports setuptools build tooling, and optional dependency groups."
     ),
 )
@@ -38,7 +38,8 @@ parser.add_argument(
     help=(
         "Packages to install. Can be formatted with extras, without extras, "
         "or only the package name.\nFor example: "
-        '"package_name[extra]>=semver", "package_name>=semver", "package_name".\n'
+        '"package_name[extra]>=semver", "package_name>=semver", '
+        '"package_name".\n'
         "Install multiple packages by separating them with a space."
     ),
 )
@@ -83,9 +84,10 @@ def _get_deps_from_pyproject_toml(
     pyprojecttoml: dict,
     dependency_group_name: Optional[str] = None,
 ) -> list:
+    project = pyprojecttoml["project"]
     if dependency_group_name:
-        return pyprojecttoml["project"]["optional-dependencies"][dependency_group_name]
-    return pyprojecttoml["project"]["dependencies"]
+        return project["optional-dependencies"][dependency_group_name]
+    return project["dependencies"]
 
 
 def _install_packages(packages: list, deps: list) -> list:
@@ -105,7 +107,10 @@ def _update_pyproject_toml(
         pyprojecttoml=pyprojecttoml,
         dependency_group_name=dependency_group_name,
     )
-    installed_deps = _install_packages(packages=packages, deps=deps)
+    installed_deps = _install_packages(
+        packages=packages,
+        deps=deps,
+    )
     if dependency_group_name is not None:
         pyprojecttoml["project"]["optional-dependencies"][
             dependency_group_name
