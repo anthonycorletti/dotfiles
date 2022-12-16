@@ -10,10 +10,10 @@ find . -type f -name 'coverage.xml' -delete
 find . -type f -name '.coverage.*' -delete
 
 # directories
-find . -type d -name .venv -prune -o -name __pycache__ -exec rm -r "{}" \;
-find . -type d -name .venv -prune -o -name .mypy_cache -exec rm -r "{}" \;
-find . -type d -name .venv -prune -o -name .ruff_cache -exec rm -r "{}" \;
-find . -type d -name .venv -prune -o -name .pytest_cache -exec rm -r "{}" \;
-find . -type d -name .venv -prune -o -name htmlcov -exec rm -r "{}" \;
-find . -type d -name .venv -prune -o -name '*.egg-info' -exec rm -r "{}" \;
-find . -type d -name .venv -prune -o -name lightning_logs -exec rm -r "{}" \;
+find . -type d -name .venv -prune -o -name __pycache__ -exec rm -r "{}" +;
+find . -type d -name .venv -prune -o -name .mypy_cache -exec rm -r "{}" +;
+find . -type d -name .venv -prune -o -name .ruff_cache -exec rm -r "{}" +;
+find . -type d -name .venv -prune -o -name .pytest_cache -exec rm -r "{}" +;
+find . -type d -name .venv -prune -o -name htmlcov -exec rm -r "{}" +;
+find . -type d -name .venv -prune -o -name '*.egg-info' -exec rm -r "{}" +;
+find . -type d -name .venv -prune -o -name lightning_logs -exec rm -r "{}" +;
