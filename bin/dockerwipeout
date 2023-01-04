@@ -2,6 +2,11 @@
 #
 # dockerwipeout
 #
-# Removes all images whether you like it or not.
+# Force removes all images and prunes docker's system and network.
 
 docker rmi -f $(docker images -a -q)
+docker rmi -f $(docker images --quiet --filter "dangling=true")
+
+echo "Pruning docker system and network..."
+docker system prune -a -f
+docker network prune -f
