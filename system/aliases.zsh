@@ -28,7 +28,6 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
     alias free='colourify free'
     alias fdisk='colourify fdisk'
     alias findmnt='colourify findmnt'
-    alias make='colourify make'
     alias gcc='colourify gcc'
     alias g++='colourify g++'
     alias id='colourify id'
