@@ -1,5 +1,1 @@
-# some nice rbenv help
-if (( $+commands[rbenv] ))
-then
-    eval "$(rbenv init -)"
-fi
+eval "$(/opt/homebrew/bin/rbenv init -)"
