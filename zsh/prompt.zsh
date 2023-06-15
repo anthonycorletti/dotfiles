@@ -72,10 +72,9 @@ machine_name() {
 
 python_virtualenv_name() {
     VIRTUALENV_NAME=$(echo $VIRTUAL_ENV | sed -e 's/\/.*\///g')
-    if [[ -z "$VIRTUALENV_NAME" ]];
+    if [[ $VIRTUALENV_NAME != "" ]]
     then
-    else
-        echo " 🐍 %{$fg_bold[green]%}$VIRTUALENV_NAME%{$reset_color%}"
+       echo " 🐍 %{$fg_bold[green]%}$VIRTUALENV_NAME%{$reset_color%}"
     fi
 }
 
