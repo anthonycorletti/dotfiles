@@ -63,3 +63,4 @@ if [ -f '/Users/anthony/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/a
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
