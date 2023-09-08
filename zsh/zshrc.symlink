@@ -62,5 +62,9 @@ if [ -f '/Users/anthony/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/anthony
 if [ -f '/Users/anthony/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/anthony/google-cloud-sdk/completion.zsh.inc'; fi
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# sqlite
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+
+# postgres utilites
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
