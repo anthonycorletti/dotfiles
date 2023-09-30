@@ -66,5 +66,8 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 # sqlite
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 
-# postgres utilites
+# postgres client
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# mysql client
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
