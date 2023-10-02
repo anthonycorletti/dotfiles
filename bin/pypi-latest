@@ -14,4 +14,4 @@ if [ -z "$package" ]; then
     exit 1
 fi
 
-curl -s https://pypi.org/pypi/$package/json | echo "$package >=$(jq -r .info.version)" | tr -d '\n' | pbcopy
+curl -s https://pypi.org/pypi/$package/json | echo "$package>=$(jq -r .info.version)" | tr -d '\n' | pbcopy
