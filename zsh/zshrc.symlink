@@ -61,7 +61,7 @@ if [ -f '/Users/anthony/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/anthony
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/anthony/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/anthony/google-cloud-sdk/completion.zsh.inc'; fi
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
 
 # sqlite
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
