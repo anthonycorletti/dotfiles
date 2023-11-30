@@ -53,7 +53,6 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
 " Cursor -------------------------------------
-let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[6 q" "SR = REPLACE mode
 autocmd VimLeave * silent !echo -ne "\e[3 q"
