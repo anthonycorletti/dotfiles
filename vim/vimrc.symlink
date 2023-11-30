@@ -55,4 +55,6 @@ set writebackup
 " Cursor -------------------------------------
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[6 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+autocmd VimEnter * silent !echo -ne "\e[1 q"
 autocmd VimLeave * silent !echo -ne "\e[3 q"
