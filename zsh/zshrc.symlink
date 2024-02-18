@@ -72,3 +72,6 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # mysql client
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# rust path
+export PATH="$HOME/.cargo/bin:$PATH"

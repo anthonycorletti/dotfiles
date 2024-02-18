@@ -1,1 +1,0 @@
-export GOROOT="$HOME/.go";
