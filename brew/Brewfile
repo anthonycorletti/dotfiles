@@ -1,6 +1,5 @@
 cask_args app: "/Applications"
 
-tap "homebrew/cask"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "oven-sh/bun"
