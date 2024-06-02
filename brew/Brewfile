@@ -56,6 +56,7 @@ brew "zig"
 brew "zlib"
 
 cask "macfuse"
+cask "basictex"
 cask "docker"
 cask "slack"
 cask "discord"
