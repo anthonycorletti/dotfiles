@@ -52,6 +52,8 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
+" Enable line numbers
+set number
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -165,6 +167,9 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+
+" Set the color of line numbers to a dull gray
+highlight LineNr ctermfg=gray guifg=#808080
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
