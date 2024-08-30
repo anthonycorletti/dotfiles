@@ -3,7 +3,42 @@
 # dockerclean
 #
 # Removes all dangling containers, images, and volumes.
+#
+#   add --force to remove all containers, images, and volumes
+#   add --prune to prune the system and network
+#
 
-docker rm $(docker ps -a -q)
-docker rmi -f $(docker images --quiet --filter "dangling=true")
-docker volume rm $(docker volume ls -q -f dangling=true)
+if [ "$1" = "--force" ] || [ "$2" = "--force" ]; then
+    # set FORCE to true
+    FORCE="--force"
+fi
+
+if [ "$1" = "--prune" ] || [ "$2" = "--prune" ]; then
+    PRUNE="--prune"
+fi
+
+if [ "$FORCE" = "--force" ]; then
+    echo "Removing all containers..."
+    docker rm -f $(docker ps -a -q)
+
+    echo "Removing all images..."
+    docker rmi -f $(docker images -a -q)
+
+    echo "Removing all volumes..."
+    docker volume rm -f $(docker volume ls -q)
+else
+    echo "Removing all dangling containers..."
+    docker rm $(docker ps -a -q)
+
+    echo "Removing all dangling images..."
+    docker rmi $(docker images --quiet --filter "dangling=true")
+
+    echo "Removing all dangling volumes..."
+    docker volume rm $(docker volume ls -q -f dangling=true)
+fi
+
+if [ "$PRUNE" = "--prune" ]; then
+    echo "Pruning docker's system and network..."
+    docker system prune -a -f
+    docker network prune -f
+fi

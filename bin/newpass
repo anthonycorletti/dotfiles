@@ -3,7 +3,7 @@
 # quickly generate a new password of n chars and copy it to your clipboard
 
 if [ -z "$1" ]; then
-    NUM_CHARS=23
+    NUM_CHARS=37
 else
     NUM_CHARS=$1
 fi
