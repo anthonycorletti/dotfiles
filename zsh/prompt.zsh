@@ -78,7 +78,7 @@ python_virtualenv_name() {
     fi
 }
 
-export PROMPT=$'$(battery_status) $(machine_name) in $(directory_name)$(python_virtualenv_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}> %{$reset_color%}'
+export PROMPT=$'$(battery_status) $(machine_name) in $(directory_name)$(python_virtualenv_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
 
 set_prompt () {
     export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
