@@ -1,3 +1,2 @@
-alias av="source .venv/bin/activate && pip install --upgrade pip"
+alias av="source .venv/bin/activate"
 alias dv="deactivate"
-alias nv="python -m venv .venv && source .venv/bin/activate && pip install --upgrade pip"
