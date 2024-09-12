@@ -34,7 +34,7 @@ else
     docker rmi $(docker images --quiet --filter "dangling=true")
 
     echo "Removing all dangling volumes..."
-    docker volume rm $(docker volume ls -q -f dangling=true)
+    docker volume rm $(docker volume ls --quiet --filter "dangling=true")
 fi
 
 if [ "$PRUNE" = "--prune" ]; then
