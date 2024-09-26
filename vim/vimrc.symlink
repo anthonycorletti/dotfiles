@@ -10,6 +10,11 @@ set encoding=utf-8
 " Enable plugins
 filetype indent plugin on
 
+" Commands -----------------------------------
+" Save and quit
+command! w wq!
+command! wq wq!
+
 " UI Layout ----------------------------------
 set ruler
 set rulerformat=%l\:%c
