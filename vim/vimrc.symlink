@@ -12,8 +12,8 @@ filetype indent plugin on
 
 " Commands -----------------------------------
 " Save and quit
-command! w wq!
-command! wq wq!
+command! W wq!
+command! Wq wq!
 
 " UI Layout ----------------------------------
 set ruler
