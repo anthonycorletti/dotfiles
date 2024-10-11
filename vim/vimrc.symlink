@@ -1,15 +1,17 @@
+" Leader Key ---------------------------------
+let mapleader=" "
+
 " Colors -------------------------------------
 syntax enable
 
 " Misc ---------------------------------------
 set encoding=utf-8
-" Enable plugins
 filetype indent plugin on
 
 " UI Layout ----------------------------------
+set number
 set ruler
 set rulerformat=%l\:%c
-set number
 set showcmd
 set cursorline
 set wildmenu
@@ -19,19 +21,15 @@ set showmatch
 " Searching ----------------------------------
 set incsearch
 set hlsearch
-" turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
 
 " Folding ------------------------------------
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
-nnoremap <space> za
-" fold based on indent level
 set foldmethod=indent
+nnoremap <space> za
 
 " Line Shortcuts -----------------------------
-" move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 
@@ -43,9 +41,9 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
 " Cursor -------------------------------------
-let &t_SI.="\e[5 q" "SI = INSERT mode
-let &t_SR.="\e[6 q" "SR = REPLACE mode
-let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+let &t_SI.="\e[5 q" " SI = INSERT mode
+let &t_SR.="\e[6 q" " SR = REPLACE mode
+let &t_EI.="\e[1 q" " EI = NORMAL mode (ELSE)
 autocmd VimEnter * silent !echo -ne "\e[1 q"
 autocmd VimLeave * silent !echo -ne "\e[3 q"
 
@@ -53,6 +51,5 @@ set ttimeout
 set ttimeoutlen=1
 set ttyfast
 
-" Enabling auto-saving -----------------------
-" Enable auto-saving when switching buffers
+" Auto-saving --------------------------------
 autocmd BufLeave * silent! write
