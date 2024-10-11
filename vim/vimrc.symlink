@@ -1,7 +1,3 @@
-" Leader Shortcuts ---------------------------
-" leader is comma
-let mapleader=","
-
 " Colors -------------------------------------
 syntax enable
 
@@ -56,7 +52,6 @@ autocmd VimLeave * silent !echo -ne "\e[3 q"
 set ttimeout
 set ttimeoutlen=1
 set ttyfast
-
 
 " Enabling auto-saving -----------------------
 " Enable auto-saving when switching buffers
