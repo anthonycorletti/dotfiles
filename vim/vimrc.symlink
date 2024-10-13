@@ -33,6 +33,10 @@ nnoremap <space> za
 nnoremap j gj
 nnoremap k gk
 
+" Force write and quit shortcuts -------------
+command! WQ wq!
+command! Q q!
+
 " Backups ------------------------------------
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
