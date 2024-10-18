@@ -71,16 +71,15 @@ host_name() {
     echo "%{$fg_bold[white]$HOST%}%{$reset_color%}"
 }
 
-python_virtualenv_name() {
+python_venv() {
     VIRTUALENV_NAME=$(echo $VIRTUAL_ENV | sed -e 's/\/.*\///g')
     if [[ $VIRTUALENV_NAME != "" ]]
     then
-        VERSION=$(python --version 2>&1 | awk '{print $2}')
-        echo " with 🐍 %{$fg_bold[green]%}($VIRTUALENV_NAME) @ $VERSION%{$reset_color%}"
+        echo " with 🐍 %{$fg_bold[green]%}($VIRTUALENV_NAME)%{$reset_color%}"
     fi
 }
 
-export PROMPT=$'$(battery_status)$(host_name) in $(directory_name)$(python_virtualenv_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
+export PROMPT=$'$(battery_status)$(host_name) in $(directory_name)$(python_venv) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
 
 set_prompt () {
     export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
