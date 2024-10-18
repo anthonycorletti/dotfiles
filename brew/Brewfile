@@ -83,6 +83,7 @@ brew "oven-sh/bun/bun"
 brew "planetscale/tap/pscale"
 brew "render-oss/render/render"
 cask "basictex"
+cask "cap"
 cask "discord", args: { appdir: "/Applications" }
 cask "docker", args: { appdir: "/Applications" }
 cask "figma"
