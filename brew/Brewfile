@@ -16,6 +16,7 @@ brew "automake"
 brew "openssl@3"
 brew "python@3.12"
 brew "aws-shell"
+brew "awscli"
 brew "python@3.11"
 brew "azure-cli"
 brew "bdw-gc"
@@ -87,6 +88,7 @@ cask "docker", args: { appdir: "/Applications" }
 cask "figma"
 cask "firefox", args: { appdir: "/Applications" }
 cask "google-chrome", args: { appdir: "/Applications" }
+cask "google-cloud-sdk"
 cask "macfuse", args: { appdir: "/Applications" }
 cask "slack", args: { appdir: "/Applications" }
 cask "spotify", args: { appdir: "/Applications" }
