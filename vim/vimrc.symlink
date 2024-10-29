@@ -2,58 +2,115 @@
 let mapleader=" "
 
 " Colors -------------------------------------
-syntax enable
+" Enable syntax highlighting
+syntax on
 
-" Misc ---------------------------------------
+" General ------------------------------------
+" Set file encoding to UTF-8
 set encoding=utf-8
+" Enable file type detection, indentation, and plugins
 filetype indent plugin on
+" Use visual bell instead of beeping, but no flashing
+set visualbell t_vb=
 
 " UI Layout ----------------------------------
+" Show line numbers
 set number
+" Show the cursor position all the time
 set ruler
+" Customize the ruler format to show line and column
 set rulerformat=%l\:%c
+" Display incomplete commands
 set showcmd
+" Highlight the current line
 set cursorline
+" Enable command-line completion mode
 set wildmenu
+" Redraw only when necessary
 set lazyredraw
+" Highlight matching parentheses
 set showmatch
 
 " Searching ----------------------------------
+" Show search matches as you type
 set incsearch
+" Highlight search results
 set hlsearch
+" Override ignorecase if search pattern contains uppercase letters
+set smartcase
+" Ignore case in search patterns
+set ignorecase
 
 " Folding ------------------------------------
+" Enable code folding
 set foldenable
+" Start with folds open up to level 10
 set foldlevelstart=10
+" Maximum fold depth
 set foldnestmax=10
+" Fold based on indentation
 set foldmethod=indent
+" Toggle fold with space key
 nnoremap <space> za
 
 " Line Shortcuts -----------------------------
+" Move down by display line
 nnoremap j gj
+" Move up by display line
 nnoremap k gk
 
 " Force write and quit shortcuts -------------
+" Force write and quit
 command! WQ wq!
+" Force quit
 command! Q q!
 
 " Backups ------------------------------------
+" Enable backups
 set backup
+" Set backup directories
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" Skip backups for these directories
 set backupskip=/tmp/*,/private/tmp/*
+" Set swap file directories
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" Enable write backup
 set writebackup
 
 " Cursor -------------------------------------
-let &t_SI.="\e[5 q" " SI = INSERT mode
-let &t_SR.="\e[6 q" " SR = REPLACE mode
-let &t_EI.="\e[1 q" " EI = NORMAL mode (ELSE)
+" SI = INSERT mode, change cursor shape
+let &t_SI.="\e[5 q"
+" SR = REPLACE mode, change cursor shape
+let &t_SR.="\e[6 q"
+" EI = NORMAL mode (ELSE), change cursor shape
+let &t_EI.="\e[1 q"
+" Set cursor shape on Vim enter
 autocmd VimEnter * silent !echo -ne "\e[1 q"
+" Set cursor shape on Vim leave
 autocmd VimLeave * silent !echo -ne "\e[3 q"
 
+" Enable timeout for key codes
 set ttimeout
+" Time in milliseconds to wait for a key code sequence to complete
 set ttimeoutlen=1
+" Assume a fast terminal connection
 set ttyfast
 
 " Auto-saving --------------------------------
-autocmd BufLeave * silent! write
+autocmd BufLeave * silent! write " Auto-save when leaving buffer
+
+" Status Line --------------------------------
+" Clear status line when vimrc is reloaded.
+set statusline=
+
+" Status line left side.
+set statusline+=\ %F\ %M\ %Y\ %R
+
+" Use a divider to separate the left side from the right side.
+set statusline+=%=
+
+" Status line right side.
+set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+
+" Show the status on the second to last line.
+set laststatus=2
