@@ -4,12 +4,14 @@ bind r source-file ~/.tmux.conf
 set -g prefix C-s
 set -g mouse on
 
-set-option -g status-position top
-set-option -g status-right-length 140
-set-option -g status-right-style default
-set-option -g status-right "#H %H:%M %Y-%m-%d"
+set-window-option -g mode-keys vi
 
 bind-key h select-pane -L
 bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
+
+set-option -g status-position top
+set-option -g status-right-length 140
+set-option -g status-right-style default
+set-option -g status-right "#H %H:%M %Y-%m-%d"
