@@ -14,4 +14,4 @@ bind-key l select-pane -R
 set-option -g status-position top
 set-option -g status-right-length 140
 set-option -g status-right-style default
-set-option -g status-right "#H %H:%M %Y-%m-%d"
+set-option -g status-right "#H %Y-%m-%d %-I:%M %p"
