@@ -4,16 +4,13 @@
 #
 
 # files
-find . -type f -name '*.py[co]' -delete
-find . -type f -name '.coverage' -delete
-find . -type f -name 'coverage.xml' -delete
-find . -type f -name '.coverage.*' -delete
+file_patterns=('*.py[co]' '.coverage' 'coverage.xml' '.coverage.*')
+for pattern in "${file_patterns[@]}"; do
+    find . -type f -name "$pattern" -delete
+done
 
 # directories
-find . -type d -name .venv -prune -o -name __pycache__ -exec rm -r "{}" +;
-find . -type d -name .venv -prune -o -name .mypy_cache -exec rm -r "{}" +;
-find . -type d -name .venv -prune -o -name .ruff_cache -exec rm -r "{}" +;
-find . -type d -name .venv -prune -o -name .pytest_cache -exec rm -r "{}" +;
-find . -type d -name .venv -prune -o -name htmlcov -exec rm -r "{}" +;
-find . -type d -name .venv -prune -o -name '*.egg-info' -exec rm -r "{}" +;
-find . -type d -name .venv -prune -o -name lightning_logs -exec rm -r "{}" +;
+dir_patterns=('__pycache__' '.mypy_cache' '.ruff_cache' '.pytest_cache' 'htmlcov' '*.egg-info' 'lightning_logs')
+for pattern in "${dir_patterns[@]}"; do
+    find . -type d -name .venv -prune -o -name "$pattern" -exec rm -r "{}" +;
+done
