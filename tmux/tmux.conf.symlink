@@ -15,7 +15,7 @@ bind-key l select-pane -R
 set-option -g status-position top
 set-option -g status-right-length 140
 set-option -g status-right-style default
-set-option -g status-right '#H #(TZ="UTC" date +%%a\ %%b\ %%-d,\ %%Y\ %%-I:%%M\ %%Z)'
+set-option -g status-right '#H #(TZ="UTC" date +%%a\ %%b\ %%-d\ %%-H:%%M\ %%Z)'
 
 set -g @plugin 'tmux-plugins/tpm'
 # TODO: actually super surprised by how crap terminal.app handles this. will try once ghostty is out
