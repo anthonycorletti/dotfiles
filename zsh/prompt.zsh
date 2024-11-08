@@ -66,9 +66,9 @@ battery_status() {
     fi
 }
 
-host_name() {
-    hostname=$(hostname)
-    echo "%{$fg_bold[white]$hostname%}%{$reset_color%}"
+user_name() {
+    username=$(whoami)
+    echo "%{$fg_bold[white]$username%}%{$reset_color%}"
 }
 
 python_venv() {
@@ -79,7 +79,7 @@ python_venv() {
     fi
 }
 
-export PROMPT=$'$(battery_status)$(host_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
+export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
 
 set_prompt () {
     export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
