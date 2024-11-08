@@ -1,5 +1,5 @@
 " Leader Key ---------------------------------
-let mapleader=";"
+let mapleader=" "
 
 " Colors -------------------------------------
 " Enable syntax highlighting
@@ -97,7 +97,8 @@ set ttimeoutlen=1
 set ttyfast
 
 " Auto-saving --------------------------------
-autocmd BufLeave * silent! write " Auto-save when leaving buffer
+" Auto-save when leaving buffer
+autocmd BufLeave * silent! write
 
 " Status Line --------------------------------
 " Show the status on the second to last line.
