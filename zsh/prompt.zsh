@@ -67,8 +67,8 @@ battery_status() {
 }
 
 host_name() {
-    HOST=$(hostname)
-    echo "%{$fg_bold[white]$HOST%}%{$reset_color%}"
+    hostname=$(hostname)
+    echo "%{$fg_bold[white]$hostname%}%{$reset_color%}"
 }
 
 python_venv() {
