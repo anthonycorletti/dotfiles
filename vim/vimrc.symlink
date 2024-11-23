@@ -22,8 +22,6 @@ set ruler
 set rulerformat=%l\:%c
 " Display incomplete commands
 set showcmd
-" Highlight the current line
-set cursorline
 " Enable command-line completion mode
 set wildmenu
 " Redraw only when necessary
