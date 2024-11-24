@@ -29,7 +29,8 @@ do
 done
 
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
+autoload -Uz compinit
+zstyle ':completion:*' menu select
 compinit -i
 
 # load every completion after autocomplete loads
@@ -39,33 +40,3 @@ do
 done
 
 unset config_files
-
-# Better history
-# Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-fpath+=~/.zfunc
-
-# set ruby configure options for openssl
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
-
-# sqlite
-export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
-
-# postgres client
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-
-# mysql client
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-
-# rust path
-export PATH="$HOME/.cargo/bin:$PATH"
