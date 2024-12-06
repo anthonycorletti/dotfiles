@@ -81,7 +81,7 @@ python_venv() {
 
 export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
 
-set_prompt () {
+set_prompt() {
     export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
 
