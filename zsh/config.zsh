@@ -24,5 +24,9 @@ setopt HIST_REDUCE_BLANKS # remove leading/trailing blanks from history lines
 #   like: git comm-[tab]
 setopt complete_aliases
 
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
+bindkey '^[^[[D' backward-word
+bindkey '^[^[[C' forward-word
+bindkey '^[[5D' beginning-of-line
+bindkey '^[[5C' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^?' backward-delete-char
