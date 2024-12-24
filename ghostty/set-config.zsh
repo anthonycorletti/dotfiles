@@ -1,1 +1,1 @@
-cp $HOME/.dotfiles/ghostty/config ~/.config/ghostty/config
+cp -R $HOME/.dotfiles/ghostty/.config/* ~/.config/

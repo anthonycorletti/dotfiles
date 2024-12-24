@@ -4,7 +4,6 @@ bind r source-file ~/.tmux.conf
 set -g prefix C-s
 set -g mouse on
 set -g terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
-set -g status-style bg="#483d8b"
 
 set-window-option -g mode-keys vi
 
@@ -19,6 +18,7 @@ set-option -g status-right-style default
 set-option -g status-right '#H #(TZ="UTC" date +%%a\ %%b\ %%-d\ %%-H:%%M\ %%Z)'
 
 set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'catppuccin/tmux'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 
 run '/opt/homebrew/opt/tpm/share/tpm/tpm'
