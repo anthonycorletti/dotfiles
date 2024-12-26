@@ -12,6 +12,7 @@ bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
 
+set-option -g focus-events on
 set-option -g status-position top
 set-option -g status-right-length 140
 set-option -g status-right-style default
