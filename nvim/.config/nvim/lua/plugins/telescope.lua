@@ -1,14 +1,16 @@
 return {
-    {
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+  },
+  {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     dependencies = { "nvim-lua/plenary.nvim" },
-
     config = function()
-      local telescope = require("telescope")
       local telescopeConfig = require("telescope.config")
-
-      local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+      ---@diagnostic disable-next-line: deprecated
+      table.unpack = table.unpack or unpack -- 5.1 compatibility
+      local vimgrep_arguments = { table.unpack(telescopeConfig.values.vimgrep_arguments) }
 
       table.insert(vimgrep_arguments, "--hidden")
       table.insert(vimgrep_arguments, "--glob")
@@ -19,9 +21,9 @@ return {
           vimgrep_arguments = vimgrep_arguments,
         },
         pickers = {
-            find_files = {
-                find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-            }
+          find_files = {
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+          }
         }
       })
 
@@ -29,6 +31,8 @@ return {
 
       vim.keymap.set("n", "<C-p>", builtin.find_files, {})
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+
+      require("telescope").load_extension("ui-select")
     end,
   },
 }

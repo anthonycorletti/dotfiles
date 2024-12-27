@@ -9,15 +9,20 @@ return {
 	config = function()
     local neotree = require("neo-tree")
     neotree.setup {
+      close_if_last_window = true,
       filesystem = {
         filtered_items = {
           visible = true,
           hide_dotfiles = false,
           hide_gitignored = false,
           hide_hidden = false,
+        },
+        follow_current_file = {
+          enabled = true,
+          leave_dirs_open = true,
         }
-      }
+      },
     }
 		vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal toggle left<CR>", {})
-	end,
+	end
 }

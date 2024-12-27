@@ -1,0 +1,4 @@
+#!/bin/sh -e
+#
+# Clear the share directory for lazy-nvim
+rm -rf ~/.local/share/nvim/lazy
