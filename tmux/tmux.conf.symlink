@@ -22,4 +22,21 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'catppuccin/tmux'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 
+# catppuccin config
+set -g @catppuccin_window_status_style "rounded"
+set -g @catppuccin_window_number_position "right"
+
+set -g @catppuccin_window_default_fill "number"
+set -g @catppuccin_window_default_text "#{window_name}"
+
+set -g @catppuccin_window_current_fill "number"
+set -g @catppuccin_window_current_text "#{window_name}"
+
+set -g @catppuccin_window_text "#{window_name}"
+
+set -g @catppuccin_status_left_separator  " "
+set -g @catppuccin_status_right_separator ""
+set -g @catppuccin_status_fill "icon"
+set -g @catppuccin_status_connect_separator "no"
+
 run '/opt/homebrew/opt/tpm/share/tpm/tpm'

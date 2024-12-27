@@ -14,7 +14,7 @@ alias internalip="ipconfig getifaddr en0"
 alias externalip="curl ipecho.net/plain; echo"
 
 # slightly faster clear
-alias cl="clear"
+alias c="clear"
 
 # automatic aliases for grc
 [[ -s "/opt/homebrew/etc/grc.zsh" ]] && source /opt/homebrew/etc/grc.zsh
