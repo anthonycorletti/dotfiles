@@ -3,7 +3,7 @@ bind r source-file ~/.tmux.conf
 
 set -g prefix C-s
 set -g mouse on
-set -g terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
+set -g status-left ""
 
 set-window-option -g mode-keys vi
 
@@ -14,29 +14,29 @@ bind-key l select-pane -R
 
 set-option -g focus-events on
 set-option -g status-position top
-set-option -g status-right-length 140
-set-option -g status-right-style default
-set-option -g status-right '#H #(TZ="UTC" date +%%a\ %%b\ %%-d\ %%-H:%%M\ %%Z)'
+set-option -g status-left-length 100
+set-option -g status-right-length 100
 
 set -g @plugin 'tmux-plugins/tpm'
+# set -g @plugin 'tmux-plugins/tmux-cpu'
+# set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'catppuccin/tmux'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 
 # catppuccin config
+set -g @catppuccin_flavor "mocha"
 set -g @catppuccin_window_status_style "rounded"
 set -g @catppuccin_window_number_position "right"
-
+set -g @catppuccin_window_text "#{window_name}"
 set -g @catppuccin_window_default_fill "number"
 set -g @catppuccin_window_default_text "#{window_name}"
-
 set -g @catppuccin_window_current_fill "number"
 set -g @catppuccin_window_current_text "#{window_name}"
 
-set -g @catppuccin_window_text "#{window_name}"
-
-set -g @catppuccin_status_left_separator  " "
-set -g @catppuccin_status_right_separator ""
-set -g @catppuccin_status_fill "icon"
-set -g @catppuccin_status_connect_separator "no"
+set -g status-right "#{E:@catppuccin_status_application}"
+# set -agF status-right "#{E:@catppuccin_status_cpu}"
+set -ag status-right "#{E:@catppuccin_status_session}"
+# set -ag status-right "#{E:@catppuccin_status_uptime}"
+# set -agF status-right "#{E:@catppuccin_status_battery}"
 
 run '/opt/homebrew/opt/tpm/share/tpm/tpm'
