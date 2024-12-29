@@ -1,5 +1,6 @@
 return {
-  -- language servers are installed via brew, no mason/mason-lspconfig needed
+  -- language servers are installed via brew or relevant packagemanager
+  -- and placed in PATH, no mason/mason-lspconfig needed
   {
     "neovim/nvim-lspconfig",
     lazy = false,
