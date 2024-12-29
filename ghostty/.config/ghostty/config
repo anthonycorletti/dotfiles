@@ -3,7 +3,3 @@ macos-option-as-alt = left
 keybind = alt+left=esc:b
 keybind = alt+right=esc:f
 shell-integration-features = no-cursor
-
-# override palette 4 to be darker to be readable for now
-# https://github.com/catppuccin/ghostty/issues/6
-palette = 4=#627fb8
