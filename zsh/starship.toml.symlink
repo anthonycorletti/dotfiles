@@ -19,6 +19,7 @@ $java\
 $kotlin\
 $haskell\
 $python\
+$ruby\
 [](fg:teal bg:blue)\
 $docker_context\
 [](fg:blue bg:purple)\
@@ -123,6 +124,9 @@ format = '[[ $symbol $branch ](fg:base bg:green)]($style)'
 [git_status]
 style = "bg:teal"
 format = '[[($all_status$ahead_behind )](fg:base bg:green)]($style)'
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
 
 [nodejs]
 symbol = ""
@@ -166,6 +170,11 @@ format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
 [python]
 symbol = ""
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+
+[ruby]
+symbol = ""
 style = "bg:teal"
 format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
