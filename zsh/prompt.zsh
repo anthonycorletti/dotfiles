@@ -80,12 +80,7 @@ python_venv() {
 }
 
 # look into setting up starship for this https://starship.rs
-if [[ $TERM_PROGRAM == "tmux" ]]
-then
-    export PROMPT=$'$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
-else
-    export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
-fi
+export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
 
 set_prompt() {
     export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
