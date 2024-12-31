@@ -79,7 +79,7 @@ python_venv() {
     fi
 }
 
-# look into setting up starship for this https://starship.rs
+# don't export - see prompt-starship.zsh
 # export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
 
 set_prompt() {
