@@ -80,7 +80,7 @@ python_venv() {
 }
 
 # look into setting up starship for this https://starship.rs
-export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
+# export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
 
 set_prompt() {
     export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
@@ -90,3 +90,5 @@ precmd() {
     title "zsh" "%m" "%55<...<%~"
     set_prompt
 }
+
+eval "$(starship init zsh)"
