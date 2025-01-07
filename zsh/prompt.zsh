@@ -90,5 +90,3 @@ precmd() {
     title "zsh" "%m" "%55<...<%~"
     set_prompt
 }
-
-eval "$(starship init zsh)"
