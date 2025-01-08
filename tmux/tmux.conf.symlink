@@ -33,6 +33,5 @@ set -g @catppuccin_window_current_text "#{window_name}"
 
 set -g status-right "#{E:@catppuccin_status_application}"
 set -ag status-right "#{E:@catppuccin_status_session}"
-set -ag status-right "#{E:@catppuccin_status_uptime}"
 
 run '/opt/homebrew/opt/tpm/share/tpm/tpm'
