@@ -11,4 +11,8 @@ vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 -- Clear search highlights
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
+-- Spell check
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us'
+
 vim.cmd("syntax enable")

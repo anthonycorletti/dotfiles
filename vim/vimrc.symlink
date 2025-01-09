@@ -29,6 +29,12 @@ set lazyredraw
 " Highlight matching parentheses
 set showmatch
 
+" Spell Checking ------------------------------
+" Enable spell checking
+set spell
+" Set spell language to English
+set spelllang=en_us
+
 " Searching ----------------------------------
 " Show search matches as you type
 set incsearch
