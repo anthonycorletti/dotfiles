@@ -13,6 +13,7 @@ $git_status\
 $c\
 $rust\
 $golang\
+$bun\
 $nodejs\
 $php\
 $java\
@@ -150,10 +151,10 @@ behind = '⇣${count}'
 symbol = ""
 style = "bg:teal"
 format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-detect_files = ['package.json', 'node_modules', '.node-version', '!bun.lockb', '!bun.lock']
+detect_files = ['!bun.lockb', '!bun.lock', 'package.json', '.node-version']
 
 [bun]
-symbol = "bun "
+symbol = "bun"
 style = "bg:teal"
 format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
