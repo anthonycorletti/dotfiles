@@ -8,6 +8,13 @@ return {
   },
   config = function()
     local neotree = require("neo-tree")
+    local devicons = require("nvim-web-devicons")
+    -- set the vercel.json file icon to the same as json because it's a chinese character on ghostty
+    devicons.setup({
+      override = {
+        ["vercel.json"] = devicons.get_icons_by_extension()["json"],
+      },
+    })
     neotree.setup({
       close_if_last_window = true,
       filesystem = {
