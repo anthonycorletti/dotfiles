@@ -10,38 +10,20 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:green bg:teal)\
-$c\
 $rust\
 $golang\
 $bun\
 $nodejs\
-$php\
-$java\
-$kotlin\
-$haskell\
 $python\
 $ruby\
+$zig\
 [](fg:teal bg:blue)\
-$docker_context\
-[](fg:blue bg:purple)\
 $time\
-[ ](fg:purple)\
+[ ](fg:blue)\
 $line_break$character"""
 
 palette = 'catppuccin_mocha'
 add_newline = false
-
-[palettes.gruvbox_dark]
-color_fg0 = '#fbf1c7'
-color_bg1 = '#3c3836'
-color_bg3 = '#665c54'
-color_blue = '#458588'
-color_aqua = '#689d6a'
-color_green = '#98971a'
-color_orange = '#d65d0e'
-color_purple = '#b16286'
-color_red = '#cc241d'
-color_yellow = '#d79921'
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
@@ -120,8 +102,8 @@ truncation_symbol = "…/"
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:peach"
-format = '[[  $time ](fg:mantle bg:purple)]($style)'
+style = "bg:blue"
+format = '[[  $time ](fg:mantle bg:blue)]($style)'
 
 [line_break]
 disabled = false
@@ -158,11 +140,6 @@ symbol = "bun"
 style = "bg:teal"
 format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
-[c]
-symbol = " "
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
 [rust]
 symbol = ""
 style = "bg:teal"
@@ -170,26 +147,6 @@ format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
 [golang]
 symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[php]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[java]
-symbol = " "
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[kotlin]
-symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
-
-[haskell]
-symbol = ""
 style = "bg:teal"
 format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
@@ -204,7 +161,7 @@ symbol = ""
 style = "bg:teal"
 format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
-[docker_context]
-symbol = ""
-style = "bg:mantle"
-format = '[[ $symbol( $context) ](fg:base bg:mantle)]($style)'
+[zig]
+symbol = " "
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
