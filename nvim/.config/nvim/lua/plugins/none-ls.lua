@@ -5,7 +5,9 @@ return {
     null_ls.setup({
       sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettier.with({
+          filetypes = { "html", "json", "yaml", "markdown", "javascript", "typescript" },
+        }),
       },
     })
 
