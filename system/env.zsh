@@ -1,2 +1,2 @@
-export EDITOR='code'
+export EDITOR='nvim'
 export GREP_OPTIONS='--color=auto'

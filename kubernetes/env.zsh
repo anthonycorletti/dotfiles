@@ -1,1 +1,1 @@
-export KUBE_EDITOR="vim"
+export KUBE_EDITOR="nvim"
