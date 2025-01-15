@@ -4,13 +4,15 @@ bind r source-file ~/.tmux.conf
 set -g prefix C-s
 set -g mouse on
 set -g status-left ""
-
 set-window-option -g mode-keys vi
 
 bind-key h select-pane -L
 bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
+
+bind-key -T root C-[ previous-window
+bind-key -T root C-] next-window
 
 set-option -g focus-events on
 set-option -g status-position top

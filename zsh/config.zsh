@@ -26,3 +26,4 @@ setopt complete_aliases
 
 bindkey '\eb' backward-word
 bindkey '\ef' forward-word
+bindkey '^R' history-incremental-search-backward
