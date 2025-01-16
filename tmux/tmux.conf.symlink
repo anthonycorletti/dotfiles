@@ -1,5 +1,5 @@
 unbind r
-bind r source-file ~/.tmux.conf; display-message "Config reloaded."
+bind r source-file ~/.tmux.conf
 
 set -g prefix C-s
 set -g mouse on
