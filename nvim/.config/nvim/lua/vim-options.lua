@@ -33,3 +33,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format() -- Or `vim.api.nvim_command("normal gg=G")` for re-indentation
   end,
 })
+
+-- Copilot settings
+vim.g.copilot_filetypes = {
+  markdown = false,
+}

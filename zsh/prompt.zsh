@@ -79,8 +79,12 @@ python_venv() {
     fi
 }
 
-# don't export - see prompt-starship.zsh
-# export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
+if [[ $TERM_PROGRAM == "Apple_Terminal" ]]
+then
+  export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
+else
+  eval "$(starship init zsh)"
+fi
 
 set_prompt() {
     export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
