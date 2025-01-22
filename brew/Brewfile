@@ -89,7 +89,6 @@ brew "vercel-cli"
 brew "vscode-langservers-extracted"
 brew "watch"
 brew "wget"
-brew "yaml-language-server"
 brew "zig"
 brew "zls"
 brew "oven-sh/bun/bun"
@@ -100,7 +99,6 @@ cask "discord", args: { appdir: "/Applications" }
 cask "docker", args: { appdir: "/Applications" }
 cask "figma"
 cask "firefox", args: { appdir: "/Applications" }
-cask "ghostty"
 cask "google-chrome", args: { appdir: "/Applications" }
 cask "google-cloud-sdk"
 cask "macfuse", args: { appdir: "/Applications" }
