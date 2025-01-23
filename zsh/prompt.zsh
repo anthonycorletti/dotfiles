@@ -83,10 +83,7 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]]
 then
   export PROMPT=$'$(battery_status)$(user_name) in $(python_venv)$(directory_name) $(git_dirty)$(need_push)\n%{$fg_bold[white]%}› %{$reset_color%}'
 else
-  if [[ -z $STARSHIP_SHELL ]]
-  then
-    eval "$(starship init zsh)"
-  fi
+  eval "$(starship init zsh)"
 fi
 
 set_prompt() {
