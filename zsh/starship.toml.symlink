@@ -136,9 +136,8 @@ format = '[[ $symbol( $version) ](fg:base bg:sky)]($style)'
 detect_files = ['!bun.lockb', '!bun.lock', 'package.json', '.node-version']
 
 [bun]
-symbol = "bun"
 style = "bg:sky"
-format = '[[ $symbol( $version) ](fg:base bg:sky)]($style)'
+format = '[[ $symbol($version) ](fg:base bg:sky)]($style)'
 
 [rust]
 symbol = ""
@@ -157,7 +156,7 @@ format = '[[ $symbol( $version) (\($virtualenv\)) ](fg:base bg:sky)]($style)'
 python_binary = ["./.venv/bin/python", "python3"]
 
 [ruby]
-symbol = ""
+symbol = ""
 style = "bg:sky"
 format = '[[ $symbol( $version) ](fg:base bg:sky)]($style)'
 
