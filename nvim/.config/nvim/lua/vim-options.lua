@@ -1,4 +1,4 @@
-vim.g.mapleader = " "
+vim.g.mapleader = ";"
 
 vim.opt.number = true
 vim.opt.swapfile = false
