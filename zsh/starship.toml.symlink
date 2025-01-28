@@ -57,6 +57,9 @@ crust = "#11111b"
 disabled = false
 style = "bg:surface0 fg:text"
 
+[line_break]
+disabled = false
+
 [os.symbols]
 Windows = "󰍲"
 Ubuntu = "󰕈"
@@ -104,9 +107,6 @@ disabled = false
 time_format = "%R"
 style = "bg:blue"
 format = '[[  $time ](fg:mantle bg:blue)]($style)'
-
-[line_break]
-disabled = false
 
 [character]
 disabled = false
