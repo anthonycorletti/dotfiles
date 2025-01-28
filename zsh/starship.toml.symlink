@@ -25,6 +25,9 @@ $line_break$character"""
 palette = 'catppuccin_mocha'
 add_newline = false
 
+[line_break]
+disabled = false
+
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
@@ -57,8 +60,11 @@ crust = "#11111b"
 disabled = false
 style = "bg:surface0 fg:text"
 
-[line_break]
-disabled = false
+[username]
+show_always = true
+style_user = "bg:surface0 fg:text"
+style_root = "bg:surface0 fg:text"
+format = '[ $user ]($style)'
 
 [os.symbols]
 Windows = "󰍲"
@@ -83,11 +89,6 @@ Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 Pop = ""
 
-[username]
-show_always = true
-style_user = "bg:surface0 fg:text"
-style_root = "bg:surface0 fg:text"
-format = '[ $user ]($style)'
 
 [directory]
 style = "fg:text bg:surface1"
@@ -106,7 +107,7 @@ truncation_symbol = "…/"
 disabled = false
 time_format = "%R"
 style = "bg:blue"
-format = '[[  $time ](fg:mantle bg:blue)]($style)'
+format = '[[  $time ](fg:base bg:blue)]($style)'
 
 [character]
 disabled = false
