@@ -3,7 +3,6 @@ vim.g.mapleader = ";"
 vim.opt.number = true
 vim.opt.swapfile = false
 vim.opt.clipboard = "unnamedplus"
-vim.opt.mouse = "a"
 
 -- Set clipboard registers (optional shortcut for '+y')
 vim.keymap.set("n", "<C-c>", '"+y') -- Cmd+C to copy in normal mode
@@ -30,7 +29,15 @@ vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
-    vim.lsp.buf.format() -- Or `vim.api.nvim_command("normal gg=G")` for re-indentation
+    vim.lsp.buf.format()
+  end,
+})
+
+-- Automatically save when leaving a buffer
+vim.api.nvim_create_autocmd("BufLeave", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_command("silent! w")
   end,
 })
 
