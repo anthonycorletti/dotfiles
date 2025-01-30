@@ -1,2 +1,2 @@
 mkdir -p $HOME/.config/ghostty
-ln -sf $ZSH/ghostty/config $HOME/.config/ghostty/config
+cp $ZSH/ghostty/config $HOME/.config/ghostty/config
