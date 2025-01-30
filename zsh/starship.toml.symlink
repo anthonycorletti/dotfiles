@@ -4,9 +4,9 @@ format = """
 [](surface0)\
 $os\
 $username\
-[](bg:surface1 fg:surface0)\
+[](bg:peach fg:surface0)\
 $directory\
-[](fg:surface1 bg:green)\
+[](fg:peach bg:green)\
 $git_branch\
 $git_status\
 [](fg:green bg:sky)\
@@ -91,7 +91,7 @@ Pop = ""
 
 
 [directory]
-style = "fg:text bg:surface1"
+style = "fg:mantle bg:peach"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -107,7 +107,7 @@ truncation_symbol = "…/"
 disabled = false
 time_format = "%R"
 style = "bg:blue"
-format = '[[  $time ](fg:base bg:blue)]($style)'
+format = '[[  $time ](fg:mantle bg:blue)]($style)'
 
 [character]
 disabled = false
@@ -121,11 +121,11 @@ vimcmd_visual_symbol = '[](bold fg:lavender)'
 [git_branch]
 symbol = ""
 style = "bg:green"
-format = '[[ $symbol $branch ](fg:base bg:green)]($style)'
+format = '[[ $symbol $branch ](fg:mantle bg:green)]($style)'
 
 [git_status]
 style = "bg:green"
-format = '[[($all_status$ahead_behind )](fg:base bg:green)]($style)'
+format = '[[($all_status$ahead_behind )](fg:mantle bg:green)]($style)'
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
@@ -133,35 +133,35 @@ behind = '⇣${count}'
 [nodejs]
 symbol = ""
 style = "bg:sky"
-format = '[[ $symbol( $version) ](fg:base bg:sky)]($style)'
+format = '[[ $symbol( $version) ](fg:mantle bg:sky)]($style)'
 detect_files = ['!bun.lockb', '!bun.lock', 'package.json', '.node-version']
 
 [bun]
 style = "bg:sky"
-format = '[[ $symbol($version) ](fg:base bg:sky)]($style)'
+format = '[[ $symbol($version) ](fg:mantle bg:sky)]($style)'
 
 [rust]
 symbol = ""
 style = "bg:sky"
-format = '[[ $symbol( $version) ](fg:base bg:sky)]($style)'
+format = '[[ $symbol( $version) ](fg:mantle bg:sky)]($style)'
 
 [golang]
 symbol = ""
 style = "bg:sky"
-format = '[[ $symbol( $version) ](fg:base bg:sky)]($style)'
+format = '[[ $symbol( $version) ](fg:mantle bg:sky)]($style)'
 
 [python]
 symbol = ""
 style = "bg:sky"
-format = '[[ $symbol( $version) (\($virtualenv\)) ](fg:base bg:sky)]($style)'
+format = '[[ $symbol( $version) (\($virtualenv\)) ](fg:mantle bg:sky)]($style)'
 python_binary = ["./.venv/bin/python", "python3"]
 
 [ruby]
 symbol = ""
 style = "bg:sky"
-format = '[[ $symbol( $version) ](fg:base bg:sky)]($style)'
+format = '[[ $symbol( $version) ](fg:mantle bg:sky)]($style)'
 
 [zig]
 symbol = ""
 style = "bg:sky"
-format = '[[ $symbol( $version) ](fg:base bg:sky)]($style)'
+format = '[[ $symbol( $version) ](fg:mantle bg:sky)]($style)'
