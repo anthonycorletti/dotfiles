@@ -4,9 +4,9 @@ format = """
 [](surface0)\
 $os\
 $username\
-[](bg:peach fg:surface0)\
+[](bg:yellow fg:surface0)\
 $directory\
-[](fg:peach bg:green)\
+[](fg:yellow bg:green)\
 $git_branch\
 $git_status\
 [](fg:green bg:sky)\
@@ -17,9 +17,9 @@ $nodejs\
 $python\
 $ruby\
 $zig\
-[](fg:sky bg:blue)\
+[](fg:sky bg:sapphire)\
 $time\
-[ ](fg:blue)\
+[ ](fg:sapphire)\
 $line_break$character"""
 
 palette = 'catppuccin_mocha'
@@ -91,7 +91,7 @@ Pop = ""
 
 
 [directory]
-style = "fg:mantle bg:peach"
+style = "fg:mantle bg:yellow"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -106,8 +106,8 @@ truncation_symbol = "…/"
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:blue"
-format = '[[  $time ](fg:mantle bg:blue)]($style)'
+style = "bg:sapphire"
+format = '[[  $time ](fg:mantle bg:sapphire)]($style)'
 
 [character]
 disabled = false
