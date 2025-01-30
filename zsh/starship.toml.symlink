@@ -137,6 +137,7 @@ format = '[[ $symbol( $version) ](fg:mantle bg:sky)]($style)'
 detect_files = ['!bun.lockb', '!bun.lock', 'package.json', '.node-version']
 
 [bun]
+symbol = "󰚅 "
 style = "bg:sky"
 format = '[[ $symbol($version) ](fg:mantle bg:sky)]($style)'
 
