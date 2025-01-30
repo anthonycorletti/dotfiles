@@ -11,7 +11,6 @@ filetype indent plugin on           " Enable filetype detection, indentation, an
 
 set autoread                        " Auto-reload files when changed outside of Vim
 set backspace=2                     " Makes backspace behave like you'd expect
-set colorcolumn=80                  " Highlight 80 character limit
 set hidden                          " Allow buffers to be backgrounded without being saved
 set laststatus=2                    " Always show the status bar
 set list                            " Show invisible characters
@@ -59,9 +58,6 @@ let &t_SI.="\e[5 q"
 let &t_SR.="\e[6 q"
 " EI = NORMAL mode (ELSE), change cursor shape
 let &t_EI.="\e[1 q"
-
-" Set the colorcolumn color
-highlight ColorColumn ctermbg=17 guibg=#001f3f
 
 "----------------------------------------------------------------------
 " Key Mappings
