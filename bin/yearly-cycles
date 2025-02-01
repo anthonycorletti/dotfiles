@@ -1,0 +1,9 @@
+#!/bin/sh -e
+#
+# I use this to give me a frame of reference for setting goals and
+# tracking progress on projects for the current year.
+#
+# Use this advanced python technology to build a work management
+# tool and raise gazillions of vc monay.
+
+uv run python $ZSH/python/yearly-cycles.py
