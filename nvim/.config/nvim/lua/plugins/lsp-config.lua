@@ -13,11 +13,6 @@ return {
         capabilities = capabilities,
       })
 
-      -- typescript
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-      })
-
       -- python
       lspconfig.ruff.setup({
         capabilities = capabilities,
@@ -30,11 +25,6 @@ return {
 
       -- tailwindcss
       lspconfig.tailwindcss.setup({
-        capabilities = capabilities,
-      })
-
-      -- bash
-      lspconfig.bashls.setup({
         capabilities = capabilities,
       })
 
