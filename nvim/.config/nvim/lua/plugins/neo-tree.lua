@@ -29,6 +29,11 @@ return {
           leave_dirs_open = true,
         },
       },
+      window = {
+        mappings = {
+          ["<BS>"] = "delete", -- Map Backspace to delete file instead of moving up
+        },
+      },
     })
     vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal toggle left<CR>", {})
   end,
