@@ -1,0 +1,10 @@
+#!/bin/sh -e
+#
+# Some basic setup for a new Ubuntu VM
+
+apt upgrade -y
+apt update -y
+apt install git curl -y
+
+sed -i '1s|^|export TERM=xterm-256color\n|' ~/.bashrc
+
