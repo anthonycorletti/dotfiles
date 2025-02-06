@@ -2,6 +2,12 @@
 #
 # Some basic setup for a new Ubuntu VM
 
+# if not ubuntu, exit
+if [ "$(lsb_release -si)" != "Ubuntu" ]; then
+  echo "This script is for Ubuntu only"
+  exit 1
+fi
+
 apt upgrade -y
 apt update -y
 apt install git curl -y
