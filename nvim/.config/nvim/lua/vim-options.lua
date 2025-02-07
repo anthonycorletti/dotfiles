@@ -1,47 +1,28 @@
-vim.g.mapleader = ";"
+local opt = vim.opt
 
-vim.opt.number = true
-vim.opt.swapfile = false
-vim.opt.clipboard = "unnamedplus"
+-- line numbers
+opt.relativenumber = true -- show relative line numbers
+opt.number = true         -- shows absolute line number on cursor line (when relative number is on)
 
--- Set clipboard registers (optional shortcut for '+y')
-vim.keymap.set("n", "<C-c>", '"+y') -- Cmd+C to copy in normal mode
-vim.keymap.set("v", "<C-c>", '"+y') -- Cmd+C to copy in visual mode
+-- searching
+opt.ignorecase = true -- ignore case when searching
+opt.smartcase = true  -- ignore case if search pattern is all lowercase
 
--- Move the current line or selected lines up
-vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
+-- cursor
+opt.cursorline = true -- highlight the current line
 
--- Move the current line or selected lines down
-vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { noremap = true, silent = true })
-vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+-- colors
+opt.termguicolors = true -- enable 24-bit RGB colors
 
--- Navigate vim panes better
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
+-- backspace
+opt.backspace = "indent,eol,start" -- allow backspacing over everything in insert mode
 
--- Clear search highlights
-vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
+-- clipboard
+opt.clipboard:append("unnamedplus")
 
--- Automatically format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
+-- split windows
+opt.splitbelow = true -- split windows below current window
+opt.splitright = true -- split windows to the right of the current window
 
--- Automatically save when leaving a buffer
-vim.api.nvim_create_autocmd("BufLeave", {
-  pattern = "*",
-  callback = function()
-    vim.api.nvim_command("silent! w")
-  end,
-})
-
--- Copilot settings
-vim.g.copilot_filetypes = {
-  markdown = false,
-}
+-- no swapfiles
+opt.swapfile = false

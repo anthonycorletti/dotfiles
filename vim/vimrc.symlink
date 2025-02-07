@@ -15,6 +15,7 @@ set hidden                          " Allow buffers to be backgrounded without b
 set laststatus=2                    " Always show the status bar
 set list                            " Show invisible characters
 set listchars=tab:›\ ,eol:¬,trail:⋅ " Set the characters for the invisibles
+set relativenumber                  " Show relative line numbers
 set number                          " Show line numbers
 set rulerformat=%l\:%c              " Customize the ruler format to show line and column
 set ruler                           " Show the line number and column in the status bar
@@ -47,8 +48,8 @@ set writebackup                     " Write a backup file before overwriting
 " Searching
 set incsearch                       " Show search matches as you type
 set hlsearch                        " Highlight search matches
-set smartcase                       " Ignore case if the search is all lowercase
 set ignorecase                      " Ignore case when searching
+set smartcase                       " Ignore case if the search is all lowercase
 nnoremap <leader>h :nohlsearch<CR>  " Clear the search highlight with leader+h
 
 " Cursor
