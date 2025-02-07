@@ -18,7 +18,7 @@ opt.termguicolors = true -- enable 24-bit RGB colors
 opt.backspace = "indent,eol,start" -- allow backspacing over everything in insert mode
 
 -- clipboard
-opt.clipboard:append("unnamedplus")
+opt.clipboard = "unnamedplus"
 
 -- split windows
 opt.splitbelow = true -- split windows below current window
