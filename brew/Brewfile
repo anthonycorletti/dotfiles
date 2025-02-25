@@ -1,3 +1,4 @@
+tap "datum-cloud/tap"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/services"
@@ -89,6 +90,7 @@ brew "watch"
 brew "wget"
 brew "zig"
 brew "zls"
+brew "datum-cloud/tap/datumctl"
 brew "oven-sh/bun/bun"
 cask "basictex"
 cask "discord", args: { appdir: "/Applications" }
