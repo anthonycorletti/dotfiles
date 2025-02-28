@@ -13,9 +13,13 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+require("clear-registers")
+require("find-replace")
+
 require("vim-options")
 require("vim-keymaps")
 require("vim-api")
+
 require("lazy").setup("plugins", {
   change_detection = {
     notify = false,
