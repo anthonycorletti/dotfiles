@@ -1,6 +1,5 @@
 tap "datum-cloud/tap"
 tap "homebrew/bundle"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "oven-sh/bun"
 brew "ack"
@@ -14,8 +13,8 @@ brew "aspell"
 brew "autoconf"
 brew "automake"
 brew "openssl@3"
-brew "python@3.12"
 brew "aws-shell"
+brew "python@3.12"
 brew "awscli"
 brew "azure-cli"
 brew "bdw-gc"
@@ -99,6 +98,7 @@ cask "discord", args: { appdir: "/Applications" }
 cask "docker", args: { appdir: "/Applications" }
 cask "figma"
 cask "firefox", args: { appdir: "/Applications" }
+cask "ghostty"
 cask "google-chrome", args: { appdir: "/Applications" }
 cask "google-cloud-sdk"
 cask "macfuse", args: { appdir: "/Applications" }
