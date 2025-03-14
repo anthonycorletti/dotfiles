@@ -105,4 +105,3 @@ cask "macfuse", args: { appdir: "/Applications" }
 cask "slack", args: { appdir: "/Applications" }
 cask "spotify", args: { appdir: "/Applications" }
 cask "visual-studio-code"
-cask "zoom", args: { appdir: "/Applications" }
