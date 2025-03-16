@@ -137,12 +137,29 @@ install_dotfiles () {
   done
 }
 
+install_xcode_tools() {
+    if ! xcode-select -p &> /dev/null; then
+        echo "Installing Xcode Command Line Tools..."
+        xcode-select --install
+    fi
+}
+
 setup_gitconfig
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
 then
+  # System software update check
+  if confirm "Would you like to check for system software updates?"; then
+      echo "📦 Checking for system software updates..."
+      softwareupdate -i -a
+      echo "⚠️  Please install any available updates before proceeding"
+      read -p "Press Enter once updates are installed..."
+  fi
+
+  install_xcode_tools
+
   info "installing dependencies"
   if source bin/dot | while read -r data; do info "$data"; done
   info "installing brew bundle"
