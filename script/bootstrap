@@ -161,7 +161,7 @@ then
   install_xcode_tools
 
   info "installing dependencies"
-  if source bin/dot | while read -r data; do info "$data"; done
+  if source bin/dotfiles | while read -r data; do info "$data"; done
   info "installing brew bundle"
   # Install bundle
   brew bundle --file $ZSH/brew/Brewfile
