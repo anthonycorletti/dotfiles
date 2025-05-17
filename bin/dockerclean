@@ -6,7 +6,14 @@
 #
 #   add --force to remove all containers, images, and volumes
 #   add --prune to prune the system and network
-#
+#   add --help to print how to use this script
+
+if [ "$1" = "--help" ] || [ "$2" = "--help" ]; then
+    echo "Usage: $0 [--force] [--prune]"
+    echo "  --force  Remove all containers, images, and volumes"
+    echo "  --prune  Prune the system and network"
+    exit 0
+fi
 
 if [ "$1" = "--force" ] || [ "$2" = "--force" ]; then
     # set FORCE to true
