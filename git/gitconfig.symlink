@@ -35,8 +35,5 @@
         helper = osxkeychain
 [init]
         defaultBranch = main
-[branch "main"]
-        remote = origin
-        merge = refs/heads/main
 [tag]
 	gpgSign = true
