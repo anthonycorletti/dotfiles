@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#
+# http-open or hopen
+# opens a website with https
+
+if [[ -z "$1" ]]; then
+  # no URL passed — just invoke system open
+  exec open
+fi
+
+url="$1"
+if [[ ! "$url" =~ ^https?:// ]]; then
+  url="https://$url"
+fi
+
+# On macOS
+if command -v open &>/dev/null; then
+  exec open "$url"
+# On most Linux desktops
+elif command -v xdg-open &>/dev/null; then
+  exec xdg-open "$url"
+else
+  echo "Error: no 'open' or 'xdg-open' command found." >&2
+  exit 1
+fi
+
