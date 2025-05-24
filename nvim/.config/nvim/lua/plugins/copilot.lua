@@ -1,7 +1,7 @@
 return {
   "github/copilot.vim",
   config = function()
-    vim.b.copilot_enabled = false
+    vim.b.copilot_enabled = true
     vim.g.copilot_filetypes = {
       markdown = false,
     }
