@@ -1,10 +1,10 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](surface0)\
+[](surface)\
 $os\
 $username\
-[](bg:yellow fg:surface0)\
+[](bg:yellow fg:surface)\
 $directory\
 [](fg:yellow bg:green)\
 $git_branch\
@@ -22,48 +22,32 @@ $time\
 [ ](fg:sapphire)\
 $line_break$character"""
 
-palette = 'catppuccin_mocha'
+palette = 'custom'
 add_newline = false
 
-[line_break]
-disabled = false
-
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-orange = "#cba6f7"
+[palettes.custom]
 red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
 yellow = "#f9e2af"
 green = "#a6e3a1"
-teal = "#94e2d5"
 sky = "#89dceb"
 sapphire = "#74c7ec"
 blue = "#89b4fa"
 lavender = "#b4befe"
 text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
+surface = "#313244"
 mantle = "#181825"
-crust = "#11111b"
+
+[line_break]
+disabled = false
 
 [os]
 disabled = false
-style = "bg:surface0 fg:text"
+style = "bg:surface fg:text"
 
 [username]
 show_always = true
-style_user = "bg:surface0 fg:text"
-style_root = "bg:surface0 fg:text"
+style_user = "bg:surface fg:text"
+style_root = "bg:surface fg:text"
 format = '[ $user ]($style)'
 
 [os.symbols]
