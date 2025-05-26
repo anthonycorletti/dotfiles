@@ -15,7 +15,10 @@ local function read_ghostty_config()
 end
 
 local function parse_ghostty_theme_file(theme_name)
-  local theme_path = "/Applications/Ghostty.app/Contents/Resources/ghostty/themes/" .. theme_name
+  local handle = io.popen("ghostty +list-themes --plain --path | head -n 1 | awk '{print $3}'")
+  local themes_dir = handle:read("*a"):gsub("\n", "")
+  handle:close()
+  local theme_path = themes_dir:gsub("/[^/]*$", "") .. "/" .. theme_name
   local palette = {}
   local mapping = {
     [0]  = "black",
