@@ -1,4 +1,6 @@
 #!/bin/bash -e
+#
+# Use this script to dump a bunch of files into stdout, pipe to pbcopy, pass to an LLM, and raise a bajillion vc dollars.
 
 # Check if directory name is provided
 if [ $# -eq 0 ]; then
