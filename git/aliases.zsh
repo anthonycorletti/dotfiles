@@ -8,7 +8,7 @@ alias gcb='git copy-branch-name'
 alias gcl='git clone'
 alias gco='git checkout'
 alias gcom='git checkout $(gbm)'
-alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -R'
+alias gd='git diff "$@"'
 alias ge='git-edit-new'
 alias gf='git fetch'
 alias gl="git log --pretty=oneline -n 23 --graph"
