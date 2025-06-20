@@ -16,17 +16,43 @@ if [ ! -d "$directory" ]; then
     exit 1
 fi
 
-# Function to process files recursively
+# Function to process files recursively, ignoring common files/folders for TS, Python, Ruby
 process_files() {
     local dir="$1"
 
-    # Use find to get all files recursively, sorted
-    find "$dir" -type f | sort | while read -r file; do
-        echo "=== $file ==="
-        cat "$file"
-        echo
-    done
+    find "$dir" -type f \
+        ! -path "*/node_modules/*" \
+        ! -path "*/dist/*" \
+        ! -path "*/build/*" \
+        ! -path "*/.next/*" \
+        ! -path "*/.turbo/*" \
+        ! -path "*/.pytest_cache/*" \
+        ! -path "*/__pycache__/*" \
+        ! -path "*/.venv/*" \
+        ! -path "*/venv/*" \
+        ! -path "*/env/*" \
+        ! -path "*/.bundle/*" \
+        ! -path "*/.yardoc/*" \
+        ! -path "*/log/*" \
+        ! -path "*/tmp/*" \
+        ! -name "*.pyc" \
+        ! -name "*.pyo" \
+        ! -name "*.rbc" \
+        ! -name "*.o" \
+        ! -name "*.obj" \
+        ! -name "*.so" \
+        ! -name "*.dll" \
+        ! -name "*.tsbuildinfo" \
+        ! -name "*.log" \
+        ! -name "*.sqlite3" \
+        ! -name "Gemfile.lock" \
+        | sort | while read -r file; do
+            echo "=== $file ==="
+            cat "$file"
+            echo
+        done
 }
 
 # Process all files in the directory
 process_files "$directory"
+
