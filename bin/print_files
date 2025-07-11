@@ -2,25 +2,19 @@
 #
 # Use this script to dump a bunch of files into stdout, pipe to pbcopy, pass to an LLM, and raise a bajillion vc dollars.
 
-# Check if directory name is provided
 if [ $# -eq 0 ]; then
-    echo "Usage: $0 <directory>"
-    exit 1
+  echo "Usage: $0 <directory or file> [directory or file ...]"
+  exit 1
 fi
 
-directory="$1"
-
-# Check if directory exists
-if [ ! -d "$directory" ]; then
-    echo "Error: Directory '$directory' does not exist"
-    exit 1
-fi
-
-# Function to process files recursively, ignoring common files/folders for TS, Python, Ruby
 process_files() {
-    local dir="$1"
-
-    find "$dir" -type f \
+  for item in "$@"; do
+    if [ -f "$item" ]; then
+      echo "=== $item ==="
+      cat "$item"
+      echo
+    elif [ -d "$item" ]; then
+      find "$item" -type f \
         ! -path "*/node_modules/*" \
         ! -path "*/dist/*" \
         ! -path "*/build/*" \
@@ -48,12 +42,14 @@ process_files() {
         ! -name "Gemfile.lock" \
         ! -name "go.sum" \
         | sort | while read -r file; do
-            echo "=== $file ==="
-            cat "$file"
-            echo
+          echo "=== $file ==="
+          cat "$file"
+          echo
         done
+    else
+      echo "Error: '$item' is not a valid file or directory" >&2
+    fi
+  done
 }
 
-# Process all files in the directory
-process_files "$directory"
-
+process_files "$@"
