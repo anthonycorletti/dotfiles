@@ -26,3 +26,10 @@ opt.splitright = true -- split windows to the right of the current window
 
 -- no swapfiles
 opt.swapfile = false
+
+-- characters
+opt.list = true
+opt.fillchars = { eob = " " }
+
+-- Preview substitutions live, as you type!
+opt.inccommand = "split"
