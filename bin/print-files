@@ -41,6 +41,8 @@ process_files() {
         ! -name "*.sqlite3" \
         ! -name "Gemfile.lock" \
         ! -name "go.sum" \
+        ! -name "*.lua.un*" \
+        ! -name "*.swp" \
         | sort | while read -r file; do
           echo "=== $file ==="
           cat "$file"

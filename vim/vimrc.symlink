@@ -1,38 +1,62 @@
 scriptencoding utf-8
 set encoding=utf-8
 
-"----------------------------------------------------------------------
-" Basic settings
-"----------------------------------------------------------------------
-let mapleader=";"                   " Set the leader key to ;
+" Set the leader key to ;
+let mapleader=";"
 
-syntax on                           " Enable syntax highlighting
-filetype indent plugin on           " Enable filetype detection, indentation, and plugins
+" Enable syntax highlighting
+syntax on
+" Enable filetype detection, indentation, and plugins
+filetype indent plugin on
 
-set autoread                        " Auto-reload files when changed outside of Vim
-set backspace=2                     " Makes backspace behave like you'd expect
-set hidden                          " Allow buffers to be backgrounded without being saved
-set laststatus=2                    " Always show the status bar
-set list                            " Show invisible characters
-set listchars=tab:›\ ,eol:¬,trail:⋅ " Set the characters for the invisibles
-set relativenumber                  " Show relative line numbers
-set number                          " Show line numbers
-set rulerformat=%l\:%c              " Customize the ruler format to show line and column
-set ruler                           " Show the line number and column in the status bar
-set t_Co=256                        " Use 256 colors
-set scrolloff=999                   " Keep the cursor centered in the screen
-set showmatch                       " Highlight matching braces
-set showmode                        " Show the current mode on the open buffer
-set showcmd                         " Show incomplete commands
-set splitbelow                      " Splits show up below by default
-set splitright                      " Splits go to the right by default
-set visualbell                      " Use a visual bell to notify us
-set wildmenu                        " Show command completion in the status line
-set lazyredraw                      " Redraw only when necessary
-set ttimeout                        " Enable timeout for key codes
-set ttimeoutlen=1                   " Time in milliseconds to wait for a key code sequence to complete
-set ttyfast                         " Assume a fast terminal connection
-set termguicolors                   " Enable 24-bit RGB color in the terminal
+" Auto-reload files when changed outside of Vim
+set autoread
+" Makes backspace behave like you'd expect
+set backspace=2
+" Allow buffers to be backgrounded without being saved
+set hidden
+" Always show the status bar
+set laststatus=2
+" Show invisible characters
+set list
+" Set the characters for the invisibles
+set listchars=tab:›\ ,eol:¬,trail:⋅
+" Show relative line numbers
+set relativenumber
+" Show line numbers
+set number
+" Customize the ruler format to show line and column
+set rulerformat=%l\:%c
+" Show the line number and column in the status bar
+set ruler
+" Use 256 colors
+set t_Co=256
+" Keep the cursor centered in the screen
+set scrolloff=999
+" Highlight matching braces
+set showmatch
+" Show the current mode on the open buffer
+set showmode
+" Show incomplete commands
+set showcmd
+" Splits show up below by default
+set splitbelow
+" Splits go to the right by default
+set splitright
+" Use a visual bell to notify us
+set visualbell
+" Show command completion in the status line
+set wildmenu
+" Redraw only when necessary
+set lazyredraw
+" Enable timeout for key codes
+set ttimeout
+" Time in milliseconds to wait for a key code sequence to complete
+set ttimeoutlen=1
+" Assume a fast terminal connection
+set ttyfast
+" Enable 24-bit RGB color in the terminal
+set termguicolors
 
 " Backup settings
 " Set backup directories
@@ -41,16 +65,24 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 " Set swap file directories
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backup                          " Enable backup files
-set undofile                        " Enable undo files
-set writebackup                     " Write a backup file before overwriting
+" Enable backup files
+set backup
+" Enable undo files
+set undofile
+" Write a backup file before overwriting
+set writebackup
 
 " Searching
-set incsearch                       " Show search matches as you type
-set hlsearch                        " Highlight search matches
-set ignorecase                      " Ignore case when searching
-set smartcase                       " Ignore case if the search is all lowercase
-nnoremap <leader>h :nohlsearch<CR>  " Clear the search highlight with leader+h
+" Show search matches as you type
+set incsearch
+" Highlight search matches
+set hlsearch
+" Ignore case when searching
+set ignorecase
+" Ignore case if the search is all lowercase
+set smartcase
+" Clear the search highlight with leader+h
+nnoremap <leader>h :nohlsearch<CR>
 
 " Cursor
 " SI = INSERT mode, change cursor shape
@@ -60,32 +92,22 @@ let &t_SR.="\e[6 q"
 " EI = NORMAL mode (ELSE), change cursor shape
 let &t_EI.="\e[1 q"
 
-"----------------------------------------------------------------------
 " Key Mappings
-"----------------------------------------------------------------------
 " Shortcuts to yanking to the system clipboard
 map <leader>y "+y
 map <leader>p "+p
-
-" Make j/k visual down and up instead of whole lines. This makes word
-" wrapping a lot more pleasent.
+" Make j/k visual down and up instead of whole lines
 map j gj
 map k gk
 
-"----------------------------------------------------------------------
 " Autocommands
-"----------------------------------------------------------------------
 " Don't fold anything.
 autocmd BufWinEnter * set foldlevel=999999
-
 " Set cursor shape on Vim enter
 autocmd VimEnter * silent !echo -ne "\e[1 q"
-
 " Set cursor shape on Vim leave
 autocmd VimLeave * silent !echo -ne "\e[3 q"
-
 " Auto-save when leaving buffer
 autocmd BufLeave * silent! write
-
 " Clear whitespace at the end of lines automatically
 autocmd BufWritePre * :%s/\s\+$//e

@@ -42,6 +42,20 @@ keymap.set(
   { noremap = true, silent = true, desc = "Find and replace current search pattern" }
 )
 
+-- Save and quit mappings
+keymap.set("n", "<leader>w", ":w<CR>", { silent = true, desc = "Save file" })
+keymap.set("n", "<leader>q", ":q<CR>", { silent = true, desc = "Quit" })
+keymap.set("n", "<leader>x", ":x<CR>", { silent = true, desc = "Save and quit" })
+
+-- Window navigation
+keymap.set("n", "<C-w>v", ":vsplit<CR>", { desc = "Split vertically" })
+keymap.set("n", "<C-w>s", ":split<CR>", { desc = "Split horizontally" })
+
+-- Buffers
+keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })
+keymap.set("n", "<S-Tab>", ":bprevious<CR>", { silent = true })
+keymap.set("n", "<leader>bd", ":bdelete<CR>", { silent = true })
+
 -- If on Mac, also include the Command key mappings for convenience
 if vim.fn.has("mac") == 1 then
   -- Undo/Redo

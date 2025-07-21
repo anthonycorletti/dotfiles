@@ -1,14 +1,6 @@
 local api = vim.api
 local clear_registers = require("clear-registers")
 
--- Automatically format on save
-api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
-
 -- Automatically save when leaving a buffer
 api.nvim_create_autocmd("BufLeave", {
   pattern = "*",

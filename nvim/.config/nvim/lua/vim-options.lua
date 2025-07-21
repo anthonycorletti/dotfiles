@@ -29,7 +29,6 @@ opt.swapfile = false
 
 -- characters
 opt.list = true
-opt.fillchars = { eob = " " }
 
 -- Preview substitutions live, as you type!
 opt.inccommand = "split"
