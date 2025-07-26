@@ -44,6 +44,8 @@ process_files() {
         ! -name "*.lua.un*" \
         ! -name "*.swp" \
         ! -name "*.gen.ts" \
+        ! -name "*/htmlcov" \
+        ! -name "*/coverage" \
         | sort | while read -r file; do
           echo "=== $file ==="
           cat "$file"
