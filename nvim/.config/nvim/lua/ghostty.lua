@@ -174,6 +174,10 @@ function theme.set()
 
   hi("NormalFloat", c.fg, c.bg)
   hi("FloatBorder", c.br_black, c.bg)
+
+  -- bufferline - Match terminal background
+  hi("BufferLineFill", nil, c.bg)
+  hi("BufferLineOffsetSeparator", c.bg, c.bg)
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
