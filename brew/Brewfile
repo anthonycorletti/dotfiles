@@ -12,9 +12,9 @@ brew "aspell"
 brew "autoconf"
 brew "automake"
 brew "openssl@3"
-brew "python@3.12"
 brew "aws-shell"
 brew "awscli"
+brew "python@3.12"
 brew "azure-cli"
 brew "bdw-gc"
 brew "btop"
@@ -59,7 +59,6 @@ brew "libuv"
 brew "libzip"
 brew "llvm"
 brew "lua"
-brew "lua-language-server"
 brew "luarocks"
 brew "make"
 brew "mysql-client"
@@ -95,12 +94,12 @@ brew "datum-cloud/tap/datumctl"
 brew "oven-sh/bun/bun"
 cask "basictex"
 cask "discord", args: { appdir: "/Applications" }
-cask "docker", args: { appdir: "/Applications" }
+cask "docker-desktop", args: { appdir: "/Applications" }
 cask "figma"
 cask "firefox", args: { appdir: "/Applications" }
 cask "font-monaspace"
+cask "gcloud-cli"
 cask "google-chrome", args: { appdir: "/Applications" }
-cask "google-cloud-sdk"
 cask "macfuse", args: { appdir: "/Applications" }
 cask "slack", args: { appdir: "/Applications" }
 cask "spotify", args: { appdir: "/Applications" }

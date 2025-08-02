@@ -78,6 +78,9 @@ function theme.set()
   vim.o.background = "dark"
   vim.o.termguicolors = true
 
+  vim.o.fillchars = "eob: "
+
+
   -- Basic UI
   hi("Normal",       c.fg, c.bg)
   hi("Cursor",       c.cursor, c.cursor_txt)
@@ -92,6 +95,9 @@ function theme.set()
   hi("IncSearch",    c.bg, c.red)
   hi("StatusLine",   c.black, c.white)
   hi("StatusLineNC", c.br_black, c.bg)
+
+  -- This is the new highlight group for fillchars
+  hi("Whitespace", c.bg, c.bg)
 
   -- Syntax highlighting
   hi("Comment",      c.br_black, nil, "italic")
@@ -122,6 +128,13 @@ function theme.set()
   hi("DiffChange",   c.yellow, "#3b3b2e")
   hi("DiffDelete",   c.red, "#3b2e2e")
   hi("DiffText",     c.br_blue, "#2e3b3b")
+
+  hi("CursorWord", nil, "#444444")           -- dim gray background, no fg override
+  hi("LspReferenceText", nil, "#444444")     -- LSP reference highlight
+  hi("LspReferenceRead", nil, "#444444")
+  hi("LspReferenceWrite", nil, "#444444")
+  hi("MatchParen", nil, "#444444")            -- match parens highlight
+  hi("WinSeparator", c.br_black, c.bg)
 
   -- Diagnostic (LSP)
   hi("DiagnosticError", c.red)
