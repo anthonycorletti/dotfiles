@@ -786,7 +786,7 @@ require("lazy").setup({
         },
       })
       neotree.setup({
-        close_if_last_window = true,
+        close_if_last_window = false,
         use_libuv_file_watcher = true,
         filesystem = {
           filtered_items = {
