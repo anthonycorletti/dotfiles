@@ -84,7 +84,6 @@ vim.keymap.set("n", "<leader>sv", "<cmd>vsplit | Telescope buffers<CR>", { desc 
 vim.keymap.set("n", "<leader><left>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer left" })
 vim.keymap.set("n", "<leader><right>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer right" })
 
-
 -- [[ Basic Autocommands ]]
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
@@ -801,6 +800,8 @@ require("lazy").setup({
           },
         },
         window = {
+          width = 30,
+          auto_expand_width = false,
           mappings = {
             ["<BS>"] = "delete", -- Map Backspace to delete file instead of moving up
           },
@@ -826,9 +827,9 @@ require("lazy").setup({
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       vim.opt.termguicolors = true
-      require("bufferline").setup {
-        options = {}
-      }
+      require("bufferline").setup({
+        options = {},
+      })
     end,
   },
 
