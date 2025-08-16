@@ -127,6 +127,109 @@ require("lazy").setup({
     end,
   },
 
+ {
+  "goolord/alpha-nvim",
+  dependencies = {
+    "echasnovski/mini.icons",
+    "nvim-lua/plenary.nvim",
+  },
+  config = function()
+    local alpha = require("alpha")
+    local dashboard = require("alpha.themes.dashboard")
+
+    -- Get your leader key
+    local leader = vim.g.mapleader or " "
+
+    -- Custom header (the neovim ASCII art)
+    local header = {
+      type = "text",
+      val = {
+        [[                                  __]],
+        [[     ___     ___    ___   __  __ /\_\    ___ ___]],
+        [[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
+        [[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
+        [[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+        [[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+      },
+      opts = {
+        position = "center",
+        hl = "Type",
+      },
+    }
+
+    -- Recent files section (simplified)
+    local recent_files = {
+      type = "group",
+      val = {
+        {
+          type = "text",
+          val = "Recent files",
+          opts = {
+            hl = "SpecialComment",
+            shrink_margin = false,
+            position = "center",
+          },
+        },
+        { type = "padding", val = 1 },
+        -- The recent files will be populated automatically
+      },
+    }
+
+    -- Buttons with your leader key
+    local buttons = {
+      type = "group",
+      val = {
+        {
+          type = "text",
+          val = "Quick links",
+          opts = {
+            hl = "SpecialComment",
+            position = "center"
+          }
+        },
+        { type = "padding", val = 1 },
+        dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+        dashboard.button(leader .. " sf", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
+        dashboard.button(leader .. " sg", "󰊄  Live grep", "<cmd>Telescope live_grep<CR>"),
+        dashboard.button("c", "  Configuration", ":cd ~/.config/nvim | edit ~/.config/nvim/init.lua<CR>"),
+        dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
+        dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
+      },
+      position = "center",
+    }
+
+    -- Layout
+    local config = {
+      layout = {
+        { type = "padding", val = 2 },
+        header,
+        { type = "padding", val = 2 },
+        recent_files,
+        { type = "padding", val = 2 },
+        buttons,
+      },
+      opts = {
+        margin = 5,
+      },
+    }
+
+    alpha.setup(config)
+  end,
+},
+
+  {
+    "numToStr/Comment.nvim",
+    opts = {},
+  },
+
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  },
+
   {
     "folke/which-key.nvim",
     event = "VimEnter",
@@ -406,29 +509,29 @@ require("lazy").setup({
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config({
         severity_sort = true,
-        float = { border = "rounded", source = "if_many" },
-        underline = { severity = vim.diagnostic.severity.ERROR },
+        float = {
+          border = "rounded",
+          source = "if_many",
+          header = "",
+          prefix = "",
+        },
+        underline = {
+          severity = {
+            vim.diagnostic.severity.error,
+            vim.diagnostic.severity.warn,
+            vim.diagnostic.severity.info,
+            vim.diagnostic.severity.hint,
+          },
+        },
         signs = vim.g.have_nerd_font and {
           text = {
-            [vim.diagnostic.severity.ERROR] = "󰅚 ",
-            [vim.diagnostic.severity.WARN] = "󰀪 ",
-            [vim.diagnostic.severity.INFO] = "󰋽 ",
-            [vim.diagnostic.severity.HINT] = "󰌶 ",
+            [vim.diagnostic.severity.error] = "󰅚 ",
+            [vim.diagnostic.severity.warn] = "󰀪 ",
+            [vim.diagnostic.severity.info] = "󰋽 ",
+            [vim.diagnostic.severity.hint] = "󰌶 ",
           },
         } or {},
-        virtual_text = {
-          source = "if_many",
-          spacing = 2,
-          format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
-          end,
-        },
+        virtual_text = false,
       })
 
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -447,9 +550,15 @@ require("lazy").setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
         gopls = {},
-        -- pyright = {},
+        ruff = {
+          -- Ruff LSP server handles both linting and formatting
+          settings = {
+            args = {
+              "--config=pyproject.toml", -- Use pyproject.toml if available
+            },
+          },
+        },
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -474,6 +583,15 @@ require("lazy").setup({
             },
           },
         },
+
+        ruby_lsp = {
+          -- Ruby LSP is a faster alternative to solargraph
+          settings = {
+            rubyLsp = {
+              formatter = "standard",
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -491,7 +609,11 @@ require("lazy").setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        "stylua", -- Used to format Lua code
+        "stylua", -- Lua formatter
+        "ruff", -- Python formatter/linter
+        "standardrb", -- Ruby formatter
+        "prettier", -- TypeScript/JavaScript/JSON/HTML/CSS formatter
+        "prettierd", -- Faster prettier daemon
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -545,10 +667,25 @@ require("lazy").setup({
       formatters_by_ft = {
         lua = { "stylua" },
         -- Conform can also run multiple formatters sequentially
-        python = { "ruff" },
+        python = { "ruff_format", "ruff_organize_imports" },
+
+        ruby = { "standardrb" },
+
+        go = { "gofmt" },
 
         -- You can use 'stop_after_first' to run the first available formatter from the list
+        typescript = { "prettierd", "prettier", stop_after_first = true },
         javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+
+        -- Miscellaneous web
+        json = { "prettierd", "prettier", stop_after_first = true },
+        html = { "prettierd", "prettier", stop_after_first = true },
+        css = { "prettierd", "prettier", stop_after_first = true },
+        scss = { "prettierd", "prettier", stop_after_first = true },
+        yaml = { "prettierd", "prettier", stop_after_first = true },
+        markdown = { "prettierd", "prettier", stop_after_first = true },
       },
     },
   },
@@ -746,6 +883,11 @@ require("lazy").setup({
           "json",
           "yaml",
           "python",
+          "ruby",
+          "css",
+          "scss",
+          "sql",
+          "dockerfile",
         },
         -- Autoinstall languages that are not installed
         auto_install = true,
