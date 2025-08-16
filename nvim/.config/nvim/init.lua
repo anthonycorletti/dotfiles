@@ -127,95 +127,95 @@ require("lazy").setup({
     end,
   },
 
- {
-  "goolord/alpha-nvim",
-  dependencies = {
-    "echasnovski/mini.icons",
-    "nvim-lua/plenary.nvim",
-  },
-  config = function()
-    local alpha = require("alpha")
-    local dashboard = require("alpha.themes.dashboard")
+  {
+    "goolord/alpha-nvim",
+    dependencies = {
+      "echasnovski/mini.icons",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      local alpha = require("alpha")
+      local dashboard = require("alpha.themes.dashboard")
 
-    -- Get your leader key
-    local leader = vim.g.mapleader or " "
+      -- Get your leader key
+      local leader = vim.g.mapleader or " "
 
-    -- Custom header (the neovim ASCII art)
-    local header = {
-      type = "text",
-      val = {
-        [[                                  __]],
-        [[     ___     ___    ___   __  __ /\_\    ___ ___]],
-        [[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
-        [[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
-        [[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-        [[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-      },
-      opts = {
-        position = "center",
-        hl = "Type",
-      },
-    }
+      -- Custom header (the neovim ASCII art)
+      local header = {
+        type = "text",
+        val = {
+          [[                                  __]],
+          [[     ___     ___    ___   __  __ /\_\    ___ ___]],
+          [[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
+          [[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
+          [[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+          [[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+        },
+        opts = {
+          position = "center",
+          hl = "Type",
+        },
+      }
 
-    -- Recent files section (simplified)
-    local recent_files = {
-      type = "group",
-      val = {
-        {
-          type = "text",
-          val = "Recent files",
-          opts = {
-            hl = "SpecialComment",
-            shrink_margin = false,
-            position = "center",
+      -- Recent files section (simplified)
+      local recent_files = {
+        type = "group",
+        val = {
+          {
+            type = "text",
+            val = "Recent files",
+            opts = {
+              hl = "SpecialComment",
+              shrink_margin = false,
+              position = "center",
+            },
           },
+          { type = "padding", val = 1 },
+          -- The recent files will be populated automatically
         },
-        { type = "padding", val = 1 },
-        -- The recent files will be populated automatically
-      },
-    }
+      }
 
-    -- Buttons with your leader key
-    local buttons = {
-      type = "group",
-      val = {
-        {
-          type = "text",
-          val = "Quick links",
-          opts = {
-            hl = "SpecialComment",
-            position = "center"
-          }
+      -- Buttons with your leader key
+      local buttons = {
+        type = "group",
+        val = {
+          {
+            type = "text",
+            val = "Quick links",
+            opts = {
+              hl = "SpecialComment",
+              position = "center",
+            },
+          },
+          { type = "padding", val = 1 },
+          dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+          dashboard.button(leader .. " sf", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
+          dashboard.button(leader .. " sg", "󰊄  Live grep", "<cmd>Telescope live_grep<CR>"),
+          dashboard.button("c", "  Configuration", ":cd ~/.config/nvim | edit ~/.config/nvim/init.lua<CR>"),
+          dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
+          dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
         },
-        { type = "padding", val = 1 },
-        dashboard.button("e", "  New file", "<cmd>ene<CR>"),
-        dashboard.button(leader .. " sf", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
-        dashboard.button(leader .. " sg", "󰊄  Live grep", "<cmd>Telescope live_grep<CR>"),
-        dashboard.button("c", "  Configuration", ":cd ~/.config/nvim | edit ~/.config/nvim/init.lua<CR>"),
-        dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
-        dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
-      },
-      position = "center",
-    }
+        position = "center",
+      }
 
-    -- Layout
-    local config = {
-      layout = {
-        { type = "padding", val = 2 },
-        header,
-        { type = "padding", val = 2 },
-        recent_files,
-        { type = "padding", val = 2 },
-        buttons,
-      },
-      opts = {
-        margin = 5,
-      },
-    }
+      -- Layout
+      local config = {
+        layout = {
+          { type = "padding", val = 2 },
+          header,
+          { type = "padding", val = 2 },
+          recent_files,
+          { type = "padding", val = 2 },
+          buttons,
+        },
+        opts = {
+          margin = 5,
+        },
+      }
 
-    alpha.setup(config)
-  end,
-},
+      alpha.setup(config)
+    end,
+  },
 
   {
     "numToStr/Comment.nvim",
@@ -659,8 +659,8 @@ require("lazy").setup({
           return nil
         else
           return {
-            timeout_ms = 500,
-            lsp_format = "fallback",
+            timeout_ms = 2500,
+            lsp_format = "true",
           }
         end
       end,
