@@ -299,7 +299,16 @@ require("lazy").setup({
     config = function()
       require("telescope").setup({
         defaults = {
-          file_ignore_patterns = {},
+          file_ignore_patterns = {
+            ".git/",
+            "node_modules",
+            "dist/",
+            "build/",
+            "vendor/",
+            ".venv/",
+            "__pycache__/",
+            "*_cache/",
+          },
           hidden = true,
           follow = true,
           vimgrep_arguments = {
