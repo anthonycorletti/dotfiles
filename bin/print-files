@@ -43,7 +43,6 @@ process_files() {
         ! -name "go.sum" \
         ! -name "*.lua.un*" \
         ! -name "*.swp" \
-        ! -name "*.gen.ts" \
         ! -name "*/htmlcov" \
         ! -name "*/coverage" \
         | sort | while read -r file; do
