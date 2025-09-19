@@ -20,7 +20,7 @@ process_files() {
         ! -path "*/build/*" \
         ! -path "*/.next/*" \
         ! -path "*/.turbo/*" \
-        ! -path "*/.pytest_cache/*" \
+        ! -path "*/.*_cache/*" \
         ! -path "*/__pycache__/*" \
         ! -path "*/.venv/*" \
         ! -path "*/venv/*" \
