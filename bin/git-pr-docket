@@ -6,4 +6,17 @@
 #
 # It's all good though. It's honest work and I need some tools to unlock quick workflows.
 
-gh search prs --review-requested @me --state open --draft=false --created ">$(date -v-1m +%Y-%m-%d)" --sort created --order desc --json title,number,repository,url,createdAt
+
+CURRENT_REPO_URL=$(git config --get remote.origin.url)
+CURRENT_REPO_URL=${CURRENT_REPO_URL%.git}
+PRS=$(gh search prs --review-requested @me --state open --draft=false --created ">$(date -v-1m +%Y-%m-%d)" --sort created --order desc --json title,number,repository,url,createdAt)
+PRS=$(echo "$PRS" | jq "[.[] | select(.url | tostring | startswith(\"$CURRENT_REPO_URL\"))]")
+COUNT=$(echo "$PRS" | jq 'length')
+if [ "$COUNT" -eq 0 ]; then
+  echo "No open PRs requesting your review in the last month for this repo."
+  exit 0
+else
+  # show id, title url, and created at in a table format
+  echo "$PRS" | jq -r ".[] | \"| \(.number) | \(.title) | \(.url) | \(.createdAt) |\""
+  exit 0
+fi
