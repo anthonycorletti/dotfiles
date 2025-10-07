@@ -1,0 +1,9 @@
+#!/bin/sh -e
+#
+# git-pr-docket
+#
+# I review a lot of code. Like so much code. So much code my wife asks my why I don't read books and it's because I'm busy reading pull requests.
+#
+# It's all good though. It's honest work and I need some tools to unlock quick workflows.
+
+gh search prs --review-requested @me --state open --draft=false --created ">$(date -v-1m +%Y-%m-%d)" --sort created --order desc --json title,number,repository,url,createdAt
