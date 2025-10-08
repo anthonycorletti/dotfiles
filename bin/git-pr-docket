@@ -6,17 +6,46 @@
 #
 # It's all good though. It's honest work and I need some tools to unlock quick workflows.
 
+CURRENT_REPO_URL="$(git config --get remote.origin.url)"
+CURRENT_REPO_URL="${CURRENT_REPO_URL%.git}"
 
-CURRENT_REPO_URL=$(git config --get remote.origin.url)
-CURRENT_REPO_URL=${CURRENT_REPO_URL%.git}
-PRS=$(gh search prs --review-requested @me --state open --draft=false --created ">$(date -v-1m +%Y-%m-%d)" --sort created --order desc --json title,number,repository,url,createdAt)
-PRS=$(echo "$PRS" | jq "[.[] | select(.url | tostring | startswith(\"$CURRENT_REPO_URL\"))]")
-COUNT=$(echo "$PRS" | jq 'length')
+# Last-month date: prefer macOS `date -v`, fall back to GNU `date -d`
+SINCE="$(date -v-1m +%Y-%m-%d 2>/dev/null || date -d '1 month ago' +%Y-%m-%d)"
+
+PRS="$(gh search prs \
+  --review-requested @me \
+  --state open \
+  --draft=false \
+  --created ">$SINCE" \
+  --sort created \
+  --order desc \
+  --json title,number,repository,url,createdAt)"
+
+# Limit to current repo
+PRS="$(echo "$PRS" | jq --arg repo "$CURRENT_REPO_URL" '[.[] | select(.url | tostring | startswith($repo))]')"
+
+COUNT="$(echo "$PRS" | jq 'length')"
+
 if [ "$COUNT" -eq 0 ]; then
   echo "No open PRs requesting your review in the last month for this repo."
   exit 0
 else
-  # show id, title url, and created at in a table format
-  echo "$PRS" | jq -r ".[] | \"| \(.number) | \(.title) | \(.url) | \(.createdAt) |\""
+  echo "$PRS" | jq -r '
+    def reltime($t):
+      (now - ($t | fromdateiso8601)) as $d
+      | if   $d < 60      then "\($d|floor) seconds ago"
+        elif $d < 3600    then "\(($d/60)|floor) minutes ago"
+        elif $d < 86400   then "\(($d/3600)|floor) hours ago"
+        else                   "\(($d/86400)|floor) days ago"
+        end;
+
+    def md_escape_pipes($s):
+      # Use split/join to escape | for Markdown tables
+      ($s | split("|") | join("\\|"));
+
+    .[]
+    | .createdAt as $c
+    | "[\(.number)] \(md_escape_pipes(.title)) (\(reltime($c))) \(.url)"
+  '
   exit 0
 fi
