@@ -33,10 +33,16 @@ else
   echo "$PRS" | jq -r '
     def reltime($t):
       (now - ($t | fromdateiso8601)) as $d
-      | if   $d < 60      then "\($d|floor) seconds ago"
-        elif $d < 3600    then "\(($d/60)|floor) minutes ago"
-        elif $d < 86400   then "\(($d/3600)|floor) hours ago"
-        else                   "\(($d/86400)|floor) days ago"
+      | if   $d < 60      then (($d|floor)|tostring) + (if ($d|floor) == 1 then " second ago" else " seconds ago" end)
+        elif $d < 3600    then ((($d/60)|floor)|tostring) + (if (($d/60)|floor) == 1 then " minute ago" else " minutes ago" end)
+        elif $d < 86400   then ((($d/3600)|floor)|tostring) + (if (($d/3600)|floor) == 1 then " hour ago" else " hours ago" end)
+        else
+          (($d/86400)|floor) as $days
+          | (($d - ($days * 86400)) / 3600 | floor) as $hours
+          | ($days|tostring)
+            + (if $days == 1 then " day" else " days" end)
+            + (if $hours > 0 then " " + ($hours|tostring) + (if $hours == 1 then " hour" else " hours" end) else "" end)
+            + " ago"
         end;
 
     def md_escape_pipes($s):
