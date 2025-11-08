@@ -19,6 +19,7 @@ $ruby\
 $zig\
 [](fg:cyan bg:blue)\
 $time\
+$cmd_duration\
 [ ](fg:blue)\
 $line_break$character"""
 
@@ -81,6 +82,11 @@ disabled = false
 time_format = "%R"
 style = "bg:blue"
 format = '[[  $time ](fg:text_dark bg:blue)]($style)'
+
+[cmd_duration]
+min_time = 500
+style = "bg:blue"
+format = '[[ ⏱ $duration ](fg:text_dark bg:blue)]($style)'
 
 [character]
 disabled = false
