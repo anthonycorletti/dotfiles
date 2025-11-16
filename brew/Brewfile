@@ -29,8 +29,8 @@ brew "fastfetch"
 brew "fd"
 brew "unbound"
 brew "gnutls"
-brew "icu4c@77"
 brew "harfbuzz"
+brew "icu4c@77"
 brew "libass"
 brew "libmicrohttpd"
 brew "librist"
@@ -54,6 +54,7 @@ brew "jq"
 brew "k9s"
 brew "libfido2"
 brew "libpq"
+brew "librsvg"
 brew "libtool"
 brew "libuv"
 brew "libzip"
@@ -92,6 +93,7 @@ brew "zls"
 brew "datum-cloud/tap/datumctl"
 brew "oven-sh/bun/bun"
 cask "basictex"
+cask "claude-code"
 cask "discord", args: { appdir: "/Applications" }
 cask "docker-desktop", args: { appdir: "/Applications" }
 cask "figma"
@@ -103,4 +105,5 @@ cask "macfuse", args: { appdir: "/Applications" }
 cask "slack", args: { appdir: "/Applications" }
 cask "spotify", args: { appdir: "/Applications" }
 cask "visual-studio-code"
+cask "visual-studio-code@insiders"
 cask "zoom", args: { appdir: "/Applications" }
