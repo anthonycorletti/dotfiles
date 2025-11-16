@@ -971,14 +971,6 @@ require("lazy").setup({
     end,
   },
 
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-    },
-    build = "make tiktoken",
-  },
-
   -- custom plugins
   {
     dir = vim.fn.stdpath("config") .. "/lua",
@@ -989,7 +981,6 @@ require("lazy").setup({
       require("ghostty").set()
     end,
   },
-
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
