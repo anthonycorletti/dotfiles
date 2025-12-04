@@ -1,6 +1,6 @@
 OWNER=${OWNER}
 REPO=${REPO}
-N=1000              # total PRs you care about
+N=${N:-1000}       # total PRs you care about
 PER_PAGE=100       # must be <= 100
 
 if [ -z "$OWNER" ] || [ -z "$REPO" ]; then
