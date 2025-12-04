@@ -1,0 +1,78 @@
+OWNER=${OWNER}
+REPO=${REPO}
+N=1000              # total PRs you care about
+PER_PAGE=100       # must be <= 100
+
+if [ -z "$OWNER" ] || [ -z "$REPO" ]; then
+  echo "Please set OWNER and REPO environment variables."
+  echo "For example:"
+  echo "  OWNER=your-github-username REPO=your-repo-name gh-repo-top-reviewers"
+  exit 1
+fi
+
+TMPFILE=$(mktemp)
+CURSOR=""
+FETCHED=0
+
+echo "about to fetch up to $N PRs from $OWNER/$REPO..."
+while [ "$FETCHED" -lt "$N" ]; do
+  REMAINING=$(( N - FETCHED ))
+  PAGE_SIZE=$(( REMAINING < PER_PAGE ? REMAINING : PER_PAGE ))
+
+  echo "fetching $PAGE_SIZE PRs (fetched so far: $FETCHED)..."
+
+  PAGE_JSON=$(gh api graphql \
+    -f owner="$OWNER" \
+    -f repo="$REPO" \
+    -F per_page="$PAGE_SIZE" \
+    -f cursor="$CURSOR" \
+    -f query='
+query($owner: String!, $repo: String!, $per_page: Int!, $cursor: String) {
+  repository(owner: $owner, name: $repo) {
+    pullRequests(
+      first: $per_page,
+      orderBy: {field: CREATED_AT, direction: DESC},
+      after: $cursor
+    ) {
+      pageInfo { hasNextPage endCursor }
+      nodes {
+        number
+        reviews(first: 100) {
+          nodes {
+            author { login }
+          }
+        }
+      }
+    }
+  }
+}
+')
+
+  echo "processing page JSON..."
+
+  echo "$PAGE_JSON" | jq -r '
+    .data.repository.pullRequests.nodes[]
+    | .number as $pr
+    | .reviews.nodes[].author.login as $user
+    | "\($user) \($pr)"
+  ' >> "$TMPFILE"
+
+  # update counters / cursor
+  PAGE_COUNT=$(echo "$PAGE_JSON" | jq '.data.repository.pullRequests.nodes | length')
+  FETCHED=$(( FETCHED + PAGE_COUNT ))
+  CURSOR=$(echo "$PAGE_JSON" | jq -r '.data.repository.pullRequests.pageInfo.endCursor')
+  HAS_NEXT=$(echo "$PAGE_JSON" | jq -r '.data.repository.pullRequests.pageInfo.hasNextPage')
+
+  [ "$HAS_NEXT" != "true" ] && break
+done
+
+echo "Top reviewers for $OWNER/$REPO (across $FETCHED PRs):"
+
+sort -u "$TMPFILE" \
+  | awk '{print $1}' \
+  | sort \
+  | uniq -c \
+  | sort -nr
+
+rm "$TMPFILE"
+
