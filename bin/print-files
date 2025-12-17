@@ -10,7 +10,7 @@ fi
 process_files() {
   for item in "$@"; do
     if [ -f "$item" ]; then
-      echo "=== $item ==="
+      echo "=== $item ($(date)) ==="
       cat "$item"
       echo
     elif [ -d "$item" ]; then
