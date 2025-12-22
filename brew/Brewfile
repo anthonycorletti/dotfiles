@@ -95,7 +95,7 @@ brew "oven-sh/bun/bun"
 cask "basictex"
 cask "claude-code"
 cask "discord", args: { appdir: "/Applications" }
-cask "docker-desktop", args: { appdir: "/Applications" }
+cask "docker-desktop"
 cask "figma"
 cask "firefox", args: { appdir: "/Applications" }
 cask "font-monaspace"
