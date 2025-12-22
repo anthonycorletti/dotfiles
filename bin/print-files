@@ -46,7 +46,7 @@ process_files() {
         ! -name "*/htmlcov" \
         ! -name "*/coverage" \
         | sort | while read -r file; do
-          echo "=== $file ==="
+          echo "=== $file ($date) ==="
           cat "$file"
           echo
         done
