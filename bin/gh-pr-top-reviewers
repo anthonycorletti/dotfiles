@@ -6,7 +6,7 @@ PER_PAGE=100       # must be <= 100
 if [ -z "$OWNER" ] || [ -z "$REPO" ]; then
   echo "Please set OWNER and REPO environment variables."
   echo "For example:"
-  echo "  OWNER=your-github-username REPO=your-repo-name gh-repo-top-reviewers"
+  echo "  OWNER=your-github-username REPO=your-repo-name gh-pr-top-reviewers"
   exit 1
 fi
 
