@@ -180,11 +180,4 @@ function theme.set()
   hi("BufferLineOffsetSeparator", c.bg, c.bg)
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "ghostty",
-  callback = function()
-    require("ghostty").set()
-  end,
-})
-
 return theme
