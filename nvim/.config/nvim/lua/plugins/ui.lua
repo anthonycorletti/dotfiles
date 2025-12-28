@@ -28,22 +28,6 @@ return {
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim" },
-    keys = { { "<C-n>", ":Neotree filesystem reveal toggle left<CR>", desc = "Toggle Neo-tree" } },
-    opts = {
-      close_if_last_window = false,
-      use_libuv_file_watcher = true,
-      filesystem = {
-        filtered_items = { visible = true, hide_dotfiles = false, hide_gitignored = false, hide_hidden = false },
-        follow_current_file = { enabled = true, leave_dirs_open = true },
-      },
-      window = { width = 30, mappings = { ["<BS>"] = "delete" } },
-    },
-  },
-
-  {
     dir = vim.fn.stdpath("config") .. "/lua",
     name = "ghostty",
     lazy = false,

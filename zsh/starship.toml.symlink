@@ -1,9 +1,9 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](almost_black)\
+[](dark_forest_green)\
 $directory\
-[](fg:almost_black bg:green)\
+[](fg:dark_forest_green bg:green)\
 $git_branch\
 $git_status\
 [](fg:green bg:cyan)\
@@ -25,9 +25,10 @@ add_newline = false
 [palettes.custom]
 light_white = "#fafafa"
 almost_black = "#0a0a0a"
+dark_forest_green = "#111611"
 
 [directory]
-style = "bg:almost_black fg:light_white"
+style = "bg:dark_forest_green fg:light_white"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"

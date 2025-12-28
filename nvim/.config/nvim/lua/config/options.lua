@@ -20,6 +20,7 @@ vim.o.confirm = true
 vim.o.foldenable = false
 vim.o.foldlevelstart = 99
 
+vim.opt.runtimepath:append("~/.local/share/nvim/site")
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 vim.schedule(function()
