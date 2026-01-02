@@ -29,6 +29,9 @@ process_files() {
         ! -path "*/.yardoc/*" \
         ! -path "*/log/*" \
         ! -path "*/tmp/*" \
+        ! -path "*/.ruby-lsp/*" \
+        ! -path "*/pkg/*" \
+        ! -path "*/coverage/*" \
         ! -name "*.pyc" \
         ! -name "*.pyo" \
         ! -name "*.rbc" \
