@@ -58,9 +58,6 @@ local function parse_ghostty_theme_file(theme_name)
   return palette
 end
 
-theme.palette = parse_ghostty_theme_file(read_ghostty_config())
-local c = theme.palette
-
 -- Helper to apply highlight
 local function hi(group, fg, bg, style)
   vim.api.nvim_set_hl(0, group, {
@@ -74,12 +71,27 @@ end
 
 -- Apply highlights
 function theme.set()
+  -- Reload the palette from config
+  local ok, theme_name = pcall(read_ghostty_config)
+  if not ok then
+    vim.notify("Failed to read Ghostty config: " .. tostring(theme_name), vim.log.levels.ERROR)
+    return
+  end
+
+  local ok2, palette = pcall(parse_ghostty_theme_file, theme_name)
+  if not ok2 then
+    vim.notify("Failed to parse Ghostty theme: " .. tostring(palette), vim.log.levels.ERROR)
+    return
+  end
+
+  theme.palette = palette
+  local c = theme.palette
+
   vim.cmd("highlight clear")
   vim.o.background = "dark"
   vim.o.termguicolors = true
 
   vim.o.fillchars = "eob: "
-
 
   -- Basic UI
   hi("Normal",       c.fg, c.bg)
@@ -129,11 +141,11 @@ function theme.set()
   hi("DiffDelete",   c.red, "#3b2e2e")
   hi("DiffText",     c.br_blue, "#2e3b3b")
 
-  hi("CursorWord", nil, "#444444")           -- dim gray background, no fg override
-  hi("LspReferenceText", nil, "#444444")     -- LSP reference highlight
+  hi("CursorWord", nil, "#444444")
+  hi("LspReferenceText", nil, "#444444")
   hi("LspReferenceRead", nil, "#444444")
   hi("LspReferenceWrite", nil, "#444444")
-  hi("MatchParen", nil, "#444444")            -- match parens highlight
+  hi("MatchParen", nil, "#444444")
   hi("WinSeparator", c.br_black, c.bg)
 
   -- Diagnostic (LSP)
@@ -146,22 +158,6 @@ function theme.set()
   hi("GitSignsAdd",    c.green)
   hi("GitSignsChange", c.yellow)
   hi("GitSignsDelete", c.red)
-
-  -- Neo-tree highlights
-  hi("NeoTreeNormal",        c.fg, c.bg)
-  hi("NeoTreeNormalNC",      c.fg, c.bg)
-  hi("NeoTreeWinSeparator",  c.br_black, c.bg)
-  hi("NeoTreeCursorLine",    nil, "#333844")
-  hi("NeoTreeDirectoryName", c.blue)
-  hi("NeoTreeDirectoryIcon", c.cyan)
-  hi("NeoTreeFileName",      c.fg)
-  hi("NeoTreeFileIcon",      c.white)
-  hi("NeoTreeSymbolicLinkTarget", c.magenta)
-  hi("NeoTreeGitModified",   c.yellow)
-  hi("NeoTreeGitUntracked",  c.green)
-  hi("NeoTreeGitAdded",      c.green)
-  hi("NeoTreeGitDeleted",    c.red)
-  hi("NeoTreeGitConflict",   c.red)
 
   -- Telescope
   hi("TelescopeBorder",       c.br_black, c.bg)
@@ -178,6 +174,88 @@ function theme.set()
   -- bufferline - Match terminal background
   hi("BufferLineFill", nil, c.bg)
   hi("BufferLineOffsetSeparator", c.bg, c.bg)
+end
+
+-- Set up file watcher using timer-based polling
+function theme.setup_auto_reload()
+  local config_path = vim.fn.expand("~/.config/ghostty/config")
+  local uv = vim.uv or vim.loop
+
+  -- Store the last known theme and modification time
+  local last_theme = nil
+  local last_mtime = nil
+
+  -- Function to check if theme has changed
+  local function check_for_changes()
+    local stat = uv.fs_stat(config_path)
+    if not stat then
+      return
+    end
+
+    -- Check if file has been modified
+    local current_mtime = stat.mtime.sec
+    if last_mtime and current_mtime == last_mtime then
+      return -- No changes
+    end
+
+    last_mtime = current_mtime
+
+    -- Read the current theme from config
+    local ok, current_theme = pcall(read_ghostty_config)
+    if not ok then
+      return
+    end
+
+    -- If theme has changed, reload
+    if last_theme ~= current_theme then
+      last_theme = current_theme
+
+      vim.schedule(function()
+        local success, err = pcall(theme.set)
+        if success then
+          vim.notify("Ghostty theme reloaded: " .. current_theme, vim.log.levels.INFO)
+        else
+          vim.notify("Failed to reload Ghostty theme: " .. tostring(err), vim.log.levels.ERROR)
+        end
+      end)
+    end
+  end
+
+  -- Initialize with current theme
+  pcall(function()
+    last_theme = read_ghostty_config()
+    local stat = uv.fs_stat(config_path)
+    if stat then
+      last_mtime = stat.mtime.sec
+    end
+  end)
+
+  -- Set up timer to poll every 2 seconds
+  local timer = uv.new_timer()
+  timer:start(2000, 2000, function()
+    vim.schedule(check_for_changes)
+  end)
+
+  -- Clean up on VimLeave
+  vim.api.nvim_create_autocmd("VimLeave", {
+    callback = function()
+      if timer then
+        timer:stop()
+        timer:close()
+      end
+    end
+  })
+
+  vim.notify("Ghostty theme auto-reload enabled (polling every 2s)", vim.log.levels.INFO)
+end
+
+-- Initialize palette on first load
+local ok, theme_name = pcall(read_ghostty_config)
+if ok then
+  local ok2, palette = pcall(parse_ghostty_theme_file, theme_name)
+  if ok2 then
+    theme.palette = palette
+  end
 end
 
 return theme

@@ -33,7 +33,10 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require("custom.ghostty").set()
+      local ghostty = require("custom.ghostty")
+      ghostty.set()
+      ghostty.setup_auto_reload()
     end,
   }
+
 }

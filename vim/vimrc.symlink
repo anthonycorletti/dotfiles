@@ -107,7 +107,5 @@ autocmd BufWinEnter * set foldlevel=999999
 autocmd VimEnter * silent !echo -ne "\e[1 q"
 " Set cursor shape on Vim leave
 autocmd VimLeave * silent !echo -ne "\e[3 q"
-" Auto-save when leaving buffer
-autocmd BufLeave * silent! write
 " Clear whitespace at the end of lines automatically
 autocmd BufWritePre * :%s/\s\+$//e
