@@ -22,7 +22,9 @@ return {
     config = function()
       vim.opt.termguicolors = true
       require("bufferline").setup({
-        options = {}
+        options = {
+          mode = "buffers",
+        },
       })
     end,
   },
@@ -37,6 +39,5 @@ return {
       ghostty.set()
       ghostty.setup_auto_reload()
     end,
-  }
-
+  },
 }
