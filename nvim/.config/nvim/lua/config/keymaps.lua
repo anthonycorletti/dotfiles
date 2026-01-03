@@ -15,14 +15,6 @@ map("n", "<C-k>", "<C-w><C-k>", { desc = "Focus upper window" })
 map("n", "<C-w>v", ":vsplit<CR>", { desc = "Split vertically" })
 map("n", "<C-w>s", ":split<CR>", { desc = "Split horizontally" })
 
--- Move lines
-map("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
-map("i", "<A-Up>", "<Esc>:m .-2<CR>==", { noremap = true, silent = true })
-map("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-map("n", "<A-Down>", ":m .+1<CR>==", { noremap = true, silent = true })
-map("i", "<A-Down>", "<Esc>:m .+1<CR>==", { noremap = true, silent = true })
-map("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-
 -- Bufferline
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
