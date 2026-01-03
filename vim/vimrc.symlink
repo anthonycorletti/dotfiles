@@ -99,6 +99,12 @@ map <leader>p "+p
 " Make j/k visual down and up instead of whole lines
 map j gj
 map k gk
+" Don't require ! for :q and :wq
+" This makes it easier to quit when files are readonly
+cnoreabbrev q q!
+cnoreabbrev wq wq!
+cnoreabbrev qa qa!
+cnoreabbrev wqa wqa!
 
 " Autocommands
 " Don't fold anything.
