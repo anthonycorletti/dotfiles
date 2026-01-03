@@ -1,9 +1,9 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](dark_forest_green)\
+[](black)\
 $directory\
-[](fg:dark_forest_green bg:green)\
+[](fg:black bg:green)\
 $git_branch\
 $git_status\
 [](fg:green bg:cyan)\
@@ -23,12 +23,11 @@ palette = 'custom'
 add_newline = false
 
 [palettes.custom]
-light_white = "#fafafa"
-almost_black = "#0a0a0a"
-dark_forest_green = "#111611"
+white = "#fafafa"
+black = "#0a0a0a"
 
 [directory]
-style = "bg:dark_forest_green fg:light_white"
+style = "bg:black fg:white"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -37,12 +36,12 @@ truncation_symbol = "…/"
 disabled = false
 time_format = "%R"
 style = "bg:blue"
-format = '[[  $time ](fg:almost_black bg:blue)]($style)'
+format = '[[  $time ](fg:black bg:blue)]($style)'
 
 [cmd_duration]
 min_time = 500
 style = "bg:blue"
-format = '[[ ⏱ $duration ](fg:almost_black bg:blue)]($style)'
+format = '[[ ⏱ $duration ](fg:black bg:blue)]($style)'
 
 [character]
 disabled = false
@@ -56,11 +55,11 @@ vimcmd_visual_symbol = '[](bold fg:bright_magenta)'
 [git_branch]
 symbol = ""
 style = "bg:green"
-format = '[[ $symbol $branch ](fg:almost_black bg:green)]($style)'
+format = '[[ $symbol $branch ](fg:black bg:green)]($style)'
 
 [git_status]
 style = "bg:green"
-format = '[[($all_status$ahead_behind )](fg:almost_black bg:green)]($style)'
+format = '[[($all_status$ahead_behind )](fg:black bg:green)]($style)'
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
@@ -68,36 +67,36 @@ behind = '⇣${count}'
 [nodejs]
 symbol = ""
 style = "bg:cyan"
-format = '[[ $symbol( $version) ](fg:almost_black bg:cyan)]($style)'
+format = '[[ $symbol( $version) ](fg:black bg:cyan)]($style)'
 detect_files = ['!bun.lockb', '!bun.lock', 'package.json', '.node-version']
 
 [bun]
 symbol = "󰚅 "
 style = "bg:cyan"
-format = '[[ $symbol($version) ](fg:almost_black bg:cyan)]($style)'
+format = '[[ $symbol($version) ](fg:black bg:cyan)]($style)'
 
 [rust]
 symbol = ""
 style = "bg:cyan"
-format = '[[ $symbol( $version) ](fg:almost_black bg:cyan)]($style)'
+format = '[[ $symbol( $version) ](fg:black bg:cyan)]($style)'
 
 [golang]
 symbol = ""
 style = "bg:cyan"
-format = '[[ $symbol( $version) ](fg:almost_black bg:cyan)]($style)'
+format = '[[ $symbol( $version) ](fg:black bg:cyan)]($style)'
 
 [python]
 symbol = ""
 style = "bg:cyan"
-format = '[[ $symbol( $version) (\($virtualenv\)) ](fg:almost_black bg:cyan)]($style)'
+format = '[[ $symbol( $version) (\($virtualenv\)) ](fg:black bg:cyan)]($style)'
 python_binary = ["./.venv/bin/python", "python3"]
 
 [ruby]
 symbol = ""
 style = "bg:cyan"
-format = '[[ $symbol( $version) ](fg:almost_black bg:cyan)]($style)'
+format = '[[ $symbol( $version) ](fg:black bg:cyan)]($style)'
 
 [zig]
 symbol = ""
 style = "bg:cyan"
-format = '[[ $symbol( $version) ](fg:almost_black bg:cyan)]($style)'
+format = '[[ $symbol( $version) ](fg:black bg:cyan)]($style)'
