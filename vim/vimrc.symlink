@@ -3,11 +3,12 @@ set encoding=utf-8
 
 " Set the leader key to ;
 let mapleader=";"
-
 " Enable syntax highlighting
 syntax on
 " Enable filetype detection, indentation, and plugins
 filetype indent plugin on
+" Set a default colorscheme
+colorscheme default
 
 " Auto-reload files when changed outside of Vim
 set autoread
@@ -43,8 +44,6 @@ set showcmd
 set splitbelow
 " Splits go to the right by default
 set splitright
-" Use a visual bell to notify us
-set visualbell
 " Show command completion in the status line
 set wildmenu
 " Redraw only when necessary
