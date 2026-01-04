@@ -23,8 +23,8 @@ palette = 'custom'
 add_newline = false
 
 [palettes.custom]
-white = "#fafafa"
-black = "#0a0a0a"
+white = "#e0e0e0"
+black = "#1a1a1a"
 
 [directory]
 style = "bg:black fg:white"
