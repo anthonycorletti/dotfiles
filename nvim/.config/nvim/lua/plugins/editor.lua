@@ -41,7 +41,7 @@ return {
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        return { timeout_ms = 2500, lsp_format = "true" }
+        return { timeout_ms = 2500, lsp_format = "fallback" }
       end,
       formatters_by_ft = {
         lua = { "stylua" },
@@ -67,7 +67,7 @@ return {
   {
     "github/copilot.vim",
     config = function()
-      vim.b.copilot_enabled = true
+      vim.g.copilot_enabled = true
       vim.g.copilot_filetypes = { markdown = false }
     end,
   },
