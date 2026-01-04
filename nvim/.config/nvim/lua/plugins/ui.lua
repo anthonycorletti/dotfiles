@@ -67,7 +67,6 @@ return {
     },
   },
 
-
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -108,10 +107,12 @@ return {
         options = {
           theme = custom_theme,
         },
+        sections = {
+          lualine_x = { "encoding", "filetype" },
+        },
       })
     end,
   },
-
 
   {
     dir = vim.fn.stdpath("config") .. "/lua",

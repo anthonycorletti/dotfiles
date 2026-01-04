@@ -18,18 +18,11 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter").setup({ auto_install = true })
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          pcall(vim.treesitter.start)
-          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          vim.wo.foldmethod = "expr"
-          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-          vim.wo.foldenable = false
-        end,
-      })
-    end,
+    opts = {
+      auto_install = true,
+      indent = { enable = true },
+      highlight = { enable = true },
+    },
   },
 
   {
