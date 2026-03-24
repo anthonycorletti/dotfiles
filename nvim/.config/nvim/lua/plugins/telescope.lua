@@ -48,7 +48,7 @@ return {
           find_files = { hidden = true, follow = true },
           live_grep = {
             additional_args = function()
-              return { "--hidden", "--fixed-strings" }
+              return { "--hidden" }
             end,
           },
         },
@@ -60,6 +60,9 @@ return {
 
       local map = vim.keymap.set
       map("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+      map("n", "<leader>se", function()
+        builtin.live_grep({ additional_args = { "--fixed-strings", "--hidden" } })
+      end, { desc = "[S]earch [E]xact (literal)" })
       map("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
       map("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
       map("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
