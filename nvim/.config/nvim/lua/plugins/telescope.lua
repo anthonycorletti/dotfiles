@@ -21,14 +21,14 @@ return {
       telescope.setup({
         defaults = {
           file_ignore_patterns = {
-            ".git/",
+            "%.git/",
             "node_modules",
             "dist/",
             "build/",
             "vendor/",
-            ".venv/",
+            "%.venv/",
             "__pycache__/",
-            "*_cache/",
+            ".*_cache/",
           },
           hidden = true,
           follow = true,
@@ -41,7 +41,6 @@ return {
             "--column",
             "--smart-case",
             "--hidden",
-            "--no-ignore",
           },
         },
         pickers = {
