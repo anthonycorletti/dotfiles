@@ -16,4 +16,8 @@
 #
 # Run our new web 8.0 todo list application and raise millions of VC dollars.
 
-touch ~/Desktop/"$*"
+if [ $# -eq 0 ]; then
+  ls ~/Desktop/
+else
+  touch ~/Desktop/"$*"
+fi
