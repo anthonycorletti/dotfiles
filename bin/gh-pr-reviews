@@ -10,7 +10,7 @@ CURRENT_REPO_URL="$(git config --get remote.origin.url)"
 CURRENT_REPO_URL="${CURRENT_REPO_URL%.git}"
 
 # Last-month date: prefer macOS `date -v`, fall back to GNU `date -d`
-SINCE="$(date -v-1m +%Y-%m-%d 2>/dev/null || date -d '1 month ago' +%Y-%m-%d)"
+SINCE="$(date -v-14d +%Y-%m-%d 2>/dev/null || date -d '14 days ago' +%Y-%m-%d)"
 
 PRS="$(gh search prs \
   --review-requested @me \
