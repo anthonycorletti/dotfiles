@@ -2,56 +2,79 @@
 #
 # git-pr-docket
 #
-# I review a lot of code. Like so much code. So much code my wife asks my why I don't read books and it's because I'm busy reading pull requests.
+# I review a lot of code. Like so much code. So much code my wife asks my why I
+# don't read books and it's because I'm busy reading pull requests.
 #
-# It's all good though. It's honest work and I need some tools to unlock quick workflows.
+# It's all good though. It's honest work and I need some tools to unlock quick
+# workflows.
 
 CURRENT_REPO_URL="$(git config --get remote.origin.url)"
 CURRENT_REPO_URL="${CURRENT_REPO_URL%.git}"
 
-# Last-month date: prefer macOS `date -v`, fall back to GNU `date -d`
+# Last-two-weeks date: prefer macOS `date -v`, fall back to GNU `date -d`
 SINCE="$(date -v-14d +%Y-%m-%d 2>/dev/null || date -d '14 days ago' +%Y-%m-%d)"
+
+# Need this to identify "my" reviews in the post-filter step below.
+# Exported so xargs-spawned subshells inherit it.
+MY_LOGIN="$(gh api user --jq .login)"
+export MY_LOGIN
 
 PRS="$(gh search prs \
   --review-requested @me \
   --state open \
   --draft=false \
   --created ">$SINCE" \
-  --sort created \
-  --order desc \
-  --json title,number,repository,url,createdAt)"
+  --sort created --order desc \
+  --json title,number,url,createdAt)"
 
-# Limit to current repo
-PRS="$(echo "$PRS" | jq --arg repo "$CURRENT_REPO_URL" '[.[] | select(.url | tostring | startswith($repo))]')"
+# Limit to current repo (cheap; do this before the per-PR API calls)
+PRS="$(echo "$PRS" | jq --arg repo "$CURRENT_REPO_URL" \
+  '[.[] | select(.url | tostring | startswith($repo))]')"
 
-COUNT="$(echo "$PRS" | jq 'length')"
+# Drop PRs where my latest review is APPROVED. `latestReviews` returns at most
+# one entry per reviewer (their most recent), so we just look up mine. PRs
+# where I commented, requested changes, or had an approval dismissed by new
+# commits will still show — only a clean APPROVED state hides the PR.
+#
+# Parallelized with `xargs -P 8`: the per-PR `gh pr view` calls fire in batches
+# of 8 instead of one-at-a-time. Output order is non-deterministic after this,
+# so we re-sort by createdAt at the end.
+PRS="$(echo "$PRS" | jq -c '.[]' \
+  | tr '\n' '\0' \
+  | xargs -0 -P 8 -I {} sh -c '
+      pr="$1"
+      [ -z "$pr" ] && exit 0
+      url=$(echo "$pr" | jq -r ".url")
+      state=$(gh pr view "$url" --json latestReviews \
+        --jq ".latestReviews[] | select(.author.login == \"$MY_LOGIN\") | .state" \
+        2>/dev/null || echo "")
+      [ "$state" = "APPROVED" ] || echo "$pr"
+    ' _ {} \
+  | jq -s 'sort_by(.createdAt) | reverse')"
 
-if [ "$COUNT" -eq 0 ]; then
-  echo "No open PRs requesting your review in the last month for this repo."
-  exit 0
-else
-  echo "$PRS" | jq -r '
-    def reltime($t):
-      (now - ($t | fromdateiso8601)) as $d
-      | if   $d < 60      then (($d|floor)|tostring) + (if ($d|floor) == 1 then " second ago" else " seconds ago" end)
-        elif $d < 3600    then ((($d/60)|floor)|tostring) + (if (($d/60)|floor) == 1 then " minute ago" else " minutes ago" end)
-        elif $d < 86400   then ((($d/3600)|floor)|tostring) + (if (($d/3600)|floor) == 1 then " hour ago" else " hours ago" end)
-        else
-          (($d/86400)|floor) as $days
-          | (($d - ($days * 86400)) / 3600 | floor) as $hours
-          | ($days|tostring)
-            + (if $days == 1 then " day" else " days" end)
-            + (if $hours > 0 then " " + ($hours|tostring) + (if $hours == 1 then " hour" else " hours" end) else "" end)
-            + " ago"
-        end;
-
-    def md_escape_pipes($s):
-      # Use split/join to escape | for Markdown tables
-      ($s | split("|") | join("\\|"));
-
-    .[]
-    | .createdAt as $c
-    | "[\(.number)] \(md_escape_pipes(.title)) (\(reltime($c))) \(.url)"
-  '
+COUNT="$(echo "$PRS" | jq 'length // 0')"
+if [ "${COUNT:-0}" -eq 0 ]; then
+  echo "No open PRs awaiting your review for this repo."
   exit 0
 fi
+
+echo "$PRS" | jq -r '
+  def reltime($t):
+    (now - ($t | fromdateiso8601)) as $d
+    | if   $d < 60      then (($d|floor)|tostring) + (if ($d|floor) == 1 then " second ago" else " seconds ago" end)
+      elif $d < 3600    then ((($d/60)|floor)|tostring) + (if (($d/60)|floor) == 1 then " minute ago" else " minutes ago" end)
+      elif $d < 86400   then ((($d/3600)|floor)|tostring) + (if (($d/3600)|floor) == 1 then " hour ago" else " hours ago" end)
+      else
+        (($d/86400)|floor) as $days
+        | (($d - ($days * 86400)) / 3600 | floor) as $hours
+        | ($days|tostring)
+          + (if $days == 1 then " day" else " days" end)
+          + (if $hours > 0 then " " + ($hours|tostring) + (if $hours == 1 then " hour" else " hours" end) else "" end)
+          + " ago"
+      end;
+  def md_escape_pipes($s):
+    ($s | split("|") | join("\\|"));
+  .[]
+  | .createdAt as $c
+  | "[\(.number)] \(md_escape_pipes(.title)) (\(reltime($c))) \(.url)"
+'
