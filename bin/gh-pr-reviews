@@ -57,19 +57,19 @@ PRS="$(echo "$ALL_PRS" | jq --argjson direct_urls "$DIRECT_URLS" '
 # Parallelized with `xargs -P 8`: the per-PR `gh pr view` calls fire in batches
 # of 8 instead of one-at-a-time. Output order is non-deterministic after this;
 # each display bucket re-sorts by createdAt below.
-PRS="$(echo "$PRS" | jq -c '.[]' \
+PRS="$(printf '%s\n' "$PRS" | jq -c '.[]' \
   | tr '\n' '\0' \
-  | xargs -0 -P 8 -I {} sh -c '
+  | xargs -0 -n 1 -P 8 sh -c '
       pr="$1"
       [ -z "$pr" ] && exit 0
 
-      url=$(echo "$pr" | jq -r ".url")
+      url=$(printf "%s" "$pr" | jq -r ".url")
       state=$(gh pr view "$url" --json latestReviews \
         --jq ".latestReviews[]? | select(.author.login == \"$MY_LOGIN\") | .state" \
         2>/dev/null || echo "")
 
-      [ "$state" = "APPROVED" ] || echo "$pr"
-    ' _ {} \
+      [ "$state" = "APPROVED" ] || printf "%s\n" "$pr"
+    ' _ \
   | jq -s '.')"
 
 COUNT="$(echo "$PRS" | jq 'length // 0')"
@@ -110,6 +110,6 @@ echo "$PRS" | jq -r --argjson direct_count "$DIRECT_COUNT" --argjson team_count 
     end;
 
   . as $prs
-  | section("Explicitly requested (@me) (\($direct_count))"; [$prs[] | select(.reviewRequestGroup == "direct")]),
-    section("Team / required-reviewer requests (\($team_count))"; [$prs[] | select(.reviewRequestGroup == "team")])
+  | section("Explicitly requested (@me) (\($direct_count))\n----------------------------"; [$prs[] | select(.reviewRequestGroup == "direct")]),
+    section("Team / required-reviewer requests (\($team_count))\n---------------------------------"; [$prs[] | select(.reviewRequestGroup == "team")])
 ' | sed '${/^$/d;}'
