@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+# gwt — git worktree helper
+
+set -euo pipefail
+
+usage() {
+    cat <<'EOF'
+gwt — git worktree helper
+
+USAGE
+  gwt <branch>             Create ../<repo>-<branch> on a new branch
+  gwt <subcommand> [args]  Pass through to `git worktree <subcommand>`
+                           (add, list, lock, move, prune, remove, repair, unlock)
+  gwt -h | --help          Show this help
+
+  New worktrees are placed as siblings of the *current* working tree —
+  whatever `git rev-parse --show-toplevel` returns. No upward traversal.
+  If you run gwt from inside a worktree, the new one is a sibling of
+  that worktree, not of the main repo. This is intentional: nothing
+  implicit, what you see is where it goes.
+
+EXAMPLES
+  cd ~/code/myapp
+  gwt feature-1            # → ~/code/myapp-feature-1, branch feature-1
+  gwt feature-2            # → ~/code/myapp-feature-2, branch feature-2
+  gwt list                 # passes through to `git worktree list`
+  gwt remove ~/code/myapp-feature-1
+EOF
+}
+
+# No args or help flag
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    usage
+    exit 0
+fi
+
+# Must be inside a git repo
+if ! git rev-parse --show-toplevel >/dev/null 2>&1; then
+    echo "gwt: not inside a git repository" >&2
+    exit 1
+fi
+
+# Known git-worktree subcommands → pass through verbatim
+case "$1" in
+    add|list|lock|move|prune|remove|repair|unlock)
+        exec git worktree "$@"
+        ;;
+esac
+
+# Otherwise: single arg is treated as a new branch name
+if [ $# -ne 1 ]; then
+    echo "gwt: expected a single branch name (got $#)" >&2
+    echo "run 'gwt --help' for usage" >&2
+    exit 1
+fi
+
+branch="$1"
+root="$(git rev-parse --show-toplevel)"
+name="$(basename "$root")"
+target="$(dirname "$root")/${name}-${branch}"
+
+if [ -e "$target" ]; then
+    echo "gwt: $target already exists" >&2
+    exit 1
+fi
+
+echo "Creating worktree:  $target"
+echo "         branch:    $branch"
+git worktree add "$target" -b "$branch"
+echo
+echo "Done. Enter it with:"
+echo "  cd $target"
+
+

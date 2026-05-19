@@ -26,4 +26,3 @@ alias gpum='git push upstream $(gbm)'
 alias grb='git rebase -i -S'
 alias gs='git status -sb -u' # upgrade your git if -sb breaks for you. it's fun.
 alias gwtf='git-wtf'
-alias gwt='git worktree'
