@@ -18,6 +18,34 @@ return {
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
 
+      -- Dirs that --no-ignore-vcs would otherwise force rg to crawl/read.
+      -- As CLI globs these prune traversal, so rg never descends into them.
+      local rg_excludes = {
+        ".git",
+        "node_modules",
+        "dist",
+        "build",
+        "vendor",
+        ".venv",
+        "__pycache__",
+        "*_cache",
+      }
+
+      -- Append "-g" "!<dir>" pairs to an rg argument list.
+      local function with_excludes(args)
+        for _, dir in ipairs(rg_excludes) do
+          table.insert(args, "-g")
+          table.insert(args, "!" .. dir)
+        end
+        return args
+      end
+
+      -- Same excludes, formatted for the shell string used by find_command.
+      local exclude_flags = ""
+      for _, dir in ipairs(rg_excludes) do
+        exclude_flags = exclude_flags .. " -g '!" .. dir .. "'"
+      end
+
       telescope.setup({
         defaults = {
           file_ignore_patterns = {
@@ -32,7 +60,7 @@ return {
           },
           hidden = true,
           follow = true,
-          vimgrep_arguments = {
+          vimgrep_arguments = with_excludes({
             "rg",
             "--color=never",
             "--no-heading",
@@ -41,10 +69,20 @@ return {
             "--column",
             "--smart-case",
             "--hidden",
-          },
+            "--no-ignore-vcs",
+          }),
         },
         pickers = {
-          find_files = { hidden = true, follow = true },
+          find_files = {
+            find_command = {
+              "sh",
+              "-c",
+              "{ rg --files --hidden --follow; "
+                .. "rg --files --hidden --follow --no-ignore-vcs -g '.env*'"
+                .. exclude_flags
+                .. "; } | awk '!seen[$0]++'",
+            },
+          },
           live_grep = {
             additional_args = function()
               return { "--hidden" }
