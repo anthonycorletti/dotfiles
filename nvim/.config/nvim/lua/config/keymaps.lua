@@ -31,7 +31,6 @@ end
 map("n", "<leader>sh", "<cmd>split | Telescope buffers<CR>", { desc = "Split and open buffer" })
 map("n", "<leader>sv", "<cmd>vsplit | Telescope buffers<CR>", { desc = "Vsplit and open buffer" })
 
-
 -- Commands for common typos
 api.nvim_create_user_command("W", "w", {})
 api.nvim_create_user_command("Q", "q", {})
@@ -42,3 +41,12 @@ api.nvim_create_user_command("WQa", "wqa", {})
 api.nvim_create_user_command("WQA", "wqa", {})
 api.nvim_create_user_command("Qa", "qa", {})
 api.nvim_create_user_command("QA", "qa", {})
+
+-- line moving
+map(
+  "x",
+  "K",
+  ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv",
+  { silent = true, desc = "Move selection up" }
+)
+map("x", "J", ":<C-u>execute \"'<,'>move '>+\" . v:count1<CR>gv=gv", { silent = true, desc = "Move selection down" })
