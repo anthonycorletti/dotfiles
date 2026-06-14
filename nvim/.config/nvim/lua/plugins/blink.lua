@@ -1,3 +1,4 @@
+-- completions
 return {
   {
     "saghen/blink.cmp",

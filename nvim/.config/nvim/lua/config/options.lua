@@ -20,10 +20,6 @@ vim.o.confirm = true
 vim.o.foldenable = false
 vim.o.foldlevelstart = 99
 vim.o.cmdheight = 0
+vim.o.clipboard = "unnamedplus"
 
-vim.opt.runtimepath:append("~/.local/share/nvim/site")
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
-vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
-end)

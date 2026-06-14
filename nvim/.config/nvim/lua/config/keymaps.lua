@@ -22,14 +22,9 @@ map("n", "<leader>bp", "<cmd>BufferLinePick<CR>", { desc = "Pick buffer" })
 map("n", "<leader>bc", "<cmd>BufferLinePickClose<CR>", { desc = "Pick buffer to close" })
 map("n", "<leader><left>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer left" })
 map("n", "<leader><right>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer right" })
-
 for i = 1, 9 do
   map("n", "<leader>" .. i, "<cmd>BufferLineGoToBuffer " .. i .. "<CR>", { desc = "Go to buffer " .. i })
 end
-
--- Splits with buffer picker
-map("n", "<leader>sh", "<cmd>split | Telescope buffers<CR>", { desc = "Split and open buffer" })
-map("n", "<leader>sv", "<cmd>vsplit | Telescope buffers<CR>", { desc = "Vsplit and open buffer" })
 
 -- Commands for common typos
 api.nvim_create_user_command("W", "w", {})
@@ -43,10 +38,5 @@ api.nvim_create_user_command("Qa", "qa", {})
 api.nvim_create_user_command("QA", "qa", {})
 
 -- line moving
-map(
-  "x",
-  "K",
-  ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv",
-  { silent = true, desc = "Move selection up" }
-)
+map("x", "K", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv", { silent = true, desc = "Move selection up" })
 map("x", "J", ":<C-u>execute \"'<,'>move '>+\" . v:count1<CR>gv=gv", { silent = true, desc = "Move selection down" })

@@ -17,17 +17,10 @@ return {
           local map = function(keys, func, desc, mode)
             vim.keymap.set(mode or "n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
-          local tb = require("telescope.builtin")
 
           map("grn", vim.lsp.buf.rename, "Rename")
           map("gra", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
-          map("grr", tb.lsp_references, "References")
-          map("gri", tb.lsp_implementations, "Implementation")
-          map("grd", tb.lsp_definitions, "Definition")
           map("grD", vim.lsp.buf.declaration, "Declaration")
-          map("gO", tb.lsp_document_symbols, "Document Symbols")
-          map("gW", tb.lsp_dynamic_workspace_symbols, "Workspace Symbols")
-          map("grt", tb.lsp_type_definitions, "Type Definition")
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           local supports = function(method)

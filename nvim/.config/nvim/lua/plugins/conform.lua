@@ -1,30 +1,6 @@
 local web_fmt = { "prettierd", "prettier", stop_after_first = true }
 
 return {
-  { "numToStr/Comment.nvim", opts = {} },
-
-  { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
-
-  { "folke/todo-comments.nvim", event = "VimEnter", dependencies = "nvim-lua/plenary.nvim", opts = { signs = false } },
-
-  {
-    "echasnovski/mini.nvim",
-    config = function()
-      require("mini.ai").setup({ n_lines = 500 })
-      require("mini.surround").setup()
-    end,
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    opts = {
-      auto_install = true,
-      indent = { enable = true },
-      highlight = { enable = true },
-    },
-  },
-
   {
     "stevearc/conform.nvim",
     lazy = false,
@@ -60,15 +36,5 @@ return {
         markdown = web_fmt,
       },
     },
-  },
-
-  { "RRethy/vim-illuminate" },
-
-  {
-    "github/copilot.vim",
-    config = function()
-      vim.g.copilot_enabled = true
-      vim.g.copilot_filetypes = { markdown = false }
-    end,
-  },
+  }
 }
