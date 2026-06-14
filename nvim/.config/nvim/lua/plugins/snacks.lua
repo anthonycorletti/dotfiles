@@ -4,7 +4,9 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-      dashboard = { enabled = true },
+      dashboard = {
+        enabled = true,
+      },
       picker = {
         enabled = true,
         sources = {
@@ -20,7 +22,7 @@ return {
       },
       indent = { enabled = true },
       input = { enabled = true },
-      notifier = { enabled = true },
+      notifier = { enabled = true, style = "minimal", top_down = false },
       statuscolumn = { enabled = true },
       words = { enabled = true },
       image = { enabled = false },
