@@ -1,5 +1,3 @@
-local web_fmt = { "prettierd", "prettier", stop_after_first = true }
-
 return {
   {
     "stevearc/conform.nvim",
@@ -16,25 +14,28 @@ return {
     },
     opts = {
       notify_on_error = false,
-      format_on_save = function(bufnr)
+      format_on_save = function()
         return { timeout_ms = 2500, lsp_format = "fallback" }
       end,
+      formatters = {
+        prettier = { command = "bunx", args = { "prettier", "--stdin-filepath", "$FILENAME" } },
+      },
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff_format", "ruff_organize_imports" },
         ruby = { "standardrb" },
         go = { "gofmt" },
-        typescript = web_fmt,
-        javascript = web_fmt,
-        typescriptreact = web_fmt,
-        javascriptreact = web_fmt,
-        json = web_fmt,
-        html = web_fmt,
-        css = web_fmt,
-        scss = web_fmt,
-        yaml = web_fmt,
-        markdown = web_fmt,
+        typescript = { "prettier" },
+        javascript = { "prettier" },
+        typescriptreact = { "prettier" },
+        javascriptreact = { "prettier" },
+        json = { "prettier" },
+        html = { "prettier" },
+        css = { "prettier" },
+        scss = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
       },
     },
-  }
+  },
 }

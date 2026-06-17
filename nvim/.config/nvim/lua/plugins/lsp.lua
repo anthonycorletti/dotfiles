@@ -1,16 +1,10 @@
 return {
   { "folke/lazydev.nvim", ft = "lua", opts = { library = { path = "${3rd}/luv/library", words = { "vim%.uv" } } } },
+  { "saghen/blink.cmp", version = "1.*" },
 
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
-      "mason-org/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      "saghen/blink.cmp",
-    },
     config = function()
-      -- LSP keymaps
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
@@ -28,36 +22,21 @@ return {
 
       vim.diagnostic.config({
         severity_sort = true,
-        virtual_text = false,
+        virtual_text = { severity = vim.diagnostic.severity.ERROR },
+        float = { border = "rounded", source = "if_many" },
       })
 
-      -- Servers + tools
-      local servers = {
-        gopls = {},
-        rust_analyzer = {},
-        zls = {},
-        ts_ls = {},
-        ruff = {},
-        ty = {},
-        lua_ls = { settings = { Lua = { completion = { callSnippet = "Replace" } } } },
-        ruby_lsp = { settings = { rubyLsp = { formatter = "standard" } } },
-      }
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      local tools = { "stylua", "prettierd", "standardrb" }
+      vim.lsp.config("*", { capabilities = capabilities })
 
-      require("mason-tool-installer").setup({
-        ensure_installed = vim.list_extend(vim.tbl_keys(servers), tools),
-      })
+      vim.lsp.config("ruff", { cmd = { "uvx", "ruff", "server" } })
+      vim.lsp.config("ty", { cmd = { "uvx", "ty", "server" }, filetypes = { "python" } })
+      vim.lsp.config("ts_ls", { cmd = { "bunx", "typescript-language-server", "--stdio" } })
+      vim.lsp.config("lua_ls", { settings = { Lua = { completion = { callSnippet = "Replace" } } } })
+      vim.lsp.config("ruby_lsp", { settings = { rubyLsp = { formatter = "standard" } } })
 
-      require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local config = servers[server_name] or {}
-            config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-            require("lspconfig")[server_name].setup(config)
-          end,
-        },
-      })
+      vim.lsp.enable({ "gopls", "rust_analyzer", "zls", "lua_ls", "ruff", "ty", "ruby_lsp", "ts_ls" })
     end,
   },
 }
