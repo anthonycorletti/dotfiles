@@ -116,6 +116,8 @@ brew "libuv"
 brew "libzip"
 # Next-gen compiler infrastructure
 brew "llvm"
+# Language Server for the Lua language
+brew "lua-language-server"
 # Package manager for the Lua programming language
 brew "luarocks"
 # Utility for directing compilation
@@ -180,6 +182,8 @@ brew "wget"
 brew "zig"
 # Language Server for Zig
 brew "zls"
+# A network cloud, built on open source.
+brew "datum-cloud/tap/datumctl", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # Anthropic's official Claude AI desktop app
