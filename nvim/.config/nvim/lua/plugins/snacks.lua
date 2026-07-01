@@ -26,6 +26,7 @@ return {
           },
         },
       },
+      explorer = {},
       indent = { enabled = true },
       input = { enabled = true },
       notifier = { enabled = true, style = "minimal", top_down = false },
@@ -191,6 +192,15 @@ return {
           Snacks.picker.lsp_workspace_symbols()
         end,
         desc = "LSP Workspace Symbols",
+      },
+
+      -- Explorer
+      {
+        "<leader>e",
+        function()
+          Snacks.explorer()
+        end,
+        desc = "Toggle Explorer",
       },
     },
   },
