@@ -15,7 +15,17 @@ return {
       },
       picker = {
         enabled = true,
+        hidden = true,
+        ignored = true,
         sources = {
+          explorer = {
+            sort = {
+              fields = {
+                "type", -- directories before files
+                "name", -- alphabetical within each group
+              },
+            },
+          },
           files = {
             hidden = true,
             ignored = false,
