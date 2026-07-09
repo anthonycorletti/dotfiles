@@ -38,14 +38,28 @@ brew "bzip2"
 brew "c-ares"
 # Core application library for C
 brew "glib"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima"
 # GNU multiple precision arithmetic library
 brew "gmp"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Docker CLI plugin for extended build capabilities with BuildKit
+brew "docker-buildx"
+# Isolated development environments using Docker
+brew "docker-compose"
+# Platform keystore credential helper for Docker
+brew "docker-credential-helper"
+# Docker Credential Helper for Amazon ECR
+brew "docker-credential-helper-ecr"
 # Text processing system for reStructuredText
 brew "docutils"
 # Powerful, lightweight programming language
@@ -70,8 +84,6 @@ brew "gnutls"
 brew "libassuan"
 # Passphrase entry dialog utilizing the Assuan protocol
 brew "pinentry"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
@@ -92,8 +104,8 @@ brew "htop"
 brew "jq"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "k9s"
-# Image format providing lossless and lossy compression for web images
-brew "webp"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
@@ -168,6 +180,8 @@ brew "tesseract"
 brew "tree"
 # Parser generator tool
 brew "tree-sitter-cli"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Command-line interface for Vercel
@@ -194,8 +208,6 @@ cask "claude-code"
 cask "codex"
 # Voice and text chat software
 cask "discord", args: { appdir: "/Applications" }
-# App to build and share containerised applications and microservices
-cask "docker-desktop"
 # Collaborative team software
 cask "figma"
 # Web browser
