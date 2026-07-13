@@ -16,3 +16,6 @@ disabled = true
 
 [pulumi]
 disabled = true
+
+[docker_context]
+disabled = true
