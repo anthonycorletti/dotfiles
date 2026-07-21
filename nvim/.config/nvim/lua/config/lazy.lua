@@ -7,22 +7,33 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {
-  spec = {
-    { import = "plugins" },
-  },
-  checker = {
-    enabled = true,
-    notify = false,
-  },
-}, {
-  ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = "⌘", config = "🛠", event = "📅", ft = "📂", init = "⚙",
-      keys = "🗝", plugin = "🔌", runtime = "💻", require = "🌙",
-      source = "📄", start = "🚀", task = "📌", lazy = "💤 ",
+local opts =
+  {
+    spec = {
+      { import = "plugins" },
     },
-  },
-}
+    checker = {
+      enabled = true,
+      notify = false,
+    },
+  }, {
+    ui = {
+      icons = vim.g.have_nerd_font and {} or {
+        cmd = "⌘",
+        config = "🛠",
+        event = "📅",
+        ft = "📂",
+        init = "⚙",
+        keys = "🗝",
+        plugin = "🔌",
+        runtime = "💻",
+        require = "🌙",
+        source = "📄",
+        start = "🚀",
+        task = "📌",
+        lazy = "💤 ",
+      },
+    },
+  }
 
 require("lazy").setup(opts)

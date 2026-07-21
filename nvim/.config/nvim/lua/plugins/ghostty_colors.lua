@@ -8,5 +8,5 @@ return {
       local ghostty_colors = require("custom.ghostty_colors")
       ghostty_colors.set()
     end,
-  }
+  },
 }

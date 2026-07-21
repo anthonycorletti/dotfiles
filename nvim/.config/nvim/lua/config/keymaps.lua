@@ -38,5 +38,10 @@ api.nvim_create_user_command("Qa", "qa", {})
 api.nvim_create_user_command("QA", "qa", {})
 
 -- line moving
-map("x", "K", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv", { silent = true, desc = "Move selection up" })
+map(
+  "x",
+  "K",
+  ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv",
+  { silent = true, desc = "Move selection up" }
+)
 map("x", "J", ":<C-u>execute \"'<,'>move '>+\" . v:count1<CR>gv=gv", { silent = true, desc = "Move selection down" })
