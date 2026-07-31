@@ -109,6 +109,14 @@ local function adjust_hex(hex, amount)
   return string.format("#%02x%02x%02x", r, g, b)
 end
 
+local function is_dark(hex)
+  hex = hex:gsub("#", "")
+  local r = tonumber(hex:sub(1, 2), 16)
+  local g = tonumber(hex:sub(3, 4), 16)
+  local b = tonumber(hex:sub(5, 6), 16)
+  return (0.299 * r + 0.587 * g + 0.114 * b) < 128
+end
+
 -- Apply highlights
 function theme.set()
   -- Reload the palette from config
@@ -127,6 +135,10 @@ function theme.set()
   theme.palette = palette
   local c = theme.palette
 
+  local dir = is_dark(c.bg) and 1 or -1
+  local subtle = adjust_hex(c.bg, 0.10 * dir) -- word/reference highlights
+  local subtler = adjust_hex(c.bg, 0.06 * dir) -- cursorline
+
   vim.cmd("highlight clear")
   vim.o.background = "dark"
   vim.o.termguicolors = true
@@ -136,9 +148,9 @@ function theme.set()
   -- Basic UI
   hi("Normal", c.fg, c.bg)
   hi("Cursor", c.cursor_txt, c.cursor)
-  hi("CursorLine", nil, adjust_hex(c.br_black, -0.4)) -- slightly lifted from bg
-  hi("CursorColumn", nil, c.br_black)
-  hi("ColorColumn", nil, c.br_black)
+  hi("CursorLine", nil, subtler)
+  hi("CursorColumn", nil, subtler)
+  hi("ColorColumn", nil, subtler)
   hi("LineNr", c.br_black) -- #666666, muted
   hi("CursorLineNr", c.yellow) -- #f0c674, warm gold
   hi("VertSplit", c.black) -- #1d1f21, near invisible
@@ -146,7 +158,7 @@ function theme.set()
   hi("Visual", c.sel_fg, c.sel_bg) -- white on white = inverted
   hi("Search", c.bg, c.yellow)
   hi("IncSearch", c.bg, c.br_yellow)
-  hi("MatchParen", nil, c.br_black)
+  hi("MatchParen", nil, subtle)
   hi("Whitespace", c.bg, c.bg)
   hi("NormalFloat", c.fg, c.bg)
   hi("FloatBorder", c.br_black, c.bg)
@@ -193,9 +205,9 @@ function theme.set()
   hi("DiagnosticWarn", c.yellow)
   hi("DiagnosticInfo", c.blue)
   hi("DiagnosticHint", c.cyan)
-  hi("LspReferenceText", nil, c.br_black)
-  hi("LspReferenceRead", nil, c.br_black)
-  hi("LspReferenceWrite", nil, c.br_black)
+  hi("LspReferenceText", nil, subtle)
+  hi("LspReferenceRead", nil, subtle)
+  hi("LspReferenceWrite", nil, subtle)
 
   -- Git
   hi("GitSignsAdd", c.green)
