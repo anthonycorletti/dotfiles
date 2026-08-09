@@ -62,8 +62,6 @@ brew "docker-credential-helper"
 brew "docker-credential-helper-ecr"
 # Text processing system for reStructuredText
 brew "docutils"
-# Powerful, lightweight programming language
-brew "lua"
 # Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
@@ -128,6 +126,8 @@ brew "libuv"
 brew "libzip"
 # Next-gen compiler infrastructure
 brew "llvm"
+# Powerful, lightweight programming language
+brew "lua"
 # Language Server for the Lua language
 brew "lua-language-server"
 # Package manager for the Lua programming language
@@ -185,7 +185,7 @@ brew "unbound"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Command-line interface for Vercel
-brew "vercel-cli"
+brew "vercel"
 # Language servers for HTML, CSS, JavaScript, and JSON extracted from vscode
 brew "vscode-langservers-extracted"
 # Executes a program periodically, showing output fullscreen
