@@ -6,5 +6,8 @@ set -e
 
 cd "$(dirname $0)"/..
 
-# find the installers and run them iteratively
-find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+# Find the installers and run them in a predictable order.
+while IFS= read -r installer
+do
+  "$installer"
+done < <(find . -name install.sh -type f | sort)

@@ -30,8 +30,6 @@ brew "bdw-gc"
 brew "brotli"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
-# Incredibly fast JavaScript runtime, bundler, test runner, and package manager
-brew "bun"
 # Freely available high-quality data compressor
 brew "bzip2"
 # Asynchronous DNS library
@@ -48,8 +46,6 @@ brew "coreutils"
 brew "curl"
 # Image format providing lossless and lossy compression for web images
 brew "webp"
-# Secure runtime for JavaScript and TypeScript
-brew "deno"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Docker CLI plugin for extended build capabilities with BuildKit
@@ -84,10 +80,6 @@ brew "libassuan"
 brew "pinentry"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Open source programming language to build simple/reliable/efficient software
-brew "go"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
 # Colorize logfiles and command output
 brew "grc"
 # Like cURL, but for gRPC
@@ -136,8 +128,6 @@ brew "luarocks"
 brew "make"
 # Open source relational database management system
 brew "mysql-client"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Neon CLI tool
 brew "neonctl"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -154,10 +144,8 @@ brew "pkgconf"
 brew "protobuf"
 # Utilities for manipulating PostScript documents
 brew "psutils"
-# Install various Ruby versions and implementations
-brew "ruby-build"
-# Ruby version manager
-brew "rbenv"
+# Development runtime version manager
+brew "mise"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Rust toolchain installer
@@ -192,8 +180,6 @@ brew "vscode-langservers-extracted"
 brew "watch"
 # Internet file retriever
 brew "wget"
-# Programming language designed for robustness, optimality, and clarity
-brew "zig"
 # Language Server for Zig
 brew "zls"
 # A network cloud, built on open source.

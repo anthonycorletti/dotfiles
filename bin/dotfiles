@@ -7,8 +7,8 @@
 
 set -e
 
-parentDirectory="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
-dotfilesDirectory="$(cd "$( dirname "$parentDirectory" )" && pwd -P)"
+parentDirectory="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)"
+dotfilesDirectory="$(CDPATH= cd -- "$parentDirectory/.." && pwd -P)"
 
 displayUsageAndExit() {
 	echo "dotfiles -- dotfiles management"
@@ -38,31 +38,27 @@ while test $# -gt 0; do
 	shift
 done
 
-export ZSH=$HOME/.dotfiles
+export ZSH="$dotfilesDirectory"
 
 # Set macOS defaults
-$ZSH/macos/set-defaults.sh
+"$ZSH/macos/set-defaults.sh"
 
 # Install homebrew
-$ZSH/brew/install.sh 2>&1
+. "$ZSH/brew/install.sh"
 
-echo "› brew doctor"
-# run brew doctor and exit if the output is anything but "Your system is ready to brew."
-if ! brew doctor | grep -q "Your system is ready to brew."; then
-  echo "Your system is not ready to brew. Fix the issues above and try again."
-  exit 1
-else
-  echo "Your system is ready to brew."
-fi
-
-# Upgrade homebrew
+# Update homebrew
 echo "› brew update"
 brew update
 
-# Install homebrew packages
-echo "› brew upgrade"
-brew upgrade -y
+# Install and reconcile Homebrew packages
+echo "› brew bundle"
+brew bundle --file "$ZSH/brew/Brewfile"
 
 # Install software
 echo "› $ZSH/script/install"
-$ZSH/script/install
+"$ZSH/script/install"
+
+# Install configured development runtimes
+echo "› mise install"
+. "$ZSH/ruby/env.zsh"
+MISE_GLOBAL_CONFIG_FILE="$ZSH/mise/config.toml" mise install

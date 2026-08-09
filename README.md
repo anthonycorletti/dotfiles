@@ -48,6 +48,26 @@ script/bootstrap
 This will symlink the appropriate files in `.dotfiles` to your home directory.
 Everything is configured and tweaked within `~/.dotfiles`.
 
+The bootstrap installs Homebrew packages first, runs topic installers, and
+then installs the development runtimes declared in `mise/config.toml`:
+
+```sh
+script/bootstrap
+```
+
+Dependency ownership is intentionally split by purpose:
+
+- Homebrew manages macOS software, native libraries, applications, and
+  standalone command-line tools.
+- mise manages versioned development runtimes such as Ruby, Node.js, Go, Bun,
+  Deno, and Zig.
+- uv manages development Python interpreters, environments, dependencies, and
+  Python tools.
+- rustup manages the Rust toolchain.
+
+Homebrew may still install runtime formulas as transitive dependencies. Those
+copies do not replace the development runtimes selected by mise or uv.
+
 The main file you'll want to change right off the bat is `zsh/zshrc.symlink`,
 which sets up a few paths that'll be different on your particular machine.
 
@@ -58,10 +78,9 @@ this script in `bin/`.
 
 ## bugs
 
-I want this to work for everyone; that means when you clone it down it should
-work for you even though you may not have `rbenv` installed, for example. That
-said, I do use this as _my_ dotfiles, so there's a good chance I may break
-something if I forget to make a check for a dependency.
+I want this to work for everyone, including when optional dependencies are not
+installed. That said, I do use this as _my_ dotfiles, so there's a good chance
+I may break something if I forget to check for one.
 
 If you're brand-new to the project and run into any blockers, please
 [open an issue](https://github.com/anthonycorletti/dotfiles/issues) on this repository

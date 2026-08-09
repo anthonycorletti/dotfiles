@@ -141,6 +141,11 @@ install_xcode_tools() {
     if ! xcode-select -p &> /dev/null; then
         echo "Installing Xcode Command Line Tools..."
         xcode-select --install
+        user "Complete the Xcode Command Line Tools installation, then press Enter"
+        read -r
+        if ! xcode-select -p &> /dev/null; then
+          fail "Xcode Command Line Tools are required"
+        fi
     fi
 }
 
@@ -150,26 +155,25 @@ install_dotfiles
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
 then
-  # System software update check
-  if confirm "Would you like to check for system software updates?"; then
-      echo "📦 Checking for system software updates..."
-      softwareupdate -i -a
-      echo "⚠️  Please install any available updates before proceeding"
-      read -p "Press Enter once updates are installed..."
-  fi
-
   install_xcode_tools
 
-  info "installing dependencies"
-  if source bin/dotfiles | while read -r data; do info "$data"; done
   info "installing brew bundle"
-  # Install bundle
-  brew bundle --file $ZSH/brew/Brewfile
+  source "$DOTFILES_ROOT/brew/install.sh"
+  if brew bundle --file "$DOTFILES_ROOT/brew/Brewfile"
   then
-    success "dependencies installed"
+    success "brew bundle installed"
   else
-    fail "error installing dependencies"
+    fail "error installing brew bundle"
   fi
+
+  info "running topic installers"
+  "$DOTFILES_ROOT/script/install"
+  success "topic installers complete"
+
+  info "installing development runtimes"
+  source "$DOTFILES_ROOT/ruby/env.zsh"
+  MISE_GLOBAL_CONFIG_FILE="$DOTFILES_ROOT/mise/config.toml" mise install
+  success "development runtimes installed"
 fi
 
 echo ''
