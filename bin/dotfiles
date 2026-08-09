@@ -54,11 +54,11 @@ brew update
 echo "› brew bundle"
 brew bundle --file "$ZSH/brew/Brewfile"
 
-# Install software
-echo "› $ZSH/script/install"
-"$ZSH/script/install"
-
 # Install configured development runtimes
 echo "› mise install"
 . "$ZSH/ruby/env.zsh"
 MISE_GLOBAL_CONFIG_FILE="$ZSH/mise/config.toml" mise install
+
+# Install software
+echo "› $ZSH/script/install"
+"$ZSH/script/install"

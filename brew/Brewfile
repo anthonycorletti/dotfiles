@@ -82,8 +82,6 @@ brew "libassuan"
 brew "pinentry"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
 # Colorize logfiles and command output
 brew "grc"
 # Like cURL, but for gRPC
@@ -134,8 +132,6 @@ brew "make"
 brew "mise"
 # Open source relational database management system
 brew "mysql-client"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Neon CLI tool
 brew "neonctl"
 # Ambitious Vim-fork focused on extensibility and agility
