@@ -1,0 +1,61 @@
+#!/bin/sh
+
+set -eu # 🇪🇺
+
+dotfiles_root=${ZSH:-$(CDPATH= cd "$(dirname "$0")/.." && pwd -P)}
+brewfile="$dotfiles_root/brew/Brewfile"
+excludes="$dotfiles_root/brew/Brewfile.excludes"
+dump_file=$(mktemp "$brewfile.dump.XXXXXX")
+filtered_file=$(mktemp "$brewfile.filtered.XXXXXX")
+
+cleanup() {
+  rm -f "$dump_file" "$filtered_file"
+}
+trap cleanup EXIT HUP INT TERM
+
+brew bundle dump \
+  --file="$dump_file" \
+  --force \
+  --taps \
+  --brews \
+  --casks
+
+awk '
+  NR == FNR {
+    if ($0 != "" && $0 !~ /^#/) {
+      excluded[$0] = 1
+    }
+    next
+  }
+
+  /^#/ {
+    pending = pending $0 ORS
+    next
+  }
+
+  /^brew "/ {
+    name = $0
+    sub(/^brew "/, "", name)
+    sub(/".*/, "", name)
+
+    if (name in excluded) {
+      pending = ""
+      next
+    }
+  }
+
+  {
+    printf "%s", pending
+    pending = ""
+    print
+  }
+
+  END {
+    printf "%s", pending
+  }
+' "$excludes" "$dump_file" > "$filtered_file"
+
+brew bundle list --file="$filtered_file" > /dev/null
+mv "$filtered_file" "$brewfile"
+
+git -C "$dotfiles_root" diff -- "$brewfile"

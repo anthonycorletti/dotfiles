@@ -1,0 +1,21 @@
+# Exact Homebrew formula names that brew-sync must not write to the Brewfile as
+# explicitly Homebrew-owned packages.
+#
+# These entries do not prevent Homebrew from installing a formula when another
+# Brewfile package requires it as a transitive dependency. They also do not
+# uninstall anything. Homebrew may therefore keep its own copy of Node, Python,
+# Zig, or another excluded runtime while mise or uv supplies the development
+# version that wins PATH precedence.
+#
+# Matching is exact; wildcards are not supported. Add versioned formulas
+# separately when needed, for example `python@3.12` and `python@3.13`.
+bun
+go
+node
+python
+python@3.12
+rbenv
+ruby
+ruby-build
+zig
+zls

@@ -1,5 +1,0 @@
-#!/bin/sh -e
-#
-# Usage: brew-dump dumps installed casks, taps, and brews to $HOME/.dotfiles/brew/Brewfile
-
-brew bundle dump --file=$ZSH/brew/Brewfile --force --taps --brews --casks
