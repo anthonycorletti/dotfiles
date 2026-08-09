@@ -44,6 +44,10 @@ brew "gmp"
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Docker CLI plugin for extended build capabilities with BuildKit
@@ -96,8 +100,6 @@ brew "jq"
 brew "k9s"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
-# Image format providing lossless and lossy compression for web images
-brew "webp"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
@@ -184,10 +186,6 @@ brew "vscode-langservers-extracted"
 brew "watch"
 # Internet file retriever
 brew "wget"
-# Programming language designed for robustness, optimality, and clarity
-brew "zig"
-# Language Server for Zig
-brew "zls"
 # A network cloud, built on open source.
 brew "datum-cloud/tap/datumctl", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
