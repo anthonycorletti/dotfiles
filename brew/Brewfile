@@ -44,8 +44,6 @@ brew "gmp"
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
-# Image format providing lossless and lossy compression for web images
-brew "webp"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Docker CLI plugin for extended build capabilities with BuildKit
@@ -80,6 +78,8 @@ brew "libassuan"
 brew "pinentry"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
 # Colorize logfiles and command output
 brew "grc"
 # Like cURL, but for gRPC
@@ -96,6 +96,8 @@ brew "jq"
 brew "k9s"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
@@ -126,8 +128,12 @@ brew "lua-language-server"
 brew "luarocks"
 # Utility for directing compilation
 brew "make"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
 # Open source relational database management system
 brew "mysql-client"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # Neon CLI tool
 brew "neonctl"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -144,8 +150,6 @@ brew "pkgconf"
 brew "protobuf"
 # Utilities for manipulating PostScript documents
 brew "psutils"
-# Development runtime version manager
-brew "mise"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Rust toolchain installer
@@ -180,6 +184,8 @@ brew "vscode-langservers-extracted"
 brew "watch"
 # Internet file retriever
 brew "wget"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
 # Language Server for Zig
 brew "zls"
 # A network cloud, built on open source.
