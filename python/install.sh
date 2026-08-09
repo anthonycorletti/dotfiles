@@ -1,3 +1,7 @@
+#!/bin/sh
+
+set -e
+
 pipconf="$HOME/.config/pip/pip.conf"
 mkdir -p "$(dirname "$pipconf")"
 

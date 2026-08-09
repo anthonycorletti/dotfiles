@@ -5,6 +5,7 @@
 set -e
 
 cd "$(dirname $0)"/..
+export ZSH="$(pwd -P)"
 
 # Find the installers and run them in a predictable order.
 while IFS= read -r installer
