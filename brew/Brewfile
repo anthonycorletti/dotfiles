@@ -198,6 +198,9 @@ cask "discord", args: { appdir: "/Applications" }
 cask "figma"
 # Web browser
 cask "firefox", args: { appdir: "/Applications" }
+cask "ghostty"
+cask "tailscale-app"
+cask "zoom"
 cask "font-monaspace"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
