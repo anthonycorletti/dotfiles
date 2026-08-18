@@ -59,6 +59,11 @@ echo "› mise install"
 . "$ZSH/ruby/env.zsh"
 MISE_GLOBAL_CONFIG_FILE="$ZSH/mise/config.toml" mise install
 
+# Report available development runtime and tool updates without changing pins
+echo "› mise outdated"
+MISE_GLOBAL_CONFIG_FILE="$ZSH/mise/config.toml" mise outdated
+echo "› run 'mise upgrade --bump --interactive' to review and update pinned versions"
+
 # Install software
 echo "› $ZSH/script/install"
 "$ZSH/script/install"
