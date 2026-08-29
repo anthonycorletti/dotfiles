@@ -1,3 +1,4 @@
+tap "anomalyco/tap"
 tap "datum-cloud/tap", trusted: true
 tap "homebrew/core"
 # Search tool like grep, but optimized for programmers
@@ -166,6 +167,8 @@ brew "vscode-langservers-extracted"
 brew "watch"
 # Internet file retriever
 brew "wget"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode", trusted: true
 # A network cloud, built on open source.
 brew "datum-cloud/tap/datumctl", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
