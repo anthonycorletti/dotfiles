@@ -125,8 +125,6 @@ brew "lua-language-server"
 brew "luarocks"
 # Utility for directing compilation
 brew "make"
-# Polyglot runtime manager (asdf rust clone)
-brew "mise"
 # Open source relational database management system
 brew "mysql-client"
 # Ambitious Vim-fork focused on extensibility and agility
