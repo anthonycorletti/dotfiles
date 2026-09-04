@@ -1,3 +1,4 @@
 #!/bin/sh -e
 
 rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+"$ZSH/nvim/install.sh"

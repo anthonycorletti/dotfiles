@@ -20,6 +20,10 @@ return {
           buffer_visible = { bg = c.bg, fg = c.fg },
           buffer_selected = { bg = c.bg, fg = c.fg, bold = true },
 
+          duplicate = { bg = c.bg, fg = c.br_black },
+          duplicate_visible = { bg = c.bg, fg = c.fg },
+          duplicate_selected = { bg = c.bg, fg = c.fg, bold = true },
+
           close_button = { bg = c.bg, fg = c.br_black },
           close_button_visible = { bg = c.bg, fg = c.br_black },
           close_button_selected = { bg = c.bg, fg = c.fg },
