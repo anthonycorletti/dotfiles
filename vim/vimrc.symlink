@@ -28,6 +28,9 @@ set hidden
 " Always show the status bar
 set laststatus=2
 
+" Show the full file path, modified/read-only flags, and cursor position
+set statusline=%F\ %m%r%=%l:%c
+
 " Show invisible characters
 set list
 
