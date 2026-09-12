@@ -76,6 +76,19 @@ defaults, and so on. Tweak this script, and occasionally run `dotfiles` from
 time to time to keep your environment fresh and up-to-date. You can find
 this script in `bin/`.
 
+## terminal colors
+
+`grc` uses its built-in rules to color supported commands automatically, including
+Docker, Kubernetes, and `ls` permissions, sizes, and dates. Git and package/runtime
+tools retain their native output.
+
+`grc/install.sh` copies three upstream rule files into `~/.config/grc` (respecting
+`XDG_CONFIG_HOME`) and replaces low-contrast backgrounds and dim gray text with
+readable foreground colors. Bootstrap runs this installer; rerun it after upgrading
+`grc` to refresh the rules. Reload the shell with `exec zsh` after setup.
+
+Use `command docker ps` or `command gls -al` to bypass coloring.
+
 ## bugs
 
 I want this to work for everyone, including when optional dependencies are not

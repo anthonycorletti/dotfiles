@@ -14,6 +14,13 @@
         status = auto
         branch = auto
         ui = true
+[color "status"]
+        # Foreground-only colors that remain readable with dark terminal themes.
+        added = green
+        changed = red
+        untracked = yellow
+        unmerged = red bold
+        branch = cyan
 [core]
         excludesfile = ~/.gitignore
         editor = nvim
