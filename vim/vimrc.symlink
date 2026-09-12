@@ -3,7 +3,7 @@ set encoding=utf-8
 
 " Enable 24-bit RGB color
 set termguicolors
-colorscheme sorbet
+colorscheme habamax
 
 " Leader
 let mapleader=";"
