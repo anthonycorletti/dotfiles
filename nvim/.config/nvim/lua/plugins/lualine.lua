@@ -22,17 +22,17 @@ return {
       local custom_theme = {
         normal = {
           a = mode_section(mode_colors.normal),
-          b = { bg = c.black, fg = c.fg },
-          c = { bg = c.bg, fg = c.fg },
+          b = { bg = c.status_section_bg, fg = c.status_section_fg },
+          c = { bg = c.status_bg, fg = c.status_fg },
         },
         insert = { a = mode_section(mode_colors.insert) },
         visual = { a = mode_section(mode_colors.visual) },
         replace = { a = mode_section(mode_colors.replace) },
         command = { a = mode_section(mode_colors.command) },
         inactive = {
-          a = { bg = c.bg, fg = c.br_black },
-          b = { bg = c.bg, fg = c.br_black },
-          c = { bg = c.bg, fg = c.br_black },
+          a = { bg = c.status_bg, fg = c.br_black },
+          b = { bg = c.status_bg, fg = c.br_black },
+          c = { bg = c.status_bg, fg = c.br_black },
         },
       }
       -- fill in b/c for the non-normal modes so lualine doesn't fall back to defaults

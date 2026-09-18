@@ -72,14 +72,83 @@ local function parse_ghostty_theme_file(theme_name)
   return palette
 end
 
--- Helper to apply highlight
+local function blend(from, to, amount)
+  local channels = {}
+  for i = 2, 6, 2 do
+    local a = tonumber(from:sub(i, i + 1), 16)
+    local b = tonumber(to:sub(i, i + 1), 16)
+    channels[#channels + 1] = math.floor(a + (b - a) * amount + 0.5)
+  end
+  return string.format("#%02x%02x%02x", unpack(channels))
+end
+
+local function luminance(hex)
+  local channels = {}
+  for i = 2, 6, 2 do
+    local c = tonumber(hex:sub(i, i + 1), 16) / 255
+    channels[#channels + 1] = c <= 0.04045 and c / 12.92 or ((c + 0.055) / 1.055) ^ 2.4
+  end
+  return channels[1] * 0.2126 + channels[2] * 0.7152 + channels[3] * 0.0722
+end
+
+local function contrast(a, b)
+  local light, dark = luminance(a), luminance(b)
+  return (math.max(light, dark) + 0.05) / (math.min(light, dark) + 0.05)
+end
+
+-- Move only low-contrast colors toward the more readable endpoint.
+local function readable(fg, bg, minimum)
+  if contrast(fg, bg) >= minimum then
+    return fg
+  end
+  local target = contrast("#000000", bg) > contrast("#ffffff", bg) and "#000000" or "#ffffff"
+  for step = 1, 100 do
+    local color = blend(fg, target, step / 100)
+    if contrast(color, bg) >= minimum then
+      return color
+    end
+  end
+  return target
+end
+
+-- Share readable text colors with bufferline and lualine, too.
+local function prepare_palette(palette)
+  for key, color in pairs(palette) do
+    if
+      key == "fg"
+      or key == "white"
+      or key:match("^br_")
+      or key == "red"
+      or key == "green"
+      or key == "yellow"
+      or key == "blue"
+      or key == "magenta"
+      or key == "cyan"
+    then
+      palette[key] = readable(color, palette.bg, 7)
+    end
+  end
+  -- ANSI black can be medium gray; derive statusline surfaces from the actual background.
+  palette.status_bg = palette.bg
+  palette.status_fg = readable(palette.fg, palette.status_bg, 9)
+  palette.status_section_bg = blend(palette.bg, palette.fg, 0.18)
+  palette.status_section_fg = readable(palette.fg, palette.status_section_bg, 7)
+  return palette
+end
+
+-- Check explicit backgrounds as well (selection, search, statusline, diffs).
 local function hi(group, fg, bg, style)
+  local hidden = group == "Whitespace" or group:match("^BufferLineSeparator")
+  if fg and not hidden then
+    fg = readable(fg, bg or theme.palette.bg, 4.5)
+  end
+  style = style or {}
   vim.api.nvim_set_hl(0, group, {
     fg = fg and fg or nil,
     bg = bg and bg or nil,
-    italic = style == "italic",
-    bold = style == "bold",
-    underline = style == "underline",
+    italic = style.italic or false,
+    bold = style.bold or false,
+    underline = style.underline or false,
   })
 end
 
@@ -132,7 +201,7 @@ function theme.set()
     return
   end
 
-  theme.palette = palette
+  theme.palette = prepare_palette(palette)
   local c = theme.palette
 
   local dir = is_dark(c.bg) and 1 or -1
@@ -140,7 +209,7 @@ function theme.set()
   local subtler = adjust_hex(c.bg, 0.06 * dir) -- cursorline
 
   vim.cmd("highlight clear")
-  vim.o.background = "dark"
+  vim.o.background = dir == 1 and "dark" or "light"
   vim.o.termguicolors = true
 
   vim.o.fillchars = "eob: "
@@ -164,9 +233,9 @@ function theme.set()
   hi("FloatBorder", c.br_black, c.bg)
   hi("NormalNC", nil, c.bg)
 
-  -- Statusline — fix the gray bar issue
-  hi("StatusLine", c.fg, c.black) -- dark bg, not gray
-  hi("StatusLineNC", c.br_black, c.bg)
+  -- Use the same readable surface as lualine.
+  hi("StatusLine", c.status_fg, c.status_bg)
+  hi("StatusLineNC", c.br_black, c.status_bg)
 
   -- Syntax — this palette is warm/muted so lean into it
   hi("Comment", c.br_black, nil, { italic = true }) -- #666666
@@ -194,11 +263,11 @@ function theme.set()
   hi("Underlined", c.blue, nil, { underline = true })
   hi("Todo", c.bg, c.yellow, { bold = true })
 
-  -- Diffs
-  hi("DiffAdd", c.br_green, c.green)
-  hi("DiffChange", c.br_yellow, c.yellow)
-  hi("DiffDelete", c.br_red, c.red)
-  hi("DiffText", c.br_blue, c.blue)
+  -- Tinted backgrounds keep diff text distinct from the surrounding color.
+  hi("DiffAdd", c.green, blend(c.bg, c.green, 0.12))
+  hi("DiffChange", c.yellow, blend(c.bg, c.yellow, 0.12))
+  hi("DiffDelete", c.red, blend(c.bg, c.red, 0.12))
+  hi("DiffText", c.fg, blend(c.bg, c.blue, 0.24), { bold = true })
 
   -- LSP
   hi("DiagnosticError", c.br_red)
@@ -240,7 +309,7 @@ local ok, theme_name = pcall(read_ghostty_config)
 if ok then
   local ok2, palette = pcall(parse_ghostty_theme_file, theme_name)
   if ok2 then
-    theme.palette = palette
+    theme.palette = prepare_palette(palette)
   end
 end
 
