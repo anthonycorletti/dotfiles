@@ -301,6 +301,7 @@ function theme.set()
   hi("SnacksPickerInput", c.fg, c.bg)
   hi("SnacksPickerPreview", nil, c.bg)
   hi("SnacksPickerList", nil, c.bg)
+  hi("SnacksPickerListCursorLine", c.fg, blend(c.bg, c.fg, 0.18))
   hi("SnacksPickerTitle", c.fg, c.bg)
 end
 
