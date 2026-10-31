@@ -3,7 +3,8 @@ set encoding=utf-8
 
 " Enable 24-bit RGB color
 set termguicolors
-colorscheme retrobox
+colorscheme catppuccin
+set background=dark
 
 " Leader
 let mapleader=";"

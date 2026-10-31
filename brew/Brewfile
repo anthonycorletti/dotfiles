@@ -129,6 +129,8 @@ brew "make"
 brew "mysql-client"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Full-featured Vim; takes precedence over /usr/bin/vim when Homebrew is on PATH.
+brew "vim"
 # Image manipulation
 brew "netpbm"
 # Open-source, cross-platform JavaScript runtime environment
