@@ -38,3 +38,8 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # Map caps lock to control
 hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}' > /dev/null
+
+# siri drives me nuts like why the hell does it need to pop up everytime i highlight some text about anything i read good lord
+sudo mkdir -p /Library/Preferences/FeatureFlags/Domain && sudo defaults write /Library/Preferences/FeatureFlags/Domain/WritingTools LightweightUI_macOS -dict Enabled -bool false
+# if you're unlike me and want annoying ux you can delete the above or undo that with
+# sudo defaults delete /Library/Preferences/FeatureFlags/Domain/WritingTools
