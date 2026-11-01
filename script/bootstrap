@@ -160,14 +160,14 @@ then
 
   install_xcode_tools
 
-  # info "installing brew bundle"
-  # source "$DOTFILES_ROOT/brew/install.sh"
-  # if brew bundle --file "$DOTFILES_ROOT/brew/Brewfile"
-  # then
-  #   success "brew bundle installed"
-  # else
-  #   fail "error installing brew bundle"
-  # fi
+  info "installing brew bundle"
+  source "$DOTFILES_ROOT/brew/install.sh"
+  if brew bundle --file "$DOTFILES_ROOT/brew/Brewfile"
+  then
+    success "brew bundle installed"
+  else
+    fail "error installing brew bundle"
+  fi
 
   info "running topic installers"
   "$DOTFILES_ROOT/script/install"
