@@ -46,6 +46,9 @@ export ZSH="$dotfilesDirectory"
 # Install homebrew
 . "$ZSH/brew/install.sh"
 
+# Install mise
+. "$ZSH/mise/install.sh"
+
 # Update homebrew
 echo "› brew update"
 brew update
