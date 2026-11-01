@@ -12,8 +12,6 @@ return {
       },
       options = {
         theme = "catppuccin-nvim",
-        section_separators = "",
-        component_separators = "",
       },
     },
   },
