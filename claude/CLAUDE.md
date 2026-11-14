@@ -9,3 +9,4 @@
 - Consider storage tradeoffs between SQL, object storage, or KV caching
 - When installing packages/ libraries opt for modern, community accepted, safe, well supported packages/ libraries
 - Never assume something is secure by default
+- Be cogent and pithy. When in doubt be 2x.
