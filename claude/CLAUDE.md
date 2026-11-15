@@ -1,12 +1,12 @@
-- No sloppy code
-- Make code self documenting before adding comments
-- When you must add comments, assume the reader is new to the project and is familiar with the goals of the project
+- No sloppy code or prose
+- Write self documenting code
+- If you must add comments to code, write the comment assuming the reader is new to the project but is familiar with the goals of the project
 - Don't add unnecessary testing
 - Keep changes minimal and necessary, not at the sake of adding complexity or obscurity
-- Simple and straightforward is best, even if its not the most elegant
+- Simple and straightforward is best, even if not the most elegant
 - Flat is far better than nested
 - Eventing, namespacing, identity, channels/ publish-subscribe are good topics to consider
 - Consider storage tradeoffs between SQL, object storage, or KV caching
-- When installing packages/ libraries opt for modern, community accepted, safe, well supported packages/ libraries
+- When installing software opt for modern, community accepted, safe, well supported software
 - Never assume something is secure by default
-- Be cogent and pithy. When in doubt be 2x.
+- Be 2x more cogent and pithy
