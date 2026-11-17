@@ -23,8 +23,6 @@ brew "aws-shell"
 brew "awscli"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
-# Microsoft Azure CLI 2.0
-brew "azure-cli"
 # Garbage collector for C and C++
 brew "bdw-gc"
 # Generic-purpose lossless compression algorithm by Google
