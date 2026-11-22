@@ -4,3 +4,5 @@ alias pubkey="more ~/.ssh/id_ed25519.pub | pbcopy | echo '=> Public key copied t
 # internal and external ip aliases
 alias internalip="ipconfig getifaddr en0"
 alias externalip="curl ipecho.net/plain; echo"
+
+alias l="ls -Ahl"
