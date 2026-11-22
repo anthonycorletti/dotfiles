@@ -21,8 +21,6 @@ brew "zstd"
 brew "aws-shell"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Garbage collector for C and C++
 brew "bdw-gc"
 # Generic-purpose lossless compression algorithm by Google
@@ -37,10 +35,6 @@ brew "c-ares"
 brew "glib"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
-# GNU multiple precision arithmetic library
-brew "gmp"
-# GNU File, Shell, and Text utilities
-brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Image format providing lossless and lossy compression for web images
@@ -57,6 +51,8 @@ brew "docker-compose"
 brew "docker-credential-helper"
 # Docker Credential Helper for Amazon ECR
 brew "docker-credential-helper-ecr"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Text processing system for reStructuredText
 brew "docutils"
 # Like neofetch, but much faster because written mostly in C
@@ -67,6 +63,8 @@ brew "fd"
 brew "ffmpeg"
 # Infamous electronic fortune-cookie generator
 brew "fortune"
+# GNU multiple precision arithmetic library
+brew "gmp"
 # GNU compiler collection
 brew "gcc"
 # GitHub command-line tool
@@ -81,8 +79,6 @@ brew "libassuan"
 brew "pinentry"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Colorize logfiles and command output
-brew "grc"
 # Like cURL, but for gRPC
 brew "grpcurl"
 # OpenType text shaping engine
